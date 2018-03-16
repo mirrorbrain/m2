@@ -1,0 +1,10 @@
+{
+	"instance": 1,
+	"users": [
+		{ "id": 1 , "login": "admin" , "password": "+uEKI58lNaEiAfmVVuB8Y2GuUIZjHiMKAUlmIGN0t7I=" , "privilege": 1 },
+		{ "id": 2 , "login": "benoit" , "password": "9y6911j6NJHeB5LnjBKqzx3SvAmkiQ6a+yzelxSRZ18=" , "privilege": 0 },
+		{ "id": 3 , "login": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" , "password": "MfemXjFVhqwZi9eYtmKc5JA9CJlHbVdBqfMuLlIbamY=" , "privilege": 1 },
+		{ "id": 4 , "login": "test" , "password": "EQgS9n+h4fARf289cCQcGkKnsHcRqTwkd8xRbZBC+ds=" , "privilege": 0 }
+	],
+	"tag": "fTTuYBoL8B2tj43Hp1JkBcnAq1veSJ44U0nUP58YVK4="
+}

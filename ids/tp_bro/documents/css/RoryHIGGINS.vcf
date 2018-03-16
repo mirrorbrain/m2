@@ -1,0 +1,18 @@
+BEGIN:VCARD
+VERSION:3.0
+N:HIGGINS;Rory;;;
+FN:Rory HIGGINS
+ORG:Mancala Networks;
+TITLE:VP Marketing
+EMAIL;type=INTERNET;type=WORK;type=pref:rory.higgins@mancalanetworks.com
+TEL;type=WORK;type=pref:+33 4 82 53 04 16
+TEL;type=CELL:+33 6 23 86 55 57
+TEL;type=WORK;type=FAX:+33 4 76 63 93 60
+item1.ADR;type=WORK;type=pref:;;15 Avenue du Granier;Meylan;;38240;France
+item1.X-ABADR:fr
+item2.URL;type=pref:www.mancalanetworks.com
+item2.X-ABLabel:_$!<HomePage>!$_
+CATEGORIES:Contacts
+UID:012a72dc-3043-45a0-a718-75bf9d6e562e
+X-ABUID:012A72DC-3043-45A0-A718-75BF9D6E562E:ABPerson
+END:VCARD

@@ -1,0 +1,281 @@
+\hypertarget{classKey}{}\section{Key Class Reference}
+\label{classKey}\index{Key@{Key}}
+
+
+\hyperlink{classKey}{Key} class.  
+
+
+
+
+{\ttfamily \#include $<$key.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classKey_a22e51dbebb18c1d33ee8bba93a1b3b4d}{Key} ()
+\begin{DoxyCompactList}\small\item\em Default constructor\+: used to create an empty \hyperlink{classKey}{Key} before updating it from a J\+S\+O\+N string for instance. \end{DoxyCompactList}\item 
+\hyperlink{classKey_a92ff6ee5df282f6d7abb893fd14d81af}{$\sim$\+Key} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classKey}{Key} destructor. \end{DoxyCompactList}\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classKey_a21f962eefb398f5dd315f70455cb4e5f}{set} (const std\+::string \&field, const std\+::string \&value)
+\begin{DoxyCompactList}\small\item\em This function set the given attribute to the provided value in class \hyperlink{classKey}{Key}. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{classKey_a080b9b546a6a2d7eaa0e8c67f35810fd}{get\+Id} () const 
+\begin{DoxyCompactList}\small\item\em Function returning the id of the key. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{classKey_a8f3479bf9c4db9573a5fe4919937a3eb}{get\+Owner} () const 
+\begin{DoxyCompactList}\small\item\em Function returning the owner of the key. \end{DoxyCompactList}\item 
+\hyperlink{key_8hpp_a4f367c350737c92475175fb229c5570e}{key\+\_\+type\+\_\+t} \hyperlink{classKey_a0f29c5a6e944fd888f42fa4791a91acd}{get\+Type} () const 
+\begin{DoxyCompactList}\small\item\em Function returning the type of the key. \end{DoxyCompactList}\item 
+\hyperlink{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3e}{key\+\_\+use\+\_\+t} \hyperlink{classKey_a8f28fd26ad3090f3cf569896bb8be14a}{get\+Use} () const 
+\begin{DoxyCompactList}\small\item\em Function returning the usage of the key. \end{DoxyCompactList}\item 
+date\+\_\+t \hyperlink{classKey_a8a25398fcae6bdb827c4ff235ffef471}{get\+Validity} () const 
+\begin{DoxyCompactList}\small\item\em Function returning the validity period of the key. \end{DoxyCompactList}\item 
+std\+::vector$<$ uint8\+\_\+t $>$ \hyperlink{classKey_adbefc25c5016e7e392cbee865039a7d0}{get\+Value} () const 
+\begin{DoxyCompactList}\small\item\em Function returning the (encrypted) value of the key. \end{DoxyCompactList}\item 
+\hypertarget{classKey_afbb4dc3961f1a5b9cfb41a03a609d937}{}\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classKey_afbb4dc3961f1a5b9cfb41a03a609d937}{serialize} (uint8\+\_\+t $\ast$tab, size\+\_\+t len)\label{classKey_afbb4dc3961f1a5b9cfb41a03a609d937}
+
+\begin{DoxyCompactList}\small\item\em Serialize the \hyperlink{classKey}{Key} object to a byte array of {\itshape \+\_\+serialized\+User\+Size} bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classKey_ae1446a9d9b71136f028dc1409c34bebb}{}uint32\+\_\+t \hyperlink{classKey_ae1446a9d9b71136f028dc1409c34bebb}{\+\_\+associated}\label{classKey_ae1446a9d9b71136f028dc1409c34bebb}
+
+\begin{DoxyCompactList}\small\item\em If the corresponding private/public key is in the database\+: contains its id. \end{DoxyCompactList}\item 
+\hypertarget{classKey_a4e3025fda6f980edcece0758a8e94eef}{}size\+\_\+t \hyperlink{classKey_a4e3025fda6f980edcece0758a8e94eef}{\+\_\+length}\label{classKey_a4e3025fda6f980edcece0758a8e94eef}
+
+\begin{DoxyCompactList}\small\item\em Number of bytes of the key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classKey_a95681409ecb459f2972bb68d0d0a0e26}{}static const size\+\_\+t \hyperlink{classKey_a95681409ecb459f2972bb68d0d0a0e26}{\+\_\+serialized\+Size} = 4 + 4 + 1 + 1 + 4 + 4 + sizeof(size\+\_\+t)\label{classKey_a95681409ecb459f2972bb68d0d0a0e26}
+
+\begin{DoxyCompactList}\small\item\em Size of the serialization of a \hyperlink{classKey}{Key} object without its value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classKey_a24b72a6567dcfe21d7e3e26394ddbd63}{}uint32\+\_\+t \hyperlink{classKey_a24b72a6567dcfe21d7e3e26394ddbd63}{\+\_\+id}\label{classKey_a24b72a6567dcfe21d7e3e26394ddbd63}
+
+\begin{DoxyCompactList}\small\item\em Id of the key, must be unique. \end{DoxyCompactList}\item 
+\hypertarget{classKey_aeb08ff8b20a2b8cea5e365349a60cca2}{}uint32\+\_\+t \hyperlink{classKey_aeb08ff8b20a2b8cea5e365349a60cca2}{\+\_\+owner}\label{classKey_aeb08ff8b20a2b8cea5e365349a60cca2}
+
+\begin{DoxyCompactList}\small\item\em Id of the key owner. \end{DoxyCompactList}\item 
+\hypertarget{classKey_a9a49d8de8d81482db0e5deded871bf16}{}\hyperlink{key_8hpp_a4f367c350737c92475175fb229c5570e}{key\+\_\+type\+\_\+t} \hyperlink{classKey_a9a49d8de8d81482db0e5deded871bf16}{\+\_\+type}\label{classKey_a9a49d8de8d81482db0e5deded871bf16}
+
+\begin{DoxyCompactList}\small\item\em Type of the key. \end{DoxyCompactList}\item 
+\hypertarget{classKey_a605d565576cb518072992ef854349cbf}{}\hyperlink{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3e}{key\+\_\+use\+\_\+t} \hyperlink{classKey_a605d565576cb518072992ef854349cbf}{\+\_\+use}\label{classKey_a605d565576cb518072992ef854349cbf}
+
+\begin{DoxyCompactList}\small\item\em Use of the key. \end{DoxyCompactList}\item 
+\hypertarget{classKey_af1cec132c6d89dcdc46fbf53c1a3d4b7}{}date\+\_\+t \hyperlink{classKey_af1cec132c6d89dcdc46fbf53c1a3d4b7}{\+\_\+validity}\label{classKey_af1cec132c6d89dcdc46fbf53c1a3d4b7}
+
+\begin{DoxyCompactList}\small\item\em Date when the key will not be valid anymore. \end{DoxyCompactList}\item 
+\hypertarget{classKey_a8084600fd511cc793d5a1376164e4713}{}std\+::vector$<$ uint8\+\_\+t $>$ \hyperlink{classKey_a8084600fd511cc793d5a1376164e4713}{\+\_\+value}\label{classKey_a8084600fd511cc793d5a1376164e4713}
+
+\begin{DoxyCompactList}\small\item\em Value of the key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classKey_a30a923407125cc7be7d2cbdcf88450e0}{}class {\bfseries A\+P\+I}\label{classKey_a30a923407125cc7be7d2cbdcf88450e0}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 46 of file key.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classKey_a22e51dbebb18c1d33ee8bba93a1b3b4d}{}\index{Key@{Key}!Key@{Key}}
+\index{Key@{Key}!Key@{Key}}
+\subsubsection[{Key}]{\setlength{\rightskip}{0pt plus 5cm}Key\+::\+Key (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classKey_a22e51dbebb18c1d33ee8bba93a1b3b4d}
+
+
+ 
+
+Definition at line 54 of file key.\+hpp.
+
+\hypertarget{classKey_a92ff6ee5df282f6d7abb893fd14d81af}{}\index{Key@{Key}!````~Key@{$\sim$\+Key}}
+\index{````~Key@{$\sim$\+Key}!Key@{Key}}
+\subsubsection[{$\sim$\+Key}]{\setlength{\rightskip}{0pt plus 5cm}Key\+::$\sim$\+Key (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classKey_a92ff6ee5df282f6d7abb893fd14d81af}
+
+
+ 
+
+Definition at line 59 of file key.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classKey_a080b9b546a6a2d7eaa0e8c67f35810fd}{}\index{Key@{Key}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!Key@{Key}}
+\subsubsection[{get\+Id}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Key\+::get\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classKey_a080b9b546a6a2d7eaa0e8c67f35810fd}
+
+
+ 
+
+Definition at line 7 of file key.\+cpp.
+
+
+
+References \+\_\+id.
+
+
+
+Referenced by operator$<$$<$().
+
+\hypertarget{classKey_a8f3479bf9c4db9573a5fe4919937a3eb}{}\index{Key@{Key}!get\+Owner@{get\+Owner}}
+\index{get\+Owner@{get\+Owner}!Key@{Key}}
+\subsubsection[{get\+Owner}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Key\+::get\+Owner (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classKey_a8f3479bf9c4db9573a5fe4919937a3eb}
+
+
+ 
+
+Definition at line 12 of file key.\+cpp.
+
+
+
+References \+\_\+owner.
+
+
+
+Referenced by A\+P\+I\+::decrypt(), A\+P\+I\+::encrypt(), operator$<$$<$(), A\+P\+I\+::unwrap(), and A\+P\+I\+::wrap().
+
+\hypertarget{classKey_a0f29c5a6e944fd888f42fa4791a91acd}{}\index{Key@{Key}!get\+Type@{get\+Type}}
+\index{get\+Type@{get\+Type}!Key@{Key}}
+\subsubsection[{get\+Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf key\+\_\+type\+\_\+t} Key\+::get\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classKey_a0f29c5a6e944fd888f42fa4791a91acd}
+
+
+ 
+
+Definition at line 17 of file key.\+cpp.
+
+
+
+References \+\_\+type.
+
+
+
+Referenced by A\+P\+I\+::decrypt(), A\+P\+I\+::encrypt(), and operator$<$$<$().
+
+\hypertarget{classKey_a8f28fd26ad3090f3cf569896bb8be14a}{}\index{Key@{Key}!get\+Use@{get\+Use}}
+\index{get\+Use@{get\+Use}!Key@{Key}}
+\subsubsection[{get\+Use}]{\setlength{\rightskip}{0pt plus 5cm}{\bf key\+\_\+use\+\_\+t} Key\+::get\+Use (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classKey_a8f28fd26ad3090f3cf569896bb8be14a}
+
+
+ 
+
+Definition at line 22 of file key.\+cpp.
+
+
+
+References \+\_\+use.
+
+
+
+Referenced by A\+P\+I\+::decrypt(), A\+P\+I\+::encrypt(), operator$<$$<$(), A\+P\+I\+::unwrap(), and A\+P\+I\+::wrap().
+
+\hypertarget{classKey_a8a25398fcae6bdb827c4ff235ffef471}{}\index{Key@{Key}!get\+Validity@{get\+Validity}}
+\index{get\+Validity@{get\+Validity}!Key@{Key}}
+\subsubsection[{get\+Validity}]{\setlength{\rightskip}{0pt plus 5cm}date\+\_\+t Key\+::get\+Validity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classKey_a8a25398fcae6bdb827c4ff235ffef471}
+
+
+ 
+
+Definition at line 27 of file key.\+cpp.
+
+
+
+References \+\_\+validity.
+
+
+
+Referenced by operator$<$$<$().
+
+\hypertarget{classKey_adbefc25c5016e7e392cbee865039a7d0}{}\index{Key@{Key}!get\+Value@{get\+Value}}
+\index{get\+Value@{get\+Value}!Key@{Key}}
+\subsubsection[{get\+Value}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ uint8\+\_\+t $>$ Key\+::get\+Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classKey_adbefc25c5016e7e392cbee865039a7d0}
+
+
+ 
+
+Definition at line 32 of file key.\+cpp.
+
+
+
+References \+\_\+value.
+
+
+
+Referenced by A\+P\+I\+::decrypt\+Key(), and operator$<$$<$().
+
+\hypertarget{classKey_a21f962eefb398f5dd315f70455cb4e5f}{}\index{Key@{Key}!set@{set}}
+\index{set@{set}!Key@{Key}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} Key\+::set (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{field, }
+\item[{const std\+::string \&}]{value}
+\end{DoxyParamCaption}
+)}\label{classKey_a21f962eefb398f5dd315f70455cb4e5f}
+This function is for example used to construct \hyperlink{classKey}{Key} classes from a json\+\_\+object\+\_\+t. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em field} & is a string containing the name of the attribute \\
+\hline
+{\em value} & is the value that should be set to the mentioned attribute. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R} if no error occured 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+ 
+
+Definition at line 61 of file key.\+cpp.
+
+
+
+References \+\_\+associated, \+\_\+id, \+\_\+length, \+\_\+owner, \+\_\+type, \+\_\+use, \+\_\+validity, \+\_\+value, and B\+A\+S\+E64\+::decode().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+includes/\hyperlink{key_8hpp}{key.\+hpp}\item 
+src/key.\+cpp\end{DoxyCompactItemize}

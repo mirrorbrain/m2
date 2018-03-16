@@ -1,0 +1,118 @@
+\hypertarget{user_8hpp}{}\section{includes/user.hpp File Reference}
+\label{user_8hpp}\index{includes/user.\+hpp@{includes/user.\+hpp}}
+{\ttfamily \#include $<$cstdint$>$}\\*
+{\ttfamily \#include $<$cstdlib$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include \char`\"{}error.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}sha256.\+hpp\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classUser}{User}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classUser}{User} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{user_8hpp_a147824aa4797bb7a9bcf276b5de0cb7c}{role\+\_\+t} \{ \hyperlink{user_8hpp_a147824aa4797bb7a9bcf276b5de0cb7ca71b216f64161c44df0831f81ce09063b}{U\+S\+E\+R\+\_\+\+B\+A\+S\+I\+C} = 0, 
+\hyperlink{user_8hpp_a147824aa4797bb7a9bcf276b5de0cb7cab90cdbe4f05085c6f98903130ea09e1c}{U\+S\+E\+R\+\_\+\+A\+D\+M\+I\+N} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classUser}{User} roles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{user_8hpp_adf65de944b3cede5af5bbd0916e6f32f}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classUser}{User} \&obj)
+\begin{DoxyCompactList}\small\item\em This function serializes the \hyperlink{classUser}{User} class into a J\+S\+O\+N format string. \end{DoxyCompactList}\item 
+std\+::istream \& \hyperlink{user_8hpp_a6f68aec09083319aaab10849c66dd3cd}{operator$>$$>$} (std\+::istream \&is, \hyperlink{classUser}{User} \&obj)
+\begin{DoxyCompactList}\small\item\em This function parses a string in J\+S\+O\+N format to update a \hyperlink{classUser}{User} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{user_8hpp_a43842dcd60d621d7d9c9b9e4ecd76f78}{}constexpr unsigned \hyperlink{user_8hpp_a43842dcd60d621d7d9c9b9e4ecd76f78}{M\+A\+X\+\_\+\+L\+O\+G\+I\+N\+\_\+\+L\+E\+N} = 30\label{user_8hpp_a43842dcd60d621d7d9c9b9e4ecd76f78}
+
+\begin{DoxyCompactList}\small\item\em Maximum length of a user login. \end{DoxyCompactList}\item 
+\hypertarget{user_8hpp_a510de8d20fed46d05c63ed414e8b595f}{}constexpr unsigned \hyperlink{user_8hpp_a510de8d20fed46d05c63ed414e8b595f}{M\+A\+X\+\_\+\+P\+A\+S\+S\+W\+\_\+\+L\+E\+N} = 50\label{user_8hpp_a510de8d20fed46d05c63ed414e8b595f}
+
+\begin{DoxyCompactList}\small\item\em Maximum length of a user password. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classUser}{User} definition
+
+\hyperlink{classUser}{User} class definition. 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{user_8hpp_a147824aa4797bb7a9bcf276b5de0cb7c}{}\index{user.\+hpp@{user.\+hpp}!role\+\_\+t@{role\+\_\+t}}
+\index{role\+\_\+t@{role\+\_\+t}!user.\+hpp@{user.\+hpp}}
+\subsubsection[{role\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf role\+\_\+t}}\label{user_8hpp_a147824aa4797bb7a9bcf276b5de0cb7c}
+This enumerated type has positive values smaller than 256. Hence, it can be converted to uint8\+\_\+t type for dumping. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{U\+S\+E\+R\+\_\+\+B\+A\+S\+I\+C@{U\+S\+E\+R\+\_\+\+B\+A\+S\+I\+C}!user.\+hpp@{user.\+hpp}}\index{user.\+hpp@{user.\+hpp}!U\+S\+E\+R\+\_\+\+B\+A\+S\+I\+C@{U\+S\+E\+R\+\_\+\+B\+A\+S\+I\+C}}\item[{\em 
+\hypertarget{user_8hpp_a147824aa4797bb7a9bcf276b5de0cb7ca71b216f64161c44df0831f81ce09063b}{}U\+S\+E\+R\+\_\+\+B\+A\+S\+I\+C\label{user_8hpp_a147824aa4797bb7a9bcf276b5de0cb7ca71b216f64161c44df0831f81ce09063b}
+}]simple user \index{U\+S\+E\+R\+\_\+\+A\+D\+M\+I\+N@{U\+S\+E\+R\+\_\+\+A\+D\+M\+I\+N}!user.\+hpp@{user.\+hpp}}\index{user.\+hpp@{user.\+hpp}!U\+S\+E\+R\+\_\+\+A\+D\+M\+I\+N@{U\+S\+E\+R\+\_\+\+A\+D\+M\+I\+N}}\item[{\em 
+\hypertarget{user_8hpp_a147824aa4797bb7a9bcf276b5de0cb7cab90cdbe4f05085c6f98903130ea09e1c}{}U\+S\+E\+R\+\_\+\+A\+D\+M\+I\+N\label{user_8hpp_a147824aa4797bb7a9bcf276b5de0cb7cab90cdbe4f05085c6f98903130ea09e1c}
+}]admin \end{description}
+\end{Desc}
+
+
+Definition at line 26 of file user.\+hpp.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{user_8hpp_adf65de944b3cede5af5bbd0916e6f32f}{}\index{user.\+hpp@{user.\+hpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!user.\+hpp@{user.\+hpp}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{os, }
+\item[{const {\bf User} \&}]{obj}
+\end{DoxyParamCaption}
+)}\label{user_8hpp_adf65de944b3cede5af5bbd0916e6f32f}
+This function is for example used to dump a \hyperlink{classUser}{User} class when saving the \hyperlink{classAPI}{A\+P\+I} in a file. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em os} & is an output stream in which will be send the serialized \hyperlink{classUser}{User}. \\
+\hline
+{\em obj} & is the \hyperlink{classUser}{User} object to serialize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the output stream given as argument.
+\end{DoxyReturn}
+
+
+ 
+
+Definition at line 35 of file user.\+cpp.
+
+
+
+References User\+::\+\_\+hash\+Passw\+Size, User\+::\+\_\+id, User\+::\+\_\+login, User\+::\+\_\+password, User\+::\+\_\+role, and B\+A\+S\+E64\+::encode().
+
+\hypertarget{user_8hpp_a6f68aec09083319aaab10849c66dd3cd}{}\index{user.\+hpp@{user.\+hpp}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!user.\+hpp@{user.\+hpp}}
+\subsubsection[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}std\+::istream\& operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{std\+::istream \&}]{is, }
+\item[{{\bf User} \&}]{obj}
+\end{DoxyParamCaption}
+)}\label{user_8hpp_a6f68aec09083319aaab10849c66dd3cd}
+This function is for example used to construct \hyperlink{classUser}{User} classes when loading the \hyperlink{classAPI}{A\+P\+I} from a file. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em is} & is an input stream from which the serialization of the \hyperlink{classUser}{User} will be taken. \\
+\hline
+{\em obj} & is the \hyperlink{classUser}{User} object that will contain the constructed \hyperlink{classUser}{User}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the input stream given as argument.
+\end{DoxyReturn}
+
+
+ 
+
+Definition at line 123 of file user.\+cpp.
+

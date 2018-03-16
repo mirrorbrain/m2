@@ -1,0 +1,11 @@
+{
+	"instance": 1,
+	"keys": [
+		{ "id": 1 , "owner": 2 , "type": 1 , "use": 4 , "validity": 2020 , "length": 16 , "value": "77ZinlHFcCkBn77fYOYG0g==" },
+		{ "id": 2 , "owner": 2 , "type": 1 , "use": 1 , "validity": 2020 , "length": 16 , "value": "acTg2Gp7BDDYzbeAcLTFWg==" },
+		{ "id": 3 , "owner": 4 , "type": 1 , "use": 4 , "validity": 2020 , "length": 16 , "value": "ZXsH+20cI3iVpLZYoegk+A==" },
+		{ "id": 4 , "owner": 4 , "type": 1 , "use": 1 , "validity": 2020 , "length": 16 , "value": "T+XOwB9ZVHDxxYCAB7NS1w==" },
+		{ "id": 5 , "owner": 4 , "type": 1 , "use": 1 , "validity": 2020 , "length": 16 , "value": "w0C05KJP4RtE74nxgdxLhA==" }
+	]
+	"tag": "sw7apMh3fxGC9qdjZkptMhCoO1hAL7rudO17mg4nEKM="
+}

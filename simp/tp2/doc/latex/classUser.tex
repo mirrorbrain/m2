@@ -1,0 +1,305 @@
+\hypertarget{classUser}{}\section{User Class Reference}
+\label{classUser}\index{User@{User}}
+
+
+\hyperlink{classUser}{User} class.  
+
+
+
+
+{\ttfamily \#include $<$user.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classUser_a4a0137053e591fbb79d9057dd7d2283d}{User} ()
+\begin{DoxyCompactList}\small\item\em Default constructor\+: used to create an empty \hyperlink{classUser}{User} before updating it from a J\+S\+O\+N string for instance. \end{DoxyCompactList}\item 
+\hyperlink{classUser_af73f47c010d55a777fe1cc9bc21e0a50}{User} (const char login\mbox{[}\hyperlink{user_8hpp_a43842dcd60d621d7d9c9b9e4ecd76f78}{M\+A\+X\+\_\+\+L\+O\+G\+I\+N\+\_\+\+L\+E\+N}\mbox{]}, const char password\mbox{[}\hyperlink{user_8hpp_a510de8d20fed46d05c63ed414e8b595f}{M\+A\+X\+\_\+\+P\+A\+S\+S\+W\+\_\+\+L\+E\+N}\mbox{]}, uint32\+\_\+t id, \hyperlink{user_8hpp_a147824aa4797bb7a9bcf276b5de0cb7c}{role\+\_\+t} role)
+\begin{DoxyCompactList}\small\item\em This constructor creates a user from a login, id and role. \end{DoxyCompactList}\item 
+\hyperlink{classUser_ac00b72ad64eb4149f7b21b9f5468c2b2}{$\sim$\+User} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classUser}{User} destructor. \end{DoxyCompactList}\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classUser_ad20b07e9b43647d65e7384d3002bc4cf}{set} (const std\+::string \&field, const std\+::string \&value)
+\begin{DoxyCompactList}\small\item\em This function sets the given attribute to the provided value in class \hyperlink{classUser}{User}. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{classUser_aad4f937d81f2db57d71d72aa65fabe84}{get\+Id} () const 
+\begin{DoxyCompactList}\small\item\em Function returning the id of the user. \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{classUser_adba4ac3eacf305b1dcfa7b82dc95817e}{get\+Login} () const 
+\begin{DoxyCompactList}\small\item\em Function returning the login of the user. \end{DoxyCompactList}\item 
+const \hyperlink{user_8hpp_a147824aa4797bb7a9bcf276b5de0cb7c}{role\+\_\+t} \hyperlink{classUser_a66cf30e2ff6ffcca4b008aa0def0176a}{get\+Role} () const 
+\begin{DoxyCompactList}\small\item\em Function returning the role of the user. \end{DoxyCompactList}\item 
+bool \hyperlink{classUser_a30d05d38285abd2f9f376a790c7428f0}{has\+Same\+Login} (const std\+::string \&login) const 
+\begin{DoxyCompactList}\small\item\em Function comparing two users\textquotesingle{} logins. \end{DoxyCompactList}\item 
+bool \hyperlink{classUser_af1e4b148d9c3fcb3c761ceaa405f2087}{is\+Correct\+Password} (const std\+::string \&password) const 
+\item 
+\hypertarget{classUser_aae31b41cecb2aae7e2d545c8c4036364}{}\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classUser_aae31b41cecb2aae7e2d545c8c4036364}{serialize} (uint8\+\_\+t $\ast$tab, size\+\_\+t len)\label{classUser_aae31b41cecb2aae7e2d545c8c4036364}
+
+\begin{DoxyCompactList}\small\item\em Serialize the \hyperlink{classUser}{User} object to a byte array of {\itshape \+\_\+serialized\+User\+Size} bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classUser_a2869314c4d5d41923d74150bea362140}{}static const size\+\_\+t \hyperlink{classUser_a2869314c4d5d41923d74150bea362140}{\+\_\+hash\+Passw\+Size} = S\+H\+A256\+::hash\+Size\label{classUser_a2869314c4d5d41923d74150bea362140}
+
+\begin{DoxyCompactList}\small\item\em Size of the hashed password. \end{DoxyCompactList}\item 
+\hypertarget{classUser_aded927fdcb2eacbe716c4fed1ed328ab}{}static const size\+\_\+t \hyperlink{classUser_aded927fdcb2eacbe716c4fed1ed328ab}{\+\_\+serialized\+Size} = 4 + \hyperlink{user_8hpp_a43842dcd60d621d7d9c9b9e4ecd76f78}{M\+A\+X\+\_\+\+L\+O\+G\+I\+N\+\_\+\+L\+E\+N} + \hyperlink{classUser_a2869314c4d5d41923d74150bea362140}{\+\_\+hash\+Passw\+Size} + 1\label{classUser_aded927fdcb2eacbe716c4fed1ed328ab}
+
+\begin{DoxyCompactList}\small\item\em Size of the serialization of a \hyperlink{classUser}{User} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classUser_a653dfb41ba6ebce7769a448cfeb8c278}{}static void \hyperlink{classUser_a653dfb41ba6ebce7769a448cfeb8c278}{hash\+Password} (const char password\mbox{[}\hyperlink{user_8hpp_a510de8d20fed46d05c63ed414e8b595f}{M\+A\+X\+\_\+\+P\+A\+S\+S\+W\+\_\+\+L\+E\+N}\mbox{]}, uint8\+\_\+t digest\mbox{[}\hyperlink{classUser_a2869314c4d5d41923d74150bea362140}{\+\_\+hash\+Passw\+Size}\mbox{]})\label{classUser_a653dfb41ba6ebce7769a448cfeb8c278}
+
+\begin{DoxyCompactList}\small\item\em Hashes the password. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classUser_a81d04840c2371421635ff226986a4e1d}{}uint32\+\_\+t \hyperlink{classUser_a81d04840c2371421635ff226986a4e1d}{\+\_\+id}\label{classUser_a81d04840c2371421635ff226986a4e1d}
+
+\begin{DoxyCompactList}\small\item\em Id of the user, must be unique. \end{DoxyCompactList}\item 
+char \hyperlink{classUser_a10ad4e44dff0d98d90f65a75dae1a903}{\+\_\+login} \mbox{[}\hyperlink{user_8hpp_a43842dcd60d621d7d9c9b9e4ecd76f78}{M\+A\+X\+\_\+\+L\+O\+G\+I\+N\+\_\+\+L\+E\+N}+1\mbox{]}
+\begin{DoxyCompactList}\small\item\em Login of the user. \end{DoxyCompactList}\item 
+\hypertarget{classUser_a40b529a76a0b275d2adcb42d609f3256}{}\hyperlink{user_8hpp_a147824aa4797bb7a9bcf276b5de0cb7c}{role\+\_\+t} \hyperlink{classUser_a40b529a76a0b275d2adcb42d609f3256}{\+\_\+role}\label{classUser_a40b529a76a0b275d2adcb42d609f3256}
+
+\begin{DoxyCompactList}\small\item\em Role of the user. \end{DoxyCompactList}\item 
+\hypertarget{classUser_a4d3b4e36483c47846d9b157ffd9f7ccc}{}uint8\+\_\+t \hyperlink{classUser_a4d3b4e36483c47846d9b157ffd9f7ccc}{\+\_\+password} \mbox{[}\hyperlink{classUser_a2869314c4d5d41923d74150bea362140}{\+\_\+hash\+Passw\+Size}+1\mbox{]}\label{classUser_a4d3b4e36483c47846d9b157ffd9f7ccc}
+
+\begin{DoxyCompactList}\small\item\em Password (hashed password) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{classUser_adf65de944b3cede5af5bbd0916e6f32f}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classUser}{User} \&obj)
+\begin{DoxyCompactList}\small\item\em This function serializes the \hyperlink{classUser}{User} class into a J\+S\+O\+N format string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 34 of file user.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classUser_a4a0137053e591fbb79d9057dd7d2283d}{}\index{User@{User}!User@{User}}
+\index{User@{User}!User@{User}}
+\subsubsection[{User}]{\setlength{\rightskip}{0pt plus 5cm}User\+::\+User (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classUser_a4a0137053e591fbb79d9057dd7d2283d}
+
+
+ 
+
+Definition at line 44 of file user.\+hpp.
+
+\hypertarget{classUser_af73f47c010d55a777fe1cc9bc21e0a50}{}\index{User@{User}!User@{User}}
+\index{User@{User}!User@{User}}
+\subsubsection[{User}]{\setlength{\rightskip}{0pt plus 5cm}User\+::\+User (
+\begin{DoxyParamCaption}
+\item[{const char}]{login\mbox{[}\+M\+A\+X\+\_\+\+L\+O\+G\+I\+N\+\_\+\+L\+E\+N\mbox{]}, }
+\item[{const char}]{password\mbox{[}\+M\+A\+X\+\_\+\+P\+A\+S\+S\+W\+\_\+\+L\+E\+N\mbox{]}, }
+\item[{uint32\+\_\+t}]{id, }
+\item[{{\bf role\+\_\+t}}]{role}
+\end{DoxyParamCaption}
+)}\label{classUser_af73f47c010d55a777fe1cc9bc21e0a50}
+
+
+ 
+
+Definition at line 7 of file user.\+cpp.
+
+
+
+References \+\_\+login, \+\_\+password, and hash\+Password().
+
+\hypertarget{classUser_ac00b72ad64eb4149f7b21b9f5468c2b2}{}\index{User@{User}!````~User@{$\sim$\+User}}
+\index{````~User@{$\sim$\+User}!User@{User}}
+\subsubsection[{$\sim$\+User}]{\setlength{\rightskip}{0pt plus 5cm}User\+::$\sim$\+User (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classUser_ac00b72ad64eb4149f7b21b9f5468c2b2}
+
+
+ 
+
+Definition at line 16 of file user.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classUser_aad4f937d81f2db57d71d72aa65fabe84}{}\index{User@{User}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!User@{User}}
+\subsubsection[{get\+Id}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t User\+::get\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classUser_aad4f937d81f2db57d71d72aa65fabe84}
+
+
+ 
+
+Definition at line 20 of file user.\+cpp.
+
+
+
+References \+\_\+id.
+
+
+
+Referenced by A\+P\+I\+::decrypt(), A\+P\+I\+::encrypt(), A\+P\+I\+::new\+Key(), A\+P\+I\+::new\+User(), A\+P\+I\+::unwrap(), and A\+P\+I\+::wrap().
+
+\hypertarget{classUser_adba4ac3eacf305b1dcfa7b82dc95817e}{}\index{User@{User}!get\+Login@{get\+Login}}
+\index{get\+Login@{get\+Login}!User@{User}}
+\subsubsection[{get\+Login}]{\setlength{\rightskip}{0pt plus 5cm}const char $\ast$ User\+::get\+Login (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classUser_adba4ac3eacf305b1dcfa7b82dc95817e}
+
+
+ 
+
+Definition at line 25 of file user.\+cpp.
+
+
+
+References \+\_\+login.
+
+\hypertarget{classUser_a66cf30e2ff6ffcca4b008aa0def0176a}{}\index{User@{User}!get\+Role@{get\+Role}}
+\index{get\+Role@{get\+Role}!User@{User}}
+\subsubsection[{get\+Role}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf role\+\_\+t} User\+::get\+Role (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classUser_a66cf30e2ff6ffcca4b008aa0def0176a}
+
+
+ 
+
+Definition at line 30 of file user.\+cpp.
+
+
+
+References \+\_\+role.
+
+
+
+Referenced by A\+P\+I\+::delete\+User(), and A\+P\+I\+::new\+User().
+
+\hypertarget{classUser_a30d05d38285abd2f9f376a790c7428f0}{}\index{User@{User}!has\+Same\+Login@{has\+Same\+Login}}
+\index{has\+Same\+Login@{has\+Same\+Login}!User@{User}}
+\subsubsection[{has\+Same\+Login}]{\setlength{\rightskip}{0pt plus 5cm}bool User\+::has\+Same\+Login (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{login}
+\end{DoxyParamCaption}
+) const}\label{classUser_a30d05d38285abd2f9f376a790c7428f0}
+
+
+ 
+
+Definition at line 53 of file user.\+cpp.
+
+
+
+References \+\_\+login, and M\+A\+X\+\_\+\+L\+O\+G\+I\+N\+\_\+\+L\+E\+N.
+
+
+
+Referenced by A\+P\+I\+::add\+User().
+
+\hypertarget{classUser_af1e4b148d9c3fcb3c761ceaa405f2087}{}\index{User@{User}!is\+Correct\+Password@{is\+Correct\+Password}}
+\index{is\+Correct\+Password@{is\+Correct\+Password}!User@{User}}
+\subsubsection[{is\+Correct\+Password}]{\setlength{\rightskip}{0pt plus 5cm}bool User\+::is\+Correct\+Password (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{password}
+\end{DoxyParamCaption}
+) const}\label{classUser_af1e4b148d9c3fcb3c761ceaa405f2087}
+brief Function comparing provided password to the user one 
+
+Definition at line 60 of file user.\+cpp.
+
+
+
+References \+\_\+hash\+Passw\+Size, \+\_\+password, and hash\+Password().
+
+\hypertarget{classUser_ad20b07e9b43647d65e7384d3002bc4cf}{}\index{User@{User}!set@{set}}
+\index{set@{set}!User@{User}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} User\+::set (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{field, }
+\item[{const std\+::string \&}]{value}
+\end{DoxyParamCaption}
+)}\label{classUser_ad20b07e9b43647d65e7384d3002bc4cf}
+This function is for example used to construct \hyperlink{classUser}{User} classes from a json\+\_\+object\+\_\+t. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em field} & is a string containing the name of the attribute \\
+\hline
+{\em value} & is the value that should be set to the mentioned attribute. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R} if no error occured 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+ 
+
+Definition at line 77 of file user.\+cpp.
+
+
+
+References \+\_\+hash\+Passw\+Size, \+\_\+id, \+\_\+login, \+\_\+password, \+\_\+role, B\+A\+S\+E64\+::decode(), E\+R\+R\+O\+R\+\_\+\+F\+O\+R\+M\+A\+T, and N\+O\+\_\+\+E\+R\+R\+O\+R.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classUser_adf65de944b3cede5af5bbd0916e6f32f}{}\index{User@{User}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!User@{User}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{os, }
+\item[{const {\bf User} \&}]{obj}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}\label{classUser_adf65de944b3cede5af5bbd0916e6f32f}
+This function is for example used to dump a \hyperlink{classUser}{User} class when saving the \hyperlink{classAPI}{A\+P\+I} in a file. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em os} & is an output stream in which will be send the serialized \hyperlink{classUser}{User}. \\
+\hline
+{\em obj} & is the \hyperlink{classUser}{User} object to serialize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the output stream given as argument.
+\end{DoxyReturn}
+
+
+ 
+
+Definition at line 35 of file user.\+cpp.
+
+
+
+\subsection{Field Documentation}
+\hypertarget{classUser_a10ad4e44dff0d98d90f65a75dae1a903}{}\index{User@{User}!\+\_\+login@{\+\_\+login}}
+\index{\+\_\+login@{\+\_\+login}!User@{User}}
+\subsubsection[{\+\_\+login}]{\setlength{\rightskip}{0pt plus 5cm}char User\+::\+\_\+login\mbox{[}{\bf M\+A\+X\+\_\+\+L\+O\+G\+I\+N\+\_\+\+L\+E\+N}+1\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}\label{classUser_a10ad4e44dff0d98d90f65a75dae1a903}
+The size of a login is at most \hyperlink{user_8hpp_a43842dcd60d621d7d9c9b9e4ecd76f78}{M\+A\+X\+\_\+\+L\+O\+G\+I\+N\+\_\+\+L\+E\+N}. 
+
+Definition at line 111 of file user.\+hpp.
+
+
+
+Referenced by get\+Login(), has\+Same\+Login(), operator$<$$<$(), serialize(), set(), and User().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+includes/\hyperlink{user_8hpp}{user.\+hpp}\item 
+src/user.\+cpp\end{DoxyCompactItemize}

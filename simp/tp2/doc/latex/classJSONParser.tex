@@ -1,0 +1,51 @@
+\hypertarget{classJSONParser}{}\section{J\+S\+O\+N\+Parser Class Reference}
+\label{classJSONParser}\index{J\+S\+O\+N\+Parser@{J\+S\+O\+N\+Parser}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classJSONParser_ae079e45d2ae7a6b40f3e237c453f2fb9}{}typedef std\+::vector$<$ \hyperlink{classJSONEntry}{J\+S\+O\+N\+Entry} $>$ {\bfseries json\+\_\+object\+\_\+t}\label{classJSONParser_ae079e45d2ae7a6b40f3e237c453f2fb9}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classJSONParser_a02ee5f12243632fb009ba1778b31202b}{}{\bfseries J\+S\+O\+N\+Parser} (size\+\_\+t max\+Object\+Size)\label{classJSONParser_a02ee5f12243632fb009ba1778b31202b}
+
+\item 
+\hypertarget{classJSONParser_a22ae47ecdabb9da4e21f213624b7c8c9}{}json\+\_\+object\+\_\+t {\bfseries get\+Object} (std\+::istream \&is) const \label{classJSONParser_a22ae47ecdabb9da4e21f213624b7c8c9}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classJSONParser_a7c2e1d4bbd36add70132523fa8767d52}{}static std\+::pair$<$ std\+::string, std\+::string $>$ {\bfseries tokenize} (const std\+::string \&str, size\+\_\+t start=0, size\+\_\+t end=0)\label{classJSONParser_a7c2e1d4bbd36add70132523fa8767d52}
+
+\item 
+\hypertarget{classJSONParser_a67954f3aafc072fc722798e6cac261ec}{}{\footnotesize template$<$class T $>$ }\\static \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} {\bfseries create\+Object} (std\+::istream \&is, T \&obj, size\+\_\+t max)\label{classJSONParser_a67954f3aafc072fc722798e6cac261ec}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classJSONParser_a6ae123bb0cea1ddb9645af8ceb2bfdd6}{}static void {\bfseries strip\+Quotes} (std\+::string \&str)\label{classJSONParser_a6ae123bb0cea1ddb9645af8ceb2bfdd6}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classJSONParser_abee0c8cbb3eea5782648693985806cd2}{}const size\+\_\+t {\bfseries \+\_\+max\+Object\+Size}\label{classJSONParser_abee0c8cbb3eea5782648693985806cd2}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 28 of file json.\+hpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+includes/\hyperlink{json_8hpp}{json.\+hpp}\item 
+src/json.\+cpp\end{DoxyCompactItemize}

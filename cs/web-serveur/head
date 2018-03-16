@@ -1,0 +1,11 @@
+GET /web-serveur/ch5/ HTTP/1.1
+Host: challenge01.root-me.org
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: admin
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+DNT: 1
+Accept-Encoding: gzip, deflate
+Accept-Language: fr-FR,fr;q=0.8,en;q=0.6,en-US;q=0.4
+Header-RootMe-Admin: admin

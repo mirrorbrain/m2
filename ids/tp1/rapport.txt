@@ -1,0 +1,231 @@
+1.4/
+ids-snort:~# ping 192.168.5.2
+PING 192.168.5.2 (192.168.5.2) 56(84) bytes of data.
+64 bytes from 192.168.5.2: icmp_seq=1 ttl=64 time=1.00 ms
+64 bytes from 192.168.5.2: icmp_seq=2 ttl=64 time=1.26 ms
+^C
+--- 192.168.5.2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1006ms
+rtt min/avg/max/mdev = 1.003/1.135/1.268/0.136 ms
+ids-snort:~# ping 192.168.56.2
+PING 192.168.56.2 (192.168.56.2) 56(84) bytes of data.
+64 bytes from 192.168.56.2: icmp_seq=1 ttl=64 time=0.999 ms
+64 bytes from 192.168.56.2: icmp_seq=2 ttl=64 time=1.15 ms
+^C
+--- 192.168.56.2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1003ms
+rtt min/avg/max/mdev = 0.999/1.075/1.151/0.076 ms
+
+Serveur:~# ping 192.5.1
+connect: Network is unreachable
+Serveur:~# ping 192.168.5.1
+PING 192.168.5.1 (192.168.5.1) 56(84) bytes of data.
+64 bytes from 192.168.5.1: icmp_seq=1 ttl=64 time=4.99 ms
+64 bytes from 192.168.5.1: icmp_seq=2 ttl=64 time=1.26 ms
+^C
+--- 192.168.5.1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 1.266/3.129/4.992/1.863 ms
+
+root@bt:~# ping 192.168.56.1
+PING 192.168.56.1 (192.168.56.1) 56(84) bytes of data.
+64 bytes from 192.168.56.1: icmp_seq=1 ttl=64 time=7.64 ms
+64 bytes from 192.168.56.1: icmp_seq=2 ttl=64 time=0.910 ms
+^C
+--- 192.168.56.1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 0.910/4.276/7.643/3.367 ms
+
+2/
+ids-snort:~# prelude-manager
+12 Jan 10:46:56 (process:2297) INFO: Subscribing Normalize to active decoding plugins.
+12 Jan 10:46:56 (process:2297) INFO: server started (listening on 192.168.5.1 port 4690).
+12 Jan 10:46:56 (process:2297) INFO: Subscribing XmlMod[default] to active reporting plugins.
+12 Jan 10:46:56 (process:2297) INFO: Subscribing Debug[default] to active reporting plugins.
+12 Jan 10:46:56 (process:2297) INFO: Generating 1024 bits Diffie-Hellman key for TLS...
+
+3/
+3.1/
+[format=syslog]
+time-format = "%b %d %H:%M:%S"
+prefix-regex = "^(?P<timestamp>.{15}) (?P<hostname>\S+) (?:(?P<process>\S+?)(?:\[(?P<pid>[0-9]+)\])?: )?"
+file = /var/log/messages
+
+- Le format référencé est syslog (log système).
+- Le fichier observé est /var/log/messages. Le prefix-regex sert à définir la forme du début de ligne qui n'est pas le message à traiter.
+
+[format=syslog]
+time-format = "%b %d %H:%M:%S"
+prefix-regex = "^(?P<timestamp>.{15}) (?P<hostname>\S+) (?:(?P<process>\S+?)(?:\[(?P<pid>[0-9]+)\])?: )?"
+file = /var/log/messages
+file = /var/log/auth.log
+
+Serveur:~# prelude-admin register prelude-lml 'idmef:w' 192.168.5.1 --uid 0 --gid 0
+
+You now need to start "prelude-admin" registration-server on 192.168.5.1:
+example: "prelude-admin registration-server prelude-manager"
+
+Enter the one-shot password provided on 192.168.5.1:
+Confirm the one-shot password provided on 192.168.5.1:
+
+Connecting to registration server (192.168.5.1:5553)... Authentication succeeded.
+Successful registration to 192.168.5.1:5553.
+
+ids-snort:~# prelude-admin registration-server prelude-manager
+The "0us79nmt" password will be requested by "prelude-admin register"
+in order to connect. Please remove the quotes before using it.
+
+Generating 1024 bits Diffie-Hellman key for anonymous authentication...
+Waiting for peers install request on 0.0.0.0:5553...
+Waiting for peers install request on :::5553...
+
+Connection from 192.168.5.2:52588...
+Registration request for analyzerID="2732807569544221" permission="idmef:w".
+Approve registration? [y/n]: Approve registration? [y/n]: y
+192.168.5.2:52588 successfully registered.
+
+------------------------------------- SSH -------------------------------------
+<AdditionalData type="string" meaning="Original Log">
+  <string>Jan 26 09:28:53 Serveur sshd[2179]: pam_unix(sshd:session): session opened for user root by (uid=0)</string>
+</AdditionalData>
+
+3.2/
+Serveur:~# /root/buggyhttp/buggy
+/root/buggyhttp/buggy: using address 0.0.0.0 and port 7979
+
+Message from syslogd@Serveur at Fri Jan 12 12:05:34 2018 ...
+Serveur buggy: GET ../../../../../etc/passwd HTTP/1.0
+
+
+root@bt:~# echo -e "GET ../../../../../etc/shadow HTTP/1.0" | nc 192.168.5.2 7979
+root:$6$Kq9JVArw$Qno0SeLvO.xrKXeNTc5Y3gDOprzOYgxV1Z3GY1EYPwCVqU3A.VRebn2z89ZGUFwg/zG5vBfYwhAMAm/0fU5Ie.:14942:0:99999:7:::
+daemon:*:14206:0:99999:7:::
+bin:*:14206:0:99999:7:::
+sys:*:14206:0:99999:7:::
+sync:*:14206:0:99999:7:::
+games:*:14206:0:99999:7:::
+man:*:14206:0:99999:7:::
+lp:*:14206:0:99999:7:::
+mail:*:14206:0:99999:7:::
+news:*:14206:0:99999:7:::
+uucp:*:14206:0:99999:7:::
+proxy:*:14206:0:99999:7:::
+www-data:*:14206:0:99999:7:::
+backup:*:14206:0:99999:7:::
+list:*:14206:0:99999:7:::
+irc:*:14206:0:99999:7:::
+gnats:*:14206:0:99999:7:::
+nobody:*:14206:0:99999:7:::
+Debian-exim:!:14206:0:99999:7:::
+statd:!:14206:0:99999:7:::
+identd:!:14206:0:99999:7:::
+postgres:!:14206:0:99999:7:::
+toto:$1$0IAg4W87$jgnnhB3GxHgZXLbhpovNF0:14206:0:99999:7:::
+libuuid:!:14206:0:99999:7:::
+telnetd:*:14206:0:99999:7:::
+sshd:*:14206:0:99999:7:::
+mysql:!:14554:0:99999:7:::
+openldap:!:14920:0:99999:7:::
+
+ids-snort:~# cat /etc/snort/rules/myrules.rules
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"Password file leak!"; content:"/etc/shadow"; sid:1000001;)
+
+Cette règle log une alert avec le message "Password file leak!" quand le fichier /etc/shadow est requêté.
+
+On relance l'attaque en DIRECTORY TRAVERSAL vue précédemment et on regarde le fichier /var/log/snort/alert :
+
+[**] [119:18:1] (http_inspect) WEBROOT DIRECTORY TRAVERSAL [**]
+[Priority: 3]
+01/17-23:03:02.297076 192.168.121.129:54298 -> 192.168.213.129:7979
+TCP TTL:64 TOS:0x0 ID:48571 IpLen:20 DgmLen:91 DF
+***AP*** Seq: 0x3BA056BE  Ack: 0x593D9106  Win: 0xB7  TcpLen: 32
+TCP Options (3) => NOP NOP TS: 715526 652708
+
+[**] [1:1000002:1] ALERT Shadow file leak! [**]
+[Classification: Potential Corporate Privacy Violation] [Priority: 1]
+01/17-23:03:02.297979 192.168.213.129:7979 -> 192.168.121.129:54298
+TCP TTL:63 TOS:0x0 ID:25763 IpLen:20 DgmLen:564 DF
+***AP*** Seq: 0x593D9106  Ack: 0x3BA056E5  Win: 0x16A  TcpLen: 32
+TCP Options (3) => NOP NOP TS: 652709 715526
+
+3.3/
+<Analyzer analyzerid="2227921090821641" name="snort" manufacturer="http://www.snort.org" model="Snort" version="2.8.5.2" class="NIDS" ostype="Linux" osversion="2.6.26-1-686">
+  <Node category="unknown">
+    <name>ids-snort</name>
+    <Address category="ipv4-addr">
+      <address>192.168.5.1</address>
+      <netmask>255.255.255.0</netmask>
+    </Address>
+  </Node>
+  <Process>
+    <name></name>
+    <pid>2460</pid>
+  </Process>
+</Analyzer>
+
+4/
+ids-snort:~/sample-plugin# python setup.py build
+running build
+running build_py
+ids-snort:~/sample-plugin# python setup.py install
+running install
+install_dir /usr/lib/python2.5/site-packages/
+running bdist_egg
+running egg_info
+writing MyPlugin.egg-info/PKG-INFO
+writing top-level names to MyPlugin.egg-info/top_level.txt
+writing dependency_links to MyPlugin.egg-info/dependency_links.txt
+writing entry points to MyPlugin.egg-info/entry_points.txt
+reading manifest file 'MyPlugin.egg-info/SOURCES.txt'
+writing manifest file 'MyPlugin.egg-info/SOURCES.txt'
+installing library code to build/bdist.linux-i686/egg
+running install_lib
+running build_py
+creating build/bdist.linux-i686/egg
+creating build/bdist.linux-i686/egg/myplugin
+copying build/lib/myplugin/main.py -> build/bdist.linux-i686/egg/myplugin
+copying build/lib/myplugin/__init__.py -> build/bdist.linux-i686/egg/myplugin
+byte-compiling build/bdist.linux-i686/egg/myplugin/main.py to main.pyc
+byte-compiling build/bdist.linux-i686/egg/myplugin/__init__.py to __init__.pyc
+creating build/bdist.linux-i686/egg/EGG-INFO
+copying MyPlugin.egg-info/PKG-INFO -> build/bdist.linux-i686/egg/EGG-INFO
+copying MyPlugin.egg-info/SOURCES.txt -> build/bdist.linux-i686/egg/EGG-INFO
+copying MyPlugin.egg-info/dependency_links.txt -> build/bdist.linux-i686/egg/EGG-INFO
+copying MyPlugin.egg-info/entry_points.txt -> build/bdist.linux-i686/egg/EGG-INFO
+copying MyPlugin.egg-info/top_level.txt -> build/bdist.linux-i686/egg/EGG-INFO
+zip_safe flag not set; analyzing archive contents...
+creating 'dist/MyPlugin-1.0-py2.5.egg' and adding 'build/bdist.linux-i686/egg' to it
+removing 'build/bdist.linux-i686/egg' (and everything under it)
+Processing MyPlugin-1.0-py2.5.egg
+removing '/usr/lib/python2.5/site-packages/MyPlugin-1.0-py2.5.egg' (and everything under it)
+creating /usr/lib/python2.5/site-packages/MyPlugin-1.0-py2.5.egg
+Extracting MyPlugin-1.0-py2.5.egg to /usr/lib/python2.5/site-packages
+MyPlugin 1.0 is already the active version in easy-install.pth
+
+Installed /usr/lib/python2.5/site-packages/MyPlugin-1.0-py2.5.egg
+Processing dependencies for MyPlugin==1.0
+Finished processing dependencies for MyPlugin==1.0
+
+------------------------------------ ALERT ------------------------------------
+ids-snort:~/sample-plugin# cat myplugin/main.py
+from PreludeCorrelator.pluginmanager import Plugin
+
+class MyPlugin(Plugin):
+	def run(self, idmef):
+		source = idmef.get("alert.source(*).node.address(*).address")
+        	target = idmef.get("alert.target(*).node.address(*).address")
+
+		if not source or not target:
+			return
+
+		if target == "192.168.5.2":
+			desc = idmef.get("alert.classification.text")
+			if desc == "Shadow file leak!":
+				ctx = Context(("Shadow file leak!", saddr, daddr), { "expire": 60, "threshold": 30, "alert_on_expire": True }, update = True, idmef=idmef)
+				if ctx.getUpdateCount() == 0:
+					ctx.set("alert.correlation_alert.name", "Shadow file leak!")
+					ctx.set("alert.classification.text", "BuggyHTTP Correlation Alert")
+					ctx.set("alert.assessment.impact.severity", "high")
+
+		print("Hello from %s" % self.__class__.__name__)
+		print(idmef)

@@ -1,0 +1,6 @@
+# Observation de la séquence d'initialisation TCP
+1)
+wireshark filter : tcp.port == 4242
+nc -l -p 4242 &
+
+2)

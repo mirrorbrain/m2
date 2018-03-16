@@ -1,0 +1,150 @@
+\hypertarget{key_8hpp}{}\section{includes/key.hpp File Reference}
+\label{key_8hpp}\index{includes/key.\+hpp@{includes/key.\+hpp}}
+{\ttfamily \#include $<$cstdint$>$}\\*
+{\ttfamily \#include $<$cstdlib$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include \char`\"{}error.\+hpp\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classKey}{Key}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classKey}{Key} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{key_8hpp_aea13551594601e031cad8432622624a2}{}typedef uint32\+\_\+t {\bfseries date\+\_\+t}\label{key_8hpp_aea13551594601e031cad8432622624a2}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{key_8hpp_a4f367c350737c92475175fb229c5570e}{key\+\_\+type\+\_\+t} \{ \hyperlink{key_8hpp_a4f367c350737c92475175fb229c5570ea93a3bc4e80ddb0861475b6cb16d0d752}{K\+E\+Y\+\_\+\+S\+Y\+M} = 1, 
+\hyperlink{key_8hpp_a4f367c350737c92475175fb229c5570ea14d796e6af14103e344657617a9765eb}{K\+E\+Y\+\_\+\+P\+U\+B} = 2, 
+\hyperlink{key_8hpp_a4f367c350737c92475175fb229c5570eaa953c2272cc3213cc26fb8a9811713ed}{K\+E\+Y\+\_\+\+P\+R\+I} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classKey}{Key} types. \end{DoxyCompactList}\item 
+enum \hyperlink{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3e}{key\+\_\+use\+\_\+t} \{ \hyperlink{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3ea20453ce73aaef185fb265b4a87836ad2}{K\+E\+Y\+\_\+\+E\+N\+C\+R} = 1, 
+\hyperlink{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3ea3dd5121f44c90ea8b30efba986fe8297}{K\+E\+Y\+\_\+\+S\+I\+G\+N} = 2, 
+\hyperlink{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3ea6445ffa35b8f6c3cb797018ec667ffa1}{K\+E\+Y\+\_\+\+I\+N\+T\+E} = 3, 
+\hyperlink{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3ea1713b73b194a6f1bcce4f3a6d7a1bd39}{K\+E\+Y\+\_\+\+W\+R\+A\+P} = 4
+ \}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classKey}{Key} use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{key_8hpp_ae07783e757763858317ef311b737da38}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classKey}{Key} \&obj)
+\begin{DoxyCompactList}\small\item\em This function serializes the \hyperlink{classKey}{Key} class into a J\+S\+O\+N format string. \end{DoxyCompactList}\item 
+std\+::istream \& \hyperlink{key_8hpp_a33669374e64231db9394c5b35f268d71}{operator$>$$>$} (std\+::istream \&is, \hyperlink{classKey}{Key} \&obj)
+\begin{DoxyCompactList}\small\item\em This function parses a string in J\+S\+O\+N format to update a \hyperlink{classKey}{Key} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{key_8hpp_ac370bb59baac7684d0c8762b93a29b12}{}constexpr unsigned \hyperlink{key_8hpp_ac370bb59baac7684d0c8762b93a29b12}{M\+A\+X\+\_\+\+K\+E\+Y\+\_\+\+L\+E\+N} = 64\label{key_8hpp_ac370bb59baac7684d0c8762b93a29b12}
+
+\begin{DoxyCompactList}\small\item\em Maximum length of a key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classKey}{Key} definition
+
+\hyperlink{classKey}{Key} class definition. 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{key_8hpp_a4f367c350737c92475175fb229c5570e}{}\index{key.\+hpp@{key.\+hpp}!key\+\_\+type\+\_\+t@{key\+\_\+type\+\_\+t}}
+\index{key\+\_\+type\+\_\+t@{key\+\_\+type\+\_\+t}!key.\+hpp@{key.\+hpp}}
+\subsubsection[{key\+\_\+type\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf key\+\_\+type\+\_\+t}}\label{key_8hpp_a4f367c350737c92475175fb229c5570e}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{K\+E\+Y\+\_\+\+S\+Y\+M@{K\+E\+Y\+\_\+\+S\+Y\+M}!key.\+hpp@{key.\+hpp}}\index{key.\+hpp@{key.\+hpp}!K\+E\+Y\+\_\+\+S\+Y\+M@{K\+E\+Y\+\_\+\+S\+Y\+M}}\item[{\em 
+\hypertarget{key_8hpp_a4f367c350737c92475175fb229c5570ea93a3bc4e80ddb0861475b6cb16d0d752}{}K\+E\+Y\+\_\+\+S\+Y\+M\label{key_8hpp_a4f367c350737c92475175fb229c5570ea93a3bc4e80ddb0861475b6cb16d0d752}
+}]symmetric key \index{K\+E\+Y\+\_\+\+P\+U\+B@{K\+E\+Y\+\_\+\+P\+U\+B}!key.\+hpp@{key.\+hpp}}\index{key.\+hpp@{key.\+hpp}!K\+E\+Y\+\_\+\+P\+U\+B@{K\+E\+Y\+\_\+\+P\+U\+B}}\item[{\em 
+\hypertarget{key_8hpp_a4f367c350737c92475175fb229c5570ea14d796e6af14103e344657617a9765eb}{}K\+E\+Y\+\_\+\+P\+U\+B\label{key_8hpp_a4f367c350737c92475175fb229c5570ea14d796e6af14103e344657617a9765eb}
+}]public key \index{K\+E\+Y\+\_\+\+P\+R\+I@{K\+E\+Y\+\_\+\+P\+R\+I}!key.\+hpp@{key.\+hpp}}\index{key.\+hpp@{key.\+hpp}!K\+E\+Y\+\_\+\+P\+R\+I@{K\+E\+Y\+\_\+\+P\+R\+I}}\item[{\em 
+\hypertarget{key_8hpp_a4f367c350737c92475175fb229c5570eaa953c2272cc3213cc26fb8a9811713ed}{}K\+E\+Y\+\_\+\+P\+R\+I\label{key_8hpp_a4f367c350737c92475175fb229c5570eaa953c2272cc3213cc26fb8a9811713ed}
+}]private key \end{description}
+\end{Desc}
+
+
+Definition at line 20 of file key.\+hpp.
+
+\hypertarget{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3e}{}\index{key.\+hpp@{key.\+hpp}!key\+\_\+use\+\_\+t@{key\+\_\+use\+\_\+t}}
+\index{key\+\_\+use\+\_\+t@{key\+\_\+use\+\_\+t}!key.\+hpp@{key.\+hpp}}
+\subsubsection[{key\+\_\+use\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf key\+\_\+use\+\_\+t}}\label{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3e}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{K\+E\+Y\+\_\+\+E\+N\+C\+R@{K\+E\+Y\+\_\+\+E\+N\+C\+R}!key.\+hpp@{key.\+hpp}}\index{key.\+hpp@{key.\+hpp}!K\+E\+Y\+\_\+\+E\+N\+C\+R@{K\+E\+Y\+\_\+\+E\+N\+C\+R}}\item[{\em 
+\hypertarget{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3ea20453ce73aaef185fb265b4a87836ad2}{}K\+E\+Y\+\_\+\+E\+N\+C\+R\label{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3ea20453ce73aaef185fb265b4a87836ad2}
+}]encryption/decryption key (for data) \index{K\+E\+Y\+\_\+\+S\+I\+G\+N@{K\+E\+Y\+\_\+\+S\+I\+G\+N}!key.\+hpp@{key.\+hpp}}\index{key.\+hpp@{key.\+hpp}!K\+E\+Y\+\_\+\+S\+I\+G\+N@{K\+E\+Y\+\_\+\+S\+I\+G\+N}}\item[{\em 
+\hypertarget{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3ea3dd5121f44c90ea8b30efba986fe8297}{}K\+E\+Y\+\_\+\+S\+I\+G\+N\label{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3ea3dd5121f44c90ea8b30efba986fe8297}
+}]signature key (for data) \index{K\+E\+Y\+\_\+\+I\+N\+T\+E@{K\+E\+Y\+\_\+\+I\+N\+T\+E}!key.\+hpp@{key.\+hpp}}\index{key.\+hpp@{key.\+hpp}!K\+E\+Y\+\_\+\+I\+N\+T\+E@{K\+E\+Y\+\_\+\+I\+N\+T\+E}}\item[{\em 
+\hypertarget{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3ea6445ffa35b8f6c3cb797018ec667ffa1}{}K\+E\+Y\+\_\+\+I\+N\+T\+E\label{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3ea6445ffa35b8f6c3cb797018ec667ffa1}
+}]integrity key (for data) \index{K\+E\+Y\+\_\+\+W\+R\+A\+P@{K\+E\+Y\+\_\+\+W\+R\+A\+P}!key.\+hpp@{key.\+hpp}}\index{key.\+hpp@{key.\+hpp}!K\+E\+Y\+\_\+\+W\+R\+A\+P@{K\+E\+Y\+\_\+\+W\+R\+A\+P}}\item[{\em 
+\hypertarget{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3ea1713b73b194a6f1bcce4f3a6d7a1bd39}{}K\+E\+Y\+\_\+\+W\+R\+A\+P\label{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3ea1713b73b194a6f1bcce4f3a6d7a1bd39}
+}]wrapping key (for keys) \end{description}
+\end{Desc}
+
+
+Definition at line 30 of file key.\+hpp.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{key_8hpp_ae07783e757763858317ef311b737da38}{}\index{key.\+hpp@{key.\+hpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!key.\+hpp@{key.\+hpp}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{os, }
+\item[{const {\bf Key} \&}]{obj}
+\end{DoxyParamCaption}
+)}\label{key_8hpp_ae07783e757763858317ef311b737da38}
+This function is for example used to dump a \hyperlink{classKey}{Key} class when saving the \hyperlink{classAPI}{A\+P\+I} in a file. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em os} & is an output stream in which will be send the serialized \hyperlink{classUser}{User}. \\
+\hline
+{\em obj} & is the \hyperlink{classKey}{Key} object to serialize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the output stream given as argument.
+\end{DoxyReturn}
+
+
+ 
+
+Definition at line 37 of file key.\+cpp.
+
+
+
+References Key\+::\+\_\+associated, Key\+::\+\_\+length, B\+A\+S\+E64\+::encode(), Key\+::get\+Id(), Key\+::get\+Owner(), Key\+::get\+Type(), Key\+::get\+Use(), Key\+::get\+Validity(), Key\+::get\+Value(), and K\+E\+Y\+\_\+\+S\+Y\+M.
+
+\hypertarget{key_8hpp_a33669374e64231db9394c5b35f268d71}{}\index{key.\+hpp@{key.\+hpp}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!key.\+hpp@{key.\+hpp}}
+\subsubsection[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}std\+::istream\& operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{std\+::istream \&}]{is, }
+\item[{{\bf Key} \&}]{obj}
+\end{DoxyParamCaption}
+)}\label{key_8hpp_a33669374e64231db9394c5b35f268d71}
+This function is for example used to construct \hyperlink{classKey}{Key} classes when loading the \hyperlink{classAPI}{A\+P\+I} from a file. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em is} & is an input stream from which the serialization of the \hyperlink{classUser}{User} will be taken. \\
+\hline
+{\em obj} & is the \hyperlink{classKey}{Key} object that will contain the constructed \hyperlink{classUser}{User}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the input stream given as argument.
+\end{DoxyReturn}
+
+
+ 
+
+Definition at line 118 of file key.\+cpp.
+

@@ -1,0 +1,837 @@
+\hypertarget{classAPI}{}\section{A\+P\+I Class Reference}
+\label{classAPI}\index{A\+P\+I@{A\+P\+I}}
+
+
+\hyperlink{classAPI}{A\+P\+I} class.  
+
+
+
+
+{\ttfamily \#include $<$api.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classAPI_ab2698dd4fb5e3fefa988f8020937b955}{A\+P\+I} (const char $\ast$file\+Users, const char $\ast$file\+Keys)
+\begin{DoxyCompactList}\small\item\em The constructor initialises \hyperlink{classAPI}{A\+P\+I} from the file given in parameter. \end{DoxyCompactList}\item 
+\hyperlink{classAPI_a583ec65b542b44e4b7013f5fc830fdcd}{$\sim$\+A\+P\+I} ()
+\begin{DoxyCompactList}\small\item\em The \hyperlink{classAPI}{A\+P\+I} destructor. \end{DoxyCompactList}\item 
+void \hyperlink{classAPI_a1a705f7e87f72e3cd8c078f438fac948}{reset} ()
+\begin{DoxyCompactList}\small\item\em Resets the \hyperlink{classAPI}{A\+P\+I}. \end{DoxyCompactList}\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classAPI_a9b02f83fb6209418f8b310845082ca80}{new\+User} (const std\+::string \&login, const std\+::string \&password, uint32\+\_\+t $\ast$id)
+\begin{DoxyCompactList}\small\item\em Register a new user to the \hyperlink{classAPI}{A\+P\+I}. \end{DoxyCompactList}\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classAPI_ad94326209dc6c62d65cde5a37e3c0078}{delete\+User} (uint32\+\_\+t id)
+\begin{DoxyCompactList}\small\item\em Delete the user from the \hyperlink{classAPI}{A\+P\+I}. \end{DoxyCompactList}\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classAPI_a94ef4273680b86b5340442d965b48fab}{new\+Key} (\hyperlink{key_8hpp_a4f367c350737c92475175fb229c5570e}{key\+\_\+type\+\_\+t} type, \hyperlink{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3e}{key\+\_\+use\+\_\+t} use, date\+\_\+t validity, size\+\_\+t length, uint32\+\_\+t $\ast$id)
+\begin{DoxyCompactList}\small\item\em Randomly generate a key and add it to the memory. \end{DoxyCompactList}\item 
+\hypertarget{classAPI_a2ad579d9450aa11e1fe5694283dc157e}{}\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} {\bfseries disconnect} ()\label{classAPI_a2ad579d9450aa11e1fe5694283dc157e}
+
+\item 
+\hypertarget{classAPI_a72faff24818ed8340f226ea07d437c3f}{}\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} {\bfseries connect\+User} (const std\+::string \&login, const std\+::string \&password)\label{classAPI_a72faff24818ed8340f226ea07d437c3f}
+
+\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classAPI_ac115603da5cc49b407f6b3710e01a985}{wrap} (uint32\+\_\+t id\+Wrap\+Key, uint32\+\_\+t id\+Exported\+Key, uint8\+\_\+t $\ast$output, size\+\_\+t $\ast$length)
+\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classAPI_ad232f21ac35cb1d60aaef0b6e7979c15}{unwrap} (uint32\+\_\+t id\+Wrap\+Key, uint8\+\_\+t $\ast$imported\+Key, size\+\_\+t length, \hyperlink{key_8hpp_a4f367c350737c92475175fb229c5570e}{key\+\_\+type\+\_\+t} type, \hyperlink{key_8hpp_a82f88f5cef6b287c45bd2fbb36879c3e}{key\+\_\+use\+\_\+t} use, date\+\_\+t validity, uint32\+\_\+t $\ast$id)
+\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classAPI_a4253afc0859f3af205a305c5d8201ed3}{encrypt} (uint32\+\_\+t id\+Key, uint8\+\_\+t $\ast$buffer, size\+\_\+t length)
+\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classAPI_ac017bb211709f56b2584e1ad6f8c6b12}{decrypt} (uint32\+\_\+t id\+Key, uint8\+\_\+t $\ast$buffer, size\+\_\+t length)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classAPI_a93a74bcd90868183773495d9b52dab0a}{init\+File} (const char $\ast$file\+Users, const char $\ast$file\+Keys, unsigned instance\+Id)
+\begin{DoxyCompactList}\small\item\em Init a file corresponding to a void \hyperlink{classAPI}{A\+P\+I} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classAPI_a33f903bf549583040cbd4ced79821686}{add\+Key} (\hyperlink{classKey}{Key} $\ast$key)
+\begin{DoxyCompactList}\small\item\em Add a key to the memory. \end{DoxyCompactList}\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classAPI_abeba46623895fc9d5d831fb8f828e6da}{add\+User} (\hyperlink{classUser}{User} $\ast$user)
+\begin{DoxyCompactList}\small\item\em Add a user to the base. \end{DoxyCompactList}\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classAPI_ae9bf448b00701609e20c2167931b8975}{save\+A\+P\+I} ()
+\begin{DoxyCompactList}\small\item\em This function stores the data into the file A\+P\+I\+::filename. \end{DoxyCompactList}\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classAPI_a015f9ca96d3f5ab8af44fe2fe8e0215a}{load\+A\+P\+I} ()
+\begin{DoxyCompactList}\small\item\em This function loads the protected data contained in the file A\+P\+I\+::filename. \end{DoxyCompactList}\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classAPI_af91891e4a2d88f7cab665d9923452963}{find\+Key} (uint32\+\_\+t id, \hyperlink{classKey}{Key} $\ast$$\ast$key)
+\begin{DoxyCompactList}\small\item\em This function finds a key corresponding to a given id. \end{DoxyCompactList}\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classAPI_a01c135c01e7998c4d19f8ca5fa2df9ca}{decrypt\+Key} (const \hyperlink{classKey}{Key} $\ast$key, uint8\+\_\+t $\ast$output, size\+\_\+t $\ast$length)
+\begin{DoxyCompactList}\small\item\em This function decrypts the key using the local encryption key. I\+M\+P\+O\+R\+T\+A\+N\+T\+: erase buffer after use ! \end{DoxyCompactList}\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classAPI_a335b2b56fbf6002bb24cab04b1da9565}{protect\+Data} (uint8\+\_\+t $\ast$data, size\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em This function encrypts the data using the local encryption key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAPI_aad1a092d6335ccc65dad4d6c8d6dad64}{}uint32\+\_\+t \hyperlink{classAPI_aad1a092d6335ccc65dad4d6c8d6dad64}{\+\_\+instance\+Id}\label{classAPI_aad1a092d6335ccc65dad4d6c8d6dad64}
+
+\begin{DoxyCompactList}\small\item\em Id of the \hyperlink{classAPI}{A\+P\+I} instance (used to identify this instance and to ensure user and key files are corresponding to the same instance. \end{DoxyCompactList}\item 
+\hypertarget{classAPI_ab7720e1ae136e01272d3b291367c6147}{}bool \hyperlink{classAPI_ab7720e1ae136e01272d3b291367c6147}{\+\_\+is\+Init}\label{classAPI_ab7720e1ae136e01272d3b291367c6147}
+
+\begin{DoxyCompactList}\small\item\em Boolean variable set to true only once memory have been initialised by loading a file. \end{DoxyCompactList}\item 
+\hypertarget{classAPI_abfdce0b863730f9ca75ce44f4de334a7}{}\hyperlink{classUser}{User} $\ast$ \hyperlink{classAPI_abfdce0b863730f9ca75ce44f4de334a7}{\+\_\+connected\+User}\label{classAPI_abfdce0b863730f9ca75ce44f4de334a7}
+
+\begin{DoxyCompactList}\small\item\em Identity of the currently connected user (0 if no user connected). \end{DoxyCompactList}\item 
+\hypertarget{classAPI_a51e01e8111ac1590a15b56227e5c5413}{}std\+::string \hyperlink{classAPI_a51e01e8111ac1590a15b56227e5c5413}{\+\_\+file\+Users}\label{classAPI_a51e01e8111ac1590a15b56227e5c5413}
+
+\begin{DoxyCompactList}\small\item\em Variable containing the relative path and filename of the file from which the user memory got initialised and where it should be saved on exit. \end{DoxyCompactList}\item 
+\hypertarget{classAPI_a7852be9f8494bddc3333f184102f47fb}{}std\+::string \hyperlink{classAPI_a7852be9f8494bddc3333f184102f47fb}{\+\_\+file\+Keys}\label{classAPI_a7852be9f8494bddc3333f184102f47fb}
+
+\begin{DoxyCompactList}\small\item\em Variable containing the relative path and filename of the file from which the key memory got initialised and where it should be saved on exit. \end{DoxyCompactList}\item 
+\hypertarget{classAPI_a25dceaad16679832bded6ce63fb1b665}{}std\+::vector$<$ \hyperlink{classUser}{User} $\ast$ $>$ \hyperlink{classAPI_a25dceaad16679832bded6ce63fb1b665}{\+\_\+users}\label{classAPI_a25dceaad16679832bded6ce63fb1b665}
+
+\begin{DoxyCompactList}\small\item\em List of registered users. \end{DoxyCompactList}\item 
+\hypertarget{classAPI_a4de53d055dfd4a75c3a9ca25d87fa8ae}{}std\+::vector$<$ \hyperlink{classKey}{Key} $\ast$ $>$ \hyperlink{classAPI_a4de53d055dfd4a75c3a9ca25d87fa8ae}{\+\_\+keys}\label{classAPI_a4de53d055dfd4a75c3a9ca25d87fa8ae}
+
+\begin{DoxyCompactList}\small\item\em Memory containing all keys that may be manipulated by the \hyperlink{classAPI}{A\+P\+I}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 17 of file api.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAPI_ab2698dd4fb5e3fefa988f8020937b955}{}\index{A\+P\+I@{A\+P\+I}!A\+P\+I@{A\+P\+I}}
+\index{A\+P\+I@{A\+P\+I}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{A\+P\+I}]{\setlength{\rightskip}{0pt plus 5cm}A\+P\+I\+::\+A\+P\+I (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{file\+Users, }
+\item[{const char $\ast$}]{file\+Keys}
+\end{DoxyParamCaption}
+)}\label{classAPI_ab2698dd4fb5e3fefa988f8020937b955}
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em filename} & string containing the relative path and filename of the file containing the protected memory content to load.\\
+\hline
+\end{DoxyParams}
+
+
+ 
+\begin{DoxyEnumerate}
+\item Check that the user file exists
+
+
+\item Check that the key file exists
+
+
+\item If yes copy filenames to A\+P\+I\+::file\+Users and A\+P\+I\+::file\+Keys
+
+
+\item Call \hyperlink{classAPI_a015f9ca96d3f5ab8af44fe2fe8e0215a}{A\+P\+I\+::load\+A\+P\+I()} to load data from the file
+
+
+\item Test return code and set A\+P\+I\+::is\+Init in case of success
+
+
+\end{DoxyEnumerate}
+
+Definition at line 9 of file api\+\_\+ext.\+cpp.
+
+
+
+References \+\_\+file\+Keys, \+\_\+file\+Users, \+\_\+is\+Init, load\+A\+P\+I(), and N\+O\+\_\+\+E\+R\+R\+O\+R.
+
+\hypertarget{classAPI_a583ec65b542b44e4b7013f5fc830fdcd}{}\index{A\+P\+I@{A\+P\+I}!````~A\+P\+I@{$\sim$\+A\+P\+I}}
+\index{````~A\+P\+I@{$\sim$\+A\+P\+I}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{$\sim$\+A\+P\+I}]{\setlength{\rightskip}{0pt plus 5cm}A\+P\+I\+::$\sim$\+A\+P\+I (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classAPI_a583ec65b542b44e4b7013f5fc830fdcd}
+Automatically dump current \hyperlink{classAPI}{A\+P\+I} memory to the file used for constructing the object. 
+
+ 
+\begin{DoxyEnumerate}
+\item Do nothing if \hyperlink{classAPI}{A\+P\+I} is not initialized 
+
+
+\item Dump \hyperlink{classAPI}{A\+P\+I} to the file A\+P\+I\+::filename 
+
+
+\item Free all classes using \hyperlink{classAPI_a1a705f7e87f72e3cd8c078f438fac948}{reset()} function. 
+
+
+\end{DoxyEnumerate}
+
+Definition at line 46 of file api\+\_\+ext.\+cpp.
+
+
+
+References \+\_\+is\+Init, reset(), and save\+A\+P\+I().
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAPI_a33f903bf549583040cbd4ced79821686}{}\index{A\+P\+I@{A\+P\+I}!add\+Key@{add\+Key}}
+\index{add\+Key@{add\+Key}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{add\+Key}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} A\+P\+I\+::add\+Key (
+\begin{DoxyParamCaption}
+\item[{{\bf Key} $\ast$}]{key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classAPI_a33f903bf549583040cbd4ced79821686}
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em key} & is a pointer to the \hyperlink{classKey}{Key} class that should be added to the memory. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R}
+\end{DoxyReturn}
+
+
+ 
+
+Definition at line 334 of file api\+\_\+int.\+cpp.
+
+
+
+References \+\_\+keys, and N\+O\+\_\+\+E\+R\+R\+O\+R.
+
+
+
+Referenced by load\+A\+P\+I(), new\+Key(), and unwrap().
+
+\hypertarget{classAPI_abeba46623895fc9d5d831fb8f828e6da}{}\index{A\+P\+I@{A\+P\+I}!add\+User@{add\+User}}
+\index{add\+User@{add\+User}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{add\+User}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} A\+P\+I\+::add\+User (
+\begin{DoxyParamCaption}
+\item[{{\bf User} $\ast$}]{user}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classAPI_abeba46623895fc9d5d831fb8f828e6da}
+Add the user to the list of \hyperlink{classAPI}{A\+P\+I} users. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em user} & is a pointer to the \hyperlink{classUser}{User} class that should be registered. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R} if no error occured 
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0a05718b630d7176e8e040eca44907b99f}{E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M} if user is already in the base 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+ 
+
+Definition at line 340 of file api\+\_\+int.\+cpp.
+
+
+
+References \+\_\+users, E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M, User\+::has\+Same\+Login(), and N\+O\+\_\+\+E\+R\+R\+O\+R.
+
+
+
+Referenced by load\+A\+P\+I(), new\+User(), and reset().
+
+\hypertarget{classAPI_ac017bb211709f56b2584e1ad6f8c6b12}{}\index{A\+P\+I@{A\+P\+I}!decrypt@{decrypt}}
+\index{decrypt@{decrypt}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{decrypt}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} A\+P\+I\+::decrypt (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{id\+Key, }
+\item[{uint8\+\_\+t $\ast$}]{buffer, }
+\item[{size\+\_\+t}]{length}
+\end{DoxyParamCaption}
+)}\label{classAPI_ac017bb211709f56b2584e1ad6f8c6b12}
+
+\begin{DoxyEnumerate}
+\item Get the key 
+
+
+\item Test that the connected user owns the key 
+
+
+\item Test key use and type
+
+
+\item Encrypt 
+
+
+\end{DoxyEnumerate}
+
+Definition at line 492 of file api\+\_\+ext.\+cpp.
+
+
+
+References \+\_\+connected\+User, A\+E\+S\+::decrypt(), decrypt\+Key(), E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M, E\+R\+R\+O\+R\+\_\+\+S\+E\+C, find\+Key(), User\+::get\+Id(), Key\+::get\+Owner(), Key\+::get\+Type(), Key\+::get\+Use(), K\+E\+Y\+\_\+\+E\+N\+C\+R, K\+E\+Y\+\_\+\+S\+Y\+M, M\+A\+X\+\_\+\+K\+E\+Y\+\_\+\+L\+E\+N, and N\+O\+\_\+\+E\+R\+R\+O\+R.
+
+\hypertarget{classAPI_a01c135c01e7998c4d19f8ca5fa2df9ca}{}\index{A\+P\+I@{A\+P\+I}!decrypt\+Key@{decrypt\+Key}}
+\index{decrypt\+Key@{decrypt\+Key}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{decrypt\+Key}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} A\+P\+I\+::decrypt\+Key (
+\begin{DoxyParamCaption}
+\item[{const {\bf Key} $\ast$}]{key, }
+\item[{uint8\+\_\+t $\ast$}]{output, }
+\item[{size\+\_\+t $\ast$}]{length}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classAPI_a01c135c01e7998c4d19f8ca5fa2df9ca}
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em key} & is a pointer to the key to decrypt \\
+\hline
+{\em output} & will contain the key value \\
+\hline
+{\em length} & is a pointer to the length of the byte array that will be set to the final size of the wrapped key. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R} if no error occured 
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0a05718b630d7176e8e040eca44907b99f}{E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M} if ouptut is too small 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+ 
+
+Definition at line 377 of file api\+\_\+int.\+cpp.
+
+
+
+References Key\+::\+\_\+length, A\+E\+S\+::decrypt(), E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M, E\+R\+R\+O\+R\+\_\+\+U\+N\+E\+X\+P\+E\+C\+T\+E\+D, Key\+::get\+Value(), and N\+O\+\_\+\+E\+R\+R\+O\+R.
+
+
+
+Referenced by decrypt(), encrypt(), unwrap(), and wrap().
+
+\hypertarget{classAPI_ad94326209dc6c62d65cde5a37e3c0078}{}\index{A\+P\+I@{A\+P\+I}!delete\+User@{delete\+User}}
+\index{delete\+User@{delete\+User}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{delete\+User}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} A\+P\+I\+::delete\+User (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{id}
+\end{DoxyParamCaption}
+)}\label{classAPI_ad94326209dc6c62d65cde5a37e3c0078}
+Deleting a user from the user list (admin rights required). 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em id} & is the id of the user to delete \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R} if no error occured  
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0a04643a170c5fbdb451f819ac59992cd8}{E\+R\+R\+O\+R\+\_\+\+S\+E\+C} if connected user is not admin or if he tries to delete himself  
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0a05718b630d7176e8e040eca44907b99f}{E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M} if user is not in the base  
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+ 
+
+Definition at line 126 of file api\+\_\+ext.\+cpp.
+
+
+
+References \+\_\+connected\+User, \+\_\+keys, \+\_\+users, E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M, E\+R\+R\+O\+R\+\_\+\+S\+E\+C, E\+R\+R\+O\+R\+\_\+\+S\+E\+Q, User\+::get\+Role(), N\+O\+\_\+\+E\+R\+R\+O\+R, and U\+S\+E\+R\+\_\+\+A\+D\+M\+I\+N.
+
+\hypertarget{classAPI_a4253afc0859f3af205a305c5d8201ed3}{}\index{A\+P\+I@{A\+P\+I}!encrypt@{encrypt}}
+\index{encrypt@{encrypt}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{encrypt}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} A\+P\+I\+::encrypt (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{id\+Key, }
+\item[{uint8\+\_\+t $\ast$}]{buffer, }
+\item[{size\+\_\+t}]{length}
+\end{DoxyParamCaption}
+)}\label{classAPI_a4253afc0859f3af205a305c5d8201ed3}
+
+\begin{DoxyEnumerate}
+\item Get the key 
+
+
+\item Test that the connected user owns the key 
+
+
+\item Test key use and type
+
+
+\item Encrypt 
+
+
+\end{DoxyEnumerate}
+
+Definition at line 437 of file api\+\_\+ext.\+cpp.
+
+
+
+References \+\_\+connected\+User, decrypt\+Key(), A\+E\+S\+::encrypt(), E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M, E\+R\+R\+O\+R\+\_\+\+S\+E\+C, find\+Key(), User\+::get\+Id(), Key\+::get\+Owner(), Key\+::get\+Type(), Key\+::get\+Use(), K\+E\+Y\+\_\+\+E\+N\+C\+R, K\+E\+Y\+\_\+\+S\+Y\+M, M\+A\+X\+\_\+\+K\+E\+Y\+\_\+\+L\+E\+N, and N\+O\+\_\+\+E\+R\+R\+O\+R.
+
+\hypertarget{classAPI_af91891e4a2d88f7cab665d9923452963}{}\index{A\+P\+I@{A\+P\+I}!find\+Key@{find\+Key}}
+\index{find\+Key@{find\+Key}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{find\+Key}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} A\+P\+I\+::find\+Key (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{id, }
+\item[{{\bf Key} $\ast$$\ast$}]{key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classAPI_af91891e4a2d88f7cab665d9923452963}
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em id} & is the id of the searched key \\
+\hline
+{\em key} & is a pointer to a key$\ast$ object that will be set to point to the found key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R} if no error occured 
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0a05718b630d7176e8e040eca44907b99f}{E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M} if no key is found 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+ 
+\begin{DoxyEnumerate}
+\item 
+\end{DoxyEnumerate}
+
+Definition at line 358 of file api\+\_\+int.\+cpp.
+
+
+
+References \+\_\+keys, E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M, and N\+O\+\_\+\+E\+R\+R\+O\+R.
+
+
+
+Referenced by decrypt(), encrypt(), unwrap(), and wrap().
+
+\hypertarget{classAPI_a93a74bcd90868183773495d9b52dab0a}{}\index{A\+P\+I@{A\+P\+I}!init\+File@{init\+File}}
+\index{init\+File@{init\+File}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{init\+File}]{\setlength{\rightskip}{0pt plus 5cm}void A\+P\+I\+::init\+File (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{file\+Users, }
+\item[{const char $\ast$}]{file\+Keys, }
+\item[{unsigned}]{instance\+Id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{classAPI_a93a74bcd90868183773495d9b52dab0a}
+Format a file to be a void \hyperlink{classAPI}{A\+P\+I} object. 
+
+ 
+
+Definition at line 547 of file api\+\_\+ext.\+cpp.
+
+\hypertarget{classAPI_a015f9ca96d3f5ab8af44fe2fe8e0215a}{}\index{A\+P\+I@{A\+P\+I}!load\+A\+P\+I@{load\+A\+P\+I}}
+\index{load\+A\+P\+I@{load\+A\+P\+I}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{load\+A\+P\+I}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} A\+P\+I\+::load\+A\+P\+I (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classAPI_a015f9ca96d3f5ab8af44fe2fe8e0215a}
+
+
+ \begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R} if no error occured 
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0a35d177e90088f78bdd0eede2ed9f2f6c}{E\+R\+R\+O\+R\+\_\+\+I\+O} if an error occured when reading the file 
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0afa6ab537b9cb919464f60f53ade3f01d}{E\+R\+R\+O\+R\+\_\+\+F\+O\+R\+M\+A\+T} if an error occured when parsing the data 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+ 
+\begin{DoxyEnumerate}
+\item Opening the user file
+
+
+\item Reading header
+
+
+\item Init tag computation 
+
+
+\item Reading users
+
+
+\item Adding to tag computation 
+
+
+\item Compute the tag corresponding to the file 
+
+
+\item Opening the key file
+
+
+\item Reading header
+
+
+\item Init tag computation 
+
+
+\item Reading keys
+
+
+\item Adding to tag computation 
+
+
+\item Compute the tag corresponding to the file 
+
+
+\item Closing the file
+
+
+\end{DoxyEnumerate}
+
+Definition at line 129 of file api\+\_\+int.\+cpp.
+
+
+
+References \+\_\+file\+Keys, \+\_\+file\+Users, \+\_\+instance\+Id, \+\_\+is\+Init, User\+::\+\_\+serialized\+Size, Key\+::\+\_\+serialized\+Size, add\+Key(), add\+User(), B\+A\+S\+E64\+::decode(), E\+R\+R\+O\+R\+\_\+\+F\+O\+R\+M\+A\+T, E\+R\+R\+O\+R\+\_\+\+I\+O, E\+R\+R\+O\+R\+\_\+\+S\+E\+C, H\+M\+A\+C\+::final(), H\+M\+A\+C\+::init(), M\+A\+X\+\_\+\+K\+E\+Y\+\_\+\+L\+E\+N, new\+Key(), new\+User(), N\+O\+\_\+\+E\+R\+R\+O\+R, reset(), and H\+M\+A\+C\+::update().
+
+
+
+Referenced by A\+P\+I().
+
+\hypertarget{classAPI_a94ef4273680b86b5340442d965b48fab}{}\index{A\+P\+I@{A\+P\+I}!new\+Key@{new\+Key}}
+\index{new\+Key@{new\+Key}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{new\+Key}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} A\+P\+I\+::new\+Key (
+\begin{DoxyParamCaption}
+\item[{{\bf key\+\_\+type\+\_\+t}}]{type, }
+\item[{{\bf key\+\_\+use\+\_\+t}}]{use, }
+\item[{date\+\_\+t}]{validity, }
+\item[{size\+\_\+t}]{length, }
+\item[{uint32\+\_\+t $\ast$}]{id}
+\end{DoxyParamCaption}
+)}\label{classAPI_a94ef4273680b86b5340442d965b48fab}
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em type} & should be one of the key\+\_\+type\+\_\+t values \\
+\hline
+{\em use} & should be one of the key\+\_\+use\+\_\+t values \\
+\hline
+{\em validity} & could be anything \\
+\hline
+{\em length} & should not be 0 and should not exceed the maximal size of a key \hyperlink{key_8hpp_ac370bb59baac7684d0c8762b93a29b12}{M\+A\+X\+\_\+\+K\+E\+Y\+\_\+\+L\+E\+N} \\
+\hline
+{\em id} & will be set to 0 in case of error or will contain the newly created key id (could be N\+U\+L\+L) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R} if no error occured  
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0a05718b630d7176e8e040eca44907b99f}{E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M} if invalid attributes are given  
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+ Only symmetric keys are implemented at the moment 
+
+Check key size 
+
+Check use 
+
+Setting attributes 
+
+Generating the value  
+
+Definition at line 180 of file api\+\_\+ext.\+cpp.
+
+
+
+References Key\+::\+\_\+associated, \+\_\+connected\+User, Key\+::\+\_\+id, \+\_\+keys, Key\+::\+\_\+length, Key\+::\+\_\+owner, Key\+::\+\_\+type, Key\+::\+\_\+use, Key\+::\+\_\+validity, Key\+::\+\_\+value, add\+Key(), E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M, User\+::get\+Id(), K\+E\+Y\+\_\+\+E\+N\+C\+R, K\+E\+Y\+\_\+\+I\+N\+T\+E, K\+E\+Y\+\_\+\+S\+I\+G\+N, K\+E\+Y\+\_\+\+S\+Y\+M, K\+E\+Y\+\_\+\+W\+R\+A\+P, M\+A\+X\+\_\+\+K\+E\+Y\+\_\+\+L\+E\+N, and N\+O\+\_\+\+E\+R\+R\+O\+R.
+
+
+
+Referenced by load\+A\+P\+I().
+
+\hypertarget{classAPI_a9b02f83fb6209418f8b310845082ca80}{}\index{A\+P\+I@{A\+P\+I}!new\+User@{new\+User}}
+\index{new\+User@{new\+User}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{new\+User}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} A\+P\+I\+::new\+User (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{login, }
+\item[{const std\+::string \&}]{password, }
+\item[{uint32\+\_\+t $\ast$}]{id}
+\end{DoxyParamCaption}
+)}\label{classAPI_a9b02f83fb6209418f8b310845082ca80}
+Add the user to the list of \hyperlink{classAPI}{A\+P\+I} users. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em login} & is a string containing the login of the user to create \\
+\hline
+{\em password} & contains the corresponding password \\
+\hline
+{\em id} & is a pointer to a variable that will get the id of the created user or be set to 0 in case of error (id could be N\+U\+L\+L) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R} if no error occured  
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0a04643a170c5fbdb451f819ac59992cd8}{E\+R\+R\+O\+R\+\_\+\+S\+E\+C} if current user has not admin rights  
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0a73e27092d03a75cb850f9a5db39067d7}{E\+R\+R\+O\+R\+\_\+\+S\+E\+Q} if nobody is connected  
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0a05718b630d7176e8e040eca44907b99f}{E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M} if user is already in the base  
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+ 
+
+Definition at line 82 of file api\+\_\+ext.\+cpp.
+
+
+
+References \+\_\+connected\+User, \+\_\+users, add\+User(), E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M, E\+R\+R\+O\+R\+\_\+\+S\+E\+C, E\+R\+R\+O\+R\+\_\+\+S\+E\+Q, User\+::get\+Id(), User\+::get\+Role(), N\+O\+\_\+\+E\+R\+R\+O\+R, U\+S\+E\+R\+\_\+\+A\+D\+M\+I\+N, and U\+S\+E\+R\+\_\+\+B\+A\+S\+I\+C.
+
+
+
+Referenced by load\+A\+P\+I().
+
+\hypertarget{classAPI_a335b2b56fbf6002bb24cab04b1da9565}{}\index{A\+P\+I@{A\+P\+I}!protect\+Data@{protect\+Data}}
+\index{protect\+Data@{protect\+Data}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{protect\+Data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} A\+P\+I\+::protect\+Data (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{data, }
+\item[{size\+\_\+t}]{length}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classAPI_a335b2b56fbf6002bb24cab04b1da9565}
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em data} & is a pointer to the data to protect \\
+\hline
+{\em length} & is the length of the data (in bytes). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R} if no error occured 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+ 
+
+Definition at line 414 of file api\+\_\+int.\+cpp.
+
+
+
+References A\+E\+S\+::encrypt(), E\+R\+R\+O\+R\+\_\+\+U\+N\+E\+X\+P\+E\+C\+T\+E\+D, and N\+O\+\_\+\+E\+R\+R\+O\+R.
+
+
+
+Referenced by unwrap().
+
+\hypertarget{classAPI_a1a705f7e87f72e3cd8c078f438fac948}{}\index{A\+P\+I@{A\+P\+I}!reset@{reset}}
+\index{reset@{reset}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}void A\+P\+I\+::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classAPI_a1a705f7e87f72e3cd8c078f438fac948}
+Resets the \hyperlink{classAPI}{A\+P\+I} by deleting users and memory. An admin account is created with default password s3cr3t\+\_\+p 
+
+ 
+
+Definition at line 60 of file api\+\_\+ext.\+cpp.
+
+
+
+References \+\_\+connected\+User, \+\_\+keys, \+\_\+users, add\+User(), N\+O\+\_\+\+E\+R\+R\+O\+R, and U\+S\+E\+R\+\_\+\+A\+D\+M\+I\+N.
+
+
+
+Referenced by load\+A\+P\+I(), and $\sim$\+A\+P\+I().
+
+\hypertarget{classAPI_ae9bf448b00701609e20c2167931b8975}{}\index{A\+P\+I@{A\+P\+I}!save\+A\+P\+I@{save\+A\+P\+I}}
+\index{save\+A\+P\+I@{save\+A\+P\+I}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{save\+A\+P\+I}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} A\+P\+I\+::save\+A\+P\+I (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classAPI_ae9bf448b00701609e20c2167931b8975}
+
+
+ \begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R} if no error occured 
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0a35d177e90088f78bdd0eede2ed9f2f6c}{E\+R\+R\+O\+R\+\_\+\+I\+O} if an error occured when writing in the file 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+ 
+\begin{DoxyEnumerate}
+\item Opening the user file
+
+
+\item Init tag computation 
+
+
+\item Processing the header  
+\begin{DoxyItemize}
+\item Printing 
+
+
+\item Adding to tag computation 
+
+
+\end{DoxyItemize}
+
+
+\item Processing the users  
+\begin{DoxyItemize}
+\item Printing 
+
+
+\item Adding to tag computation 
+
+
+\item Next key 
+
+
+\item Dumping the footer
+
+
+\item Close the file
+
+
+\item Opening the key file
+
+
+\item Init tag computation 
+
+
+\item Processing the header  
+\begin{DoxyItemize}
+\item Printing 
+
+
+\item Adding to tag computation 
+
+
+\end{DoxyItemize}
+
+
+\item Dumping keys
+
+
+\item Adding to tag computation 
+
+
+\item Next key 
+
+
+\item Dumping the footer
+
+
+\item Close the file
+
+
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+Definition at line 15 of file api\+\_\+int.\+cpp.
+
+
+
+References \+\_\+file\+Keys, \+\_\+file\+Users, \+\_\+instance\+Id, \+\_\+keys, User\+::\+\_\+serialized\+Size, Key\+::\+\_\+serialized\+Size, \+\_\+users, B\+A\+S\+E64\+::encode(), E\+R\+R\+O\+R\+\_\+\+I\+O, H\+M\+A\+C\+::final(), H\+M\+A\+C\+::init(), M\+A\+X\+\_\+\+K\+E\+Y\+\_\+\+L\+E\+N, N\+O\+\_\+\+E\+R\+R\+O\+R, and H\+M\+A\+C\+::update().
+
+
+
+Referenced by $\sim$\+A\+P\+I().
+
+\hypertarget{classAPI_ad232f21ac35cb1d60aaef0b6e7979c15}{}\index{A\+P\+I@{A\+P\+I}!unwrap@{unwrap}}
+\index{unwrap@{unwrap}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{unwrap}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} A\+P\+I\+::unwrap (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{id\+Wrap\+Key, }
+\item[{uint8\+\_\+t $\ast$}]{imported\+Key, }
+\item[{size\+\_\+t}]{length, }
+\item[{{\bf key\+\_\+type\+\_\+t}}]{type, }
+\item[{{\bf key\+\_\+use\+\_\+t}}]{use, }
+\item[{date\+\_\+t}]{validity, }
+\item[{uint32\+\_\+t $\ast$}]{id}
+\end{DoxyParamCaption}
+)}\label{classAPI_ad232f21ac35cb1d60aaef0b6e7979c15}
+
+\begin{DoxyEnumerate}
+\item Get the key 
+
+
+\item Test that the connected user owns the key 
+
+
+\item Test wrap key use and import size 
+
+
+\item Unwrap key and protect it with local key 
+
+
+\item Add key to \hyperlink{classAPI}{A\+P\+I} 
+
+
+\item Setting attributes 
+
+
+\end{DoxyEnumerate}
+
+Definition at line 359 of file api\+\_\+ext.\+cpp.
+
+
+
+References Key\+::\+\_\+associated, \+\_\+connected\+User, Key\+::\+\_\+id, \+\_\+keys, Key\+::\+\_\+length, Key\+::\+\_\+owner, Key\+::\+\_\+type, Key\+::\+\_\+use, Key\+::\+\_\+validity, Key\+::\+\_\+value, add\+Key(), A\+E\+S\+::decrypt(), decrypt\+Key(), E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M, E\+R\+R\+O\+R\+\_\+\+S\+E\+C, find\+Key(), User\+::get\+Id(), Key\+::get\+Owner(), Key\+::get\+Use(), K\+E\+Y\+\_\+\+W\+R\+A\+P, M\+A\+X\+\_\+\+K\+E\+Y\+\_\+\+L\+E\+N, N\+O\+\_\+\+E\+R\+R\+O\+R, protect\+Data(), and wrap().
+
+\hypertarget{classAPI_ac115603da5cc49b407f6b3710e01a985}{}\index{A\+P\+I@{A\+P\+I}!wrap@{wrap}}
+\index{wrap@{wrap}!A\+P\+I@{A\+P\+I}}
+\subsubsection[{wrap}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} A\+P\+I\+::wrap (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{id\+Wrap\+Key, }
+\item[{uint32\+\_\+t}]{id\+Exported\+Key, }
+\item[{uint8\+\_\+t $\ast$}]{output, }
+\item[{size\+\_\+t $\ast$}]{length}
+\end{DoxyParamCaption}
+)}\label{classAPI_ac115603da5cc49b407f6b3710e01a985}
+
+\begin{DoxyEnumerate}
+\item Get the keys 
+
+
+\item Test that the connected user owns the keys 
+
+
+\item Test wrap key use and output size 
+
+
+\item Wrap key 
+
+
+\end{DoxyEnumerate}
+
+Definition at line 297 of file api\+\_\+ext.\+cpp.
+
+
+
+References \+\_\+connected\+User, decrypt\+Key(), A\+E\+S\+::encrypt(), E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M, E\+R\+R\+O\+R\+\_\+\+S\+E\+C, find\+Key(), User\+::get\+Id(), Key\+::get\+Owner(), Key\+::get\+Use(), K\+E\+Y\+\_\+\+W\+R\+A\+P, M\+A\+X\+\_\+\+K\+E\+Y\+\_\+\+L\+E\+N, and N\+O\+\_\+\+E\+R\+R\+O\+R.
+
+
+
+Referenced by unwrap().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+includes/\hyperlink{api_8hpp}{api.\+hpp}\item 
+src/api\+\_\+ext.\+cpp\item 
+src/api\+\_\+int.\+cpp\end{DoxyCompactItemize}

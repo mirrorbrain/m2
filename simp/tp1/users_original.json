@@ -1,0 +1,8 @@
+{
+	"instance": 1,
+	"users": [
+		{ "id": 1 , "login": "admin" , "password": "+uEKI58lNaEiAfmVVuB8Y2GuUIZjHiMKAUlmIGN0t7I=" , "privilege": 1 },
+		{ "id": 2 , "login": "benoit" , "password": "9y6911j6NJHeB5LnjBKqzx3SvAmkiQ6a+yzelxSRZ18=" , "privilege": 0 }
+	],
+"tag": "lL7h/4xRHzWq3vYnG2F1Lq41otRjNUmXumGY1aGwZcg="
+}

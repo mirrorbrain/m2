@@ -1,0 +1,166 @@
+\hypertarget{classHMAC}{}\section{H\+M\+A\+C Class Reference}
+\label{classHMAC}\index{H\+M\+A\+C@{H\+M\+A\+C}}
+
+
+\hyperlink{classHMAC}{H\+M\+A\+C} class.  
+
+
+
+
+{\ttfamily \#include $<$hmac.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classHMAC_af1a48c84179f5fa75db1a226dd9f4784}{init} (const uint8\+\_\+t $\ast$key, size\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Function used to init the mac module. \end{DoxyCompactList}\item 
+void \hyperlink{classHMAC_a5b9524a8e0940a487790465f5d0b60dc}{update} (const uint8\+\_\+t $\ast$data, size\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Function used to add data-\/block to the processed input. \end{DoxyCompactList}\item 
+void \hyperlink{classHMAC_a354fa05b4188049bdee0d70ddda0558c}{final} (uint8\+\_\+t $\ast$tag)
+\begin{DoxyCompactList}\small\item\em Function used to finalize the mac procedure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classHMAC_a7c151dae82d31295a73c4a2d7e27e45a}{test} ()
+\begin{DoxyCompactList}\small\item\em Auto test function to test \hyperlink{classHMAC}{H\+M\+A\+C} implementation w.\+r. to few test vectors (S\+H\+A-\/256). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classHMAC_a0657172b72675134e3fdb5b3eb2f9a06}{}static constexpr size\+\_\+t {\bfseries tag\+Length} = 32\label{classHMAC_a0657172b72675134e3fdb5b3eb2f9a06}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classHMAC_a5034564d06003b6233cb90839b1cdecf}{}\hyperlink{classSHA256}{S\+H\+A256} $\ast$ \hyperlink{classHMAC_a5034564d06003b6233cb90839b1cdecf}{hash\+Function}\label{classHMAC_a5034564d06003b6233cb90839b1cdecf}
+
+\begin{DoxyCompactList}\small\item\em Hash function used. \end{DoxyCompactList}\item 
+\hypertarget{classHMAC_ac97de604a0d3a2f209b8ee75002ce315}{}size\+\_\+t \hyperlink{classHMAC_ac97de604a0d3a2f209b8ee75002ce315}{key\+Length}\label{classHMAC_ac97de604a0d3a2f209b8ee75002ce315}
+
+\begin{DoxyCompactList}\small\item\em Length of the key used. \end{DoxyCompactList}\item 
+\hypertarget{classHMAC_a1f87b94866685a126a2d5a4882b81a7e}{}const uint8\+\_\+t $\ast$ \hyperlink{classHMAC_a1f87b94866685a126a2d5a4882b81a7e}{key\+Value}\label{classHMAC_a1f87b94866685a126a2d5a4882b81a7e}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classKey}{Key} used. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classHMAC_aa7914ba2ff1d879dd20b25149d169b59}{}static const uint8\+\_\+t \hyperlink{classHMAC_aa7914ba2ff1d879dd20b25149d169b59}{ipad}\label{classHMAC_aa7914ba2ff1d879dd20b25149d169b59}
+
+\begin{DoxyCompactList}\small\item\em Constant used for inner padding. \end{DoxyCompactList}\item 
+\hypertarget{classHMAC_aad108fdf696c1f3c770bcd425b632f68}{}static const uint8\+\_\+t \hyperlink{classHMAC_aad108fdf696c1f3c770bcd425b632f68}{opad}\label{classHMAC_aad108fdf696c1f3c770bcd425b632f68}
+
+\begin{DoxyCompactList}\small\item\em Constant used for outer padding. \end{DoxyCompactList}\item 
+\hypertarget{classHMAC_abc7fa897f42fb4c2f70633a634c9bf11}{}static const size\+\_\+t \hyperlink{classHMAC_abc7fa897f42fb4c2f70633a634c9bf11}{T\+V\+\_\+klengths} \mbox{[}3\mbox{]}\label{classHMAC_abc7fa897f42fb4c2f70633a634c9bf11}
+
+\begin{DoxyCompactList}\small\item\em Lengths of test vectorkeys. \end{DoxyCompactList}\item 
+\hypertarget{classHMAC_ab2669ec492cb8f6d8d27e2141b016f52}{}static const uint8\+\_\+t \hyperlink{classHMAC_ab2669ec492cb8f6d8d27e2141b016f52}{T\+V\+\_\+keys} \mbox{[}3\mbox{]}\mbox{[}256\mbox{]}\label{classHMAC_ab2669ec492cb8f6d8d27e2141b016f52}
+
+\begin{DoxyCompactList}\small\item\em Keys used in test vectors. \end{DoxyCompactList}\item 
+\hypertarget{classHMAC_a6c6bd95626e896c105c6506ad5103b99}{}static const size\+\_\+t \hyperlink{classHMAC_a6c6bd95626e896c105c6506ad5103b99}{T\+V\+\_\+mlengths} \mbox{[}3\mbox{]}\label{classHMAC_a6c6bd95626e896c105c6506ad5103b99}
+
+\begin{DoxyCompactList}\small\item\em Lengths of test vector messages. \end{DoxyCompactList}\item 
+\hypertarget{classHMAC_ac05dcfec7e92cc9f87d9ac61de76912f}{}static const uint8\+\_\+t \hyperlink{classHMAC_ac05dcfec7e92cc9f87d9ac61de76912f}{T\+V\+\_\+messages} \mbox{[}3\mbox{]}\mbox{[}128\mbox{]}\label{classHMAC_ac05dcfec7e92cc9f87d9ac61de76912f}
+
+\begin{DoxyCompactList}\small\item\em Messages used in test vectors. \end{DoxyCompactList}\item 
+\hypertarget{classHMAC_a251e380746f9523321511b464c308119}{}static const uint8\+\_\+t \hyperlink{classHMAC_a251e380746f9523321511b464c308119}{T\+V\+\_\+tags} \mbox{[}3\mbox{]}\mbox{[}tag\+Length\mbox{]}\label{classHMAC_a251e380746f9523321511b464c308119}
+
+\begin{DoxyCompactList}\small\item\em Hashes obtained for test vectors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+At the moment uses S\+H\+A-\/256 hash function but should be init with any hash function in a future implementation. 
+
+Definition at line 18 of file hmac.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classHMAC_a354fa05b4188049bdee0d70ddda0558c}{}\index{H\+M\+A\+C@{H\+M\+A\+C}!final@{final}}
+\index{final@{final}!H\+M\+A\+C@{H\+M\+A\+C}}
+\subsubsection[{final}]{\setlength{\rightskip}{0pt plus 5cm}void H\+M\+A\+C\+::final (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{tag}
+\end{DoxyParamCaption}
+)}\label{classHMAC_a354fa05b4188049bdee0d70ddda0558c}
+This function stores in the parameter the tag computed from the data blocks provided by the calls to the update function. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em hash} & is an array that will contain the final tag value. Enough space should have been allocated to contain the tag value which size depends on the hash function used.\\
+\hline
+\end{DoxyParams}
+
+
+ 
+
+Referenced by A\+P\+I\+::load\+A\+P\+I(), and A\+P\+I\+::save\+A\+P\+I().
+
+\hypertarget{classHMAC_af1a48c84179f5fa75db1a226dd9f4784}{}\index{H\+M\+A\+C@{H\+M\+A\+C}!init@{init}}
+\index{init@{init}!H\+M\+A\+C@{H\+M\+A\+C}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void H\+M\+A\+C\+::init (
+\begin{DoxyParamCaption}
+\item[{const uint8\+\_\+t $\ast$}]{key, }
+\item[{size\+\_\+t}]{length}
+\end{DoxyParamCaption}
+)}\label{classHMAC_af1a48c84179f5fa75db1a226dd9f4784}
+This function inits the hash module and starts hashing the key xored to ipad. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em key} & is an array of bytes containing the integrity key. \\
+\hline
+{\em length} & is the number key bytes.\\
+\hline
+\end{DoxyParams}
+
+
+ 
+
+Referenced by A\+P\+I\+::load\+A\+P\+I(), and A\+P\+I\+::save\+A\+P\+I().
+
+\hypertarget{classHMAC_a7c151dae82d31295a73c4a2d7e27e45a}{}\index{H\+M\+A\+C@{H\+M\+A\+C}!test@{test}}
+\index{test@{test}!H\+M\+A\+C@{H\+M\+A\+C}}
+\subsubsection[{test}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf myerror\+\_\+t} H\+M\+A\+C\+::test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{classHMAC_a7c151dae82d31295a73c4a2d7e27e45a}
+This function uses test vectors defined in the class and test implementation versus them. 
+
+ \begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0a72d7027f95e0f2811e3ff04fa7e42392}{E\+R\+R\+O\+R\+\_\+\+U\+N\+E\+X\+P\+E\+C\+T\+E\+D} if a mismatch is found 
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R} if everything matches 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+ \hypertarget{classHMAC_a5b9524a8e0940a487790465f5d0b60dc}{}\index{H\+M\+A\+C@{H\+M\+A\+C}!update@{update}}
+\index{update@{update}!H\+M\+A\+C@{H\+M\+A\+C}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void H\+M\+A\+C\+::update (
+\begin{DoxyParamCaption}
+\item[{const uint8\+\_\+t $\ast$}]{data, }
+\item[{size\+\_\+t}]{length}
+\end{DoxyParamCaption}
+)}\label{classHMAC_a5b9524a8e0940a487790465f5d0b60dc}
+This function process the provided data but outputs nothing. Multiple call to update may be of interest when data is being received in multiple blocks or if the message is too large or the memory. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em data} & is an array of bytes to process. \\
+\hline
+{\em length} & is the number of element in the array data.\\
+\hline
+\end{DoxyParams}
+
+
+ 
+
+Referenced by A\+P\+I\+::load\+A\+P\+I(), and A\+P\+I\+::save\+A\+P\+I().
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/hmac.\+hpp\end{DoxyCompactItemize}

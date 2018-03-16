@@ -1,0 +1,42 @@
+\hypertarget{object_8hpp}{}\section{includes/object.hpp File Reference}
+\label{object_8hpp}\index{includes/object.\+hpp@{includes/object.\+hpp}}
+{\ttfamily \#include $<$cstdint$>$}\\*
+{\ttfamily \#include $<$cstdlib$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include \char`\"{}error.\+hpp\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classObject}{Object}
+\begin{DoxyCompactList}\small\item\em Class \hyperlink{classObject}{Object}\+: class of all objects in the memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{object_8hpp_adee610a3c7375031538811d29f6a4124}{type\+\_\+t} \{ \hyperlink{object_8hpp_adee610a3c7375031538811d29f6a4124a4e7c6e0750f29e39b487c093a68ad59a}{O\+B\+J\+\_\+\+D\+A\+T\+A}, 
+\hyperlink{object_8hpp_adee610a3c7375031538811d29f6a4124aa1b12950bf38042f69d0f9625b60c14e}{O\+B\+J\+\_\+\+K\+E\+Y}
+ \}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classObject}{Object} types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classObject}{Object} definition
+
+Objects are entities manipulated by the \hyperlink{classAPI}{A\+P\+I}, they may be of various type but class \hyperlink{classObject}{Object} is the parent one. The \hyperlink{classAPI}{A\+P\+I} can only manipulate classes inheriting from class \hyperlink{classObject}{Object}. 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{object_8hpp_adee610a3c7375031538811d29f6a4124}{}\index{object.\+hpp@{object.\+hpp}!type\+\_\+t@{type\+\_\+t}}
+\index{type\+\_\+t@{type\+\_\+t}!object.\+hpp@{object.\+hpp}}
+\subsubsection[{type\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf type\+\_\+t}}\label{object_8hpp_adee610a3c7375031538811d29f6a4124}
+This enumerated type has positive values smaller than 256. Hence, it can be converted to uint8\+\_\+t type for dumping. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{O\+B\+J\+\_\+\+D\+A\+T\+A@{O\+B\+J\+\_\+\+D\+A\+T\+A}!object.\+hpp@{object.\+hpp}}\index{object.\+hpp@{object.\+hpp}!O\+B\+J\+\_\+\+D\+A\+T\+A@{O\+B\+J\+\_\+\+D\+A\+T\+A}}\item[{\em 
+\hypertarget{object_8hpp_adee610a3c7375031538811d29f6a4124a4e7c6e0750f29e39b487c093a68ad59a}{}O\+B\+J\+\_\+\+D\+A\+T\+A\label{object_8hpp_adee610a3c7375031538811d29f6a4124a4e7c6e0750f29e39b487c093a68ad59a}
+}]data element \index{O\+B\+J\+\_\+\+K\+E\+Y@{O\+B\+J\+\_\+\+K\+E\+Y}!object.\+hpp@{object.\+hpp}}\index{object.\+hpp@{object.\+hpp}!O\+B\+J\+\_\+\+K\+E\+Y@{O\+B\+J\+\_\+\+K\+E\+Y}}\item[{\em 
+\hypertarget{object_8hpp_adee610a3c7375031538811d29f6a4124aa1b12950bf38042f69d0f9625b60c14e}{}O\+B\+J\+\_\+\+K\+E\+Y\label{object_8hpp_adee610a3c7375031538811d29f6a4124aa1b12950bf38042f69d0f9625b60c14e}
+}]key element \end{description}
+\end{Desc}
+
+
+Definition at line 21 of file object.\+hpp.
+

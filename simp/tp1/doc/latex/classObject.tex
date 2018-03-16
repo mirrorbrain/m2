@@ -1,0 +1,186 @@
+\hypertarget{classObject}{}\section{Object Class Reference}
+\label{classObject}\index{Object@{Object}}
+
+
+Class \hyperlink{classObject}{Object}\+: class of all objects in the memory.  
+
+
+
+
+{\ttfamily \#include $<$object.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classObject_a2b49276b8fba5a1ed308353194a073be}{dump} (uint8\+\_\+t $\ast$$\ast$pointer, size\+\_\+t $\ast$size)
+\begin{DoxyCompactList}\small\item\em This function serialize the \hyperlink{classObject}{Object} class into an array of bytes. \end{DoxyCompactList}\item 
+void \hyperlink{classObject_a4526a87a2bd9267d43c44370dbc4f038}{add\+Attribute} (bool \hyperlink{classObject_a528d047a03a99189b3f993eefe31ef9f}{value})
+\begin{DoxyCompactList}\small\item\em Add a boolean attribute to the \hyperlink{classObject}{Object}. \end{DoxyCompactList}\item 
+void \hyperlink{classObject_ab80b20e22d10bd0ac02252228fa63178}{add\+Attribute} (unsigned \hyperlink{classObject_a528d047a03a99189b3f993eefe31ef9f}{value})
+\begin{DoxyCompactList}\small\item\em Add an 32-\/bit unsigned integer attribute to the \hyperlink{classObject}{Object}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classObject_afc62e204f1b86ff45f06a2fe4f675381}{parse} (uint8\+\_\+t $\ast$buffer, \hyperlink{classObject}{Object} $\ast$$\ast$res)
+\begin{DoxyCompactList}\small\item\em This function parse a buffer to create an \hyperlink{classObject}{Object} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classObject_ad90c5daa6f5dfb0a60a2c8cdecd4444f}{}const \hyperlink{object_8hpp_adee610a3c7375031538811d29f6a4124}{type\+\_\+t} \hyperlink{classObject_ad90c5daa6f5dfb0a60a2c8cdecd4444f}{type}\label{classObject_ad90c5daa6f5dfb0a60a2c8cdecd4444f}
+
+\begin{DoxyCompactList}\small\item\em Type of the \hyperlink{classObject}{Object}. \end{DoxyCompactList}\item 
+\hypertarget{classObject_a528d047a03a99189b3f993eefe31ef9f}{}uint8\+\_\+t $\ast$ \hyperlink{classObject_a528d047a03a99189b3f993eefe31ef9f}{value}\label{classObject_a528d047a03a99189b3f993eefe31ef9f}
+
+\begin{DoxyCompactList}\small\item\em Value of the \hyperlink{classObject}{Object}. \end{DoxyCompactList}\item 
+\hypertarget{classObject_a07a367dee2fb2fff5515654dc0555735}{}uint32\+\_\+t \hyperlink{classObject_a07a367dee2fb2fff5515654dc0555735}{value\+Len}\label{classObject_a07a367dee2fb2fff5515654dc0555735}
+
+\begin{DoxyCompactList}\small\item\em Byte length of the \hyperlink{classObject}{Object} value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classObject_a5bb173159959aafc3521727c8c9377dd}{}std\+::vector$<$ bool $>$ \hyperlink{classObject_a5bb173159959aafc3521727c8c9377dd}{boolean\+Attributes}\label{classObject_a5bb173159959aafc3521727c8c9377dd}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classObject}{Object} boolean attributes. \end{DoxyCompactList}\item 
+\hypertarget{classObject_a125a2a3b379cd57d885e5060422b58d3}{}std\+::vector$<$ uint32\+\_\+t $>$ \hyperlink{classObject_a125a2a3b379cd57d885e5060422b58d3}{unsigned\+Attributes}\label{classObject_a125a2a3b379cd57d885e5060422b58d3}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classObject}{Object} unsigned integers attributes (32-\/bit). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 29 of file object.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classObject_a4526a87a2bd9267d43c44370dbc4f038}{}\index{Object@{Object}!add\+Attribute@{add\+Attribute}}
+\index{add\+Attribute@{add\+Attribute}!Object@{Object}}
+\subsubsection[{add\+Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void Object\+::add\+Attribute (
+\begin{DoxyParamCaption}
+\item[{bool}]{value}
+\end{DoxyParamCaption}
+)}\label{classObject_a4526a87a2bd9267d43c44370dbc4f038}
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em value} & is the value of the new attribute. There is no room for an attribute name\+: the index in the attribute vector determines to which attribute the value corresponds.\\
+\hline
+\end{DoxyParams}
+
+
+ 
+
+Definition at line 115 of file object.\+cpp.
+
+
+
+References boolean\+Attributes.
+
+
+
+Referenced by parse().
+
+\hypertarget{classObject_ab80b20e22d10bd0ac02252228fa63178}{}\index{Object@{Object}!add\+Attribute@{add\+Attribute}}
+\index{add\+Attribute@{add\+Attribute}!Object@{Object}}
+\subsubsection[{add\+Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void Object\+::add\+Attribute (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{value}
+\end{DoxyParamCaption}
+)}\label{classObject_ab80b20e22d10bd0ac02252228fa63178}
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em value} & is the value of the new attribute. There is no room for an attribute name\+: the index in the attribute vector determines to which attribute the value corresponds.\\
+\hline
+\end{DoxyParams}
+
+
+ 
+
+Definition at line 120 of file object.\+cpp.
+
+
+
+References unsigned\+Attributes.
+
+\hypertarget{classObject_a2b49276b8fba5a1ed308353194a073be}{}\index{Object@{Object}!dump@{dump}}
+\index{dump@{dump}!Object@{Object}}
+\subsubsection[{dump}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} Object\+::dump (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$$\ast$}]{pointer, }
+\item[{size\+\_\+t $\ast$}]{size}
+\end{DoxyParamCaption}
+)}\label{classObject_a2b49276b8fba5a1ed308353194a073be}
+This function is for example used to dump an \hyperlink{classObject}{Object} class when saving the \hyperlink{classAPI}{A\+P\+I} in a file. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em pointer} & is a pointer to the buffer that will contain the result. $\ast$pointer should be initialised to N\+U\+L\+L since the memory allocation will be done by the function. \\
+\hline
+{\em size} & is a pointer to an integer that which value will be set to the actual size of the allocated buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R} if no error occured 
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0a05718b630d7176e8e040eca44907b99f}{E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M} if pointer is N\+U\+L\+L or $\ast$pointer is not N\+U\+L\+L 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+ 
+
+Definition at line 15 of file object.\+cpp.
+
+
+
+References boolean\+Attributes, E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M, N\+O\+\_\+\+E\+R\+R\+O\+R, unsigned\+Attributes, value, and value\+Len.
+
+\hypertarget{classObject_afc62e204f1b86ff45f06a2fe4f675381}{}\index{Object@{Object}!parse@{parse}}
+\index{parse@{parse}!Object@{Object}}
+\subsubsection[{parse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} Object\+::parse (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{buffer, }
+\item[{{\bf Object} $\ast$$\ast$}]{res}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{classObject_afc62e204f1b86ff45f06a2fe4f675381}
+This function is for example used to construct \hyperlink{classObject}{Object} classes when loading the \hyperlink{classAPI}{A\+P\+I} from a file. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em buffer} & is the byte array from which data will be read. \\
+\hline
+{\em res} & is a pointer to the \hyperlink{classUser}{User} pointer that will contain the result. $\ast$pointer should be initialised to N\+U\+L\+L since the memory allocation will be done by the function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R} if no error occured 
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0a05718b630d7176e8e040eca44907b99f}{E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M} if res is N\+U\+L\+L or $\ast$res is not N\+U\+L\+L 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+ 
+
+Definition at line 63 of file object.\+cpp.
+
+
+
+References add\+Attribute(), E\+R\+R\+O\+R\+\_\+\+M\+E\+M, E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+A\+M, N\+O\+\_\+\+E\+R\+R\+O\+R, value, and value\+Len.
+
+
+
+Referenced by A\+P\+I\+::load\+A\+P\+I().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+includes/\hyperlink{object_8hpp}{object.\+hpp}\item 
+src/object.\+cpp\end{DoxyCompactItemize}

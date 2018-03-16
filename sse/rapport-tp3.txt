@@ -1,0 +1,88 @@
+Ex 5-1
+
+tp@ses-tp2-debian:~$ sudo bash
+root@ses-tp2-debian:/home/tp# mkfs -t ext4 /dev/sdb1
+mke2fs 1.43.4 (31-Jan-2017)
+En train de créer un système de fichiers avec 409600 4k blocs et 102544 i-noeuds.
+UUID de système de fichiers=c27b8ddb-0353-483f-93bf-4d176d2eb38c
+Superblocs de secours stockés sur les blocs :
+	32768, 98304, 163840, 229376, 294912
+
+Allocation des tables de groupe : complété
+Écriture des tables d'i-noeuds : complété
+Création du journal (8192 blocs) : complété
+Écriture des superblocs et de l'information de comptabilité du système de
+fichiers : complété
+
+root@ses-tp2-debian:/home/tp# mount /dev/sdb1 /mnt/
+root@ses-tp2-debian:/home/tp# touch /mnt/fic
+root@ses-tp2-debian:/home/tp# umount /mnt
+root@ses-tp2-debian:/home/tp# veritysetup format /dev/sdb1 /dev/sdb2
+VERITY header information for /dev/sdb2
+UUID:            	85b63f57-c3c1-4dd5-bf4d-2884877c15a6
+Hash type:       	1
+Data blocks:     	409600
+Data block size: 	4096
+Hash block size: 	4096
+Hash algorithm:  	sha256
+Salt:            	4f082d32cdbed11d92e9ab893ece65a861f45f545aec8ae0eb07d50b23eed6c1
+Root hash:      	875605fae63b0afb53998ea1322d2b5c99de8715091c7bd54f85f1c5eba398ef
+root@ses-tp2-debian:/home/tp# veritysetup create verityVol /dev/sdb1 /dev/sdb2 875605fae63b0afb53998ea1322d2b5c99de8715091c7bd54f85f1c5eba398ef
+root@ses-tp2-debian:/home/tp# dmsetup table
+verityVol: 0 3276800 verity 1 8:17 8:18 4096 4096 409600 1 sha256 875605fae63b0afb53998ea1322d2b5c99de8715091c7bd54f85f1c5eba398ef 4f082d32cdbed11d92e9ab893ece65a861f45f545aec8ae0eb07d50b23eed6c1
+ses--tp2--debian--vg-swap_1: 0 2088960 linear 254:0 7424000
+sda5_crypt: 0 20463616 crypt aes-xts-plain64 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 0 8:5 4096
+ses--tp2--debian--vg-home: 0 10944512 linear 254:0 9512960
+ses--tp2--debian--vg-root: 0 7421952 linear 254:0 2048
+root@ses-tp2-debian:/home/tp# exit
+tp@ses-tp2-debian:~$ lsblk
+NAME                              MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT
+sda                                 8:0    0   10G  0 disk
+├─sda1                              8:1    0  243M  0 part  /boot
+├─sda2                              8:2    0    1K  0 part
+└─sda5                              8:5    0  9,8G  0 part
+  └─sda5_crypt                    254:0    0  9,8G  0 crypt
+    ├─ses--tp2--debian--vg-root   254:1    0  3,6G  0 lvm   /
+    ├─ses--tp2--debian--vg-swap_1 254:2    0 1020M  0 lvm   [SWAP]
+    └─ses--tp2--debian--vg-home   254:3    0  5,2G  0 lvm   /home
+sdb                                 8:16   0   10G  0 disk
+├─sdb1                              8:17   0  1,6G  0 part
+│ └─verityVol                     254:4    0  1,6G  1 crypt
+└─sdb2                              8:18   0  200M  0 part
+  └─verityVol                     254:4    0  1,6G  1 crypt
+sr0                                11:0    1 57,7M  0 rom
+tp@ses-tp2-debian:~$ sudo mount -t ext4 /dev/mapper/verityVol /mnt/
+mount: /dev/mapper/verityVol est protégé en écriture, sera monté en lecture seule
+tp@ses-tp2-debian:~$ sudo umount /mnt
+tp@ses-tp2-debian:~$ sudo dmsetup remove /dev/mapper/verityVol
+tp@ses-tp2-debian:~$ sudo bash
+root@ses-tp2-debian:/home/tp# mount /dev/sdb1 /mnt/
+root@ses-tp2-debian:/home/tp# echo "modification" >/mnt/fic
+root@ses-tp2-debian:/home/tp# umount /mnt/
+root@ses-tp2-debian:/home/tp# veritysetup verify /dev/sdb1 /dev/sdb2 875605fae63b0afb53998ea1322d2b5c99de8715091c7bd54f85f1c5eba398ef
+La vérification a échoué à la position 0.
+La vérification de la zone de données a échoué.
+----------------------------
+On a modif sans changer le hash donc normal
+----------------------------
+root@ses-tp2-debian:/home/tp# veritysetup format /dev/sdb1 /dev/sdb2
+VERITY header information for /dev/sdb2
+UUID:            	f2db566a-0c7a-4163-b888-bc455906ccf4
+Hash type:       	1
+Data blocks:     	409600
+Data block size: 	4096
+Hash block size: 	4096
+Hash algorithm:  	sha256
+Salt:            	44de044e8a7b912ebc9b15103d4eac0483c7c168af27e51bf70f82dff69f269a
+Root hash:      	3297ee813f3c72290dfa83af07ac26112bb1601df8c838bcb79294fd46aac0f2
+root@ses-tp2-debian:/home/tp# veritysetup create verityVol /dev/sdb1 /dev/sdb2 3297ee813f3c72290dfa83af07ac26112bb1601df8c838bcb79294fd46aac0f2
+root@ses-tp2-debian:/home/tp# dmsetup table
+verityVol: 0 3276800 verity 1 8:17 8:18 4096 4096 409600 1 sha256 3297ee813f3c72290dfa83af07ac26112bb1601df8c838bcb79294fd46aac0f2 44de044e8a7b912ebc9b15103d4eac0483c7c168af27e51bf70f82dff69f269a
+ses--tp2--debian--vg-swap_1: 0 2088960 linear 254:0 7424000
+sda5_crypt: 0 20463616 crypt aes-xts-plain64 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 0 8:5 4096
+ses--tp2--debian--vg-home: 0 10944512 linear 254:0 9512960
+ses--tp2--debian--vg-root: 0 7421952 linear 254:0 2048
+root@ses-tp2-debian:/home/tp# mount -t ext4 /dev/mapper/verityVol /mnt/
+mount: /dev/mapper/verityVol est protégé en écriture, sera monté en lecture seule
+
+Ex 3-2

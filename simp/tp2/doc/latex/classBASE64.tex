@@ -1,0 +1,158 @@
+\hypertarget{classBASE64}{}\section{B\+A\+S\+E64 Class Reference}
+\label{classBASE64}\index{B\+A\+S\+E64@{B\+A\+S\+E64}}
+
+
+\hyperlink{classBASE64}{B\+A\+S\+E64} class.  
+
+
+
+
+{\ttfamily \#include $<$base64.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classBASE64_af53fb889508f2903fdb773ef901141bb}{encode} (const uint8\+\_\+t $\ast$data\+\_\+in, size\+\_\+t length\+\_\+in, char $\ast$data\+\_\+out, size\+\_\+t $\ast$length\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Function used to encode a byte array. \end{DoxyCompactList}\item 
+void \hyperlink{classBASE64_a4c67a6107a7cebeaa7f42068b2b9ba07}{decode} (const char $\ast$data\+\_\+in, size\+\_\+t length\+\_\+in, uint8\+\_\+t $\ast$data\+\_\+out, size\+\_\+t $\ast$length\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Function used to decode a base64-\/encoded string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classBASE64_a1f7d6fc0902417dff2d5cece476a3aba}{test} ()
+\begin{DoxyCompactList}\small\item\em Auto test function to test Base 64 conversion w.\+r.\+t. randomly generated data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classBASE64_af9fa7d4281edab1805eb7f2971fbd5fc}{}void {\bfseries init\+Encoding} ()\label{classBASE64_af9fa7d4281edab1805eb7f2971fbd5fc}
+
+\item 
+\hypertarget{classBASE64_a1e10e9cbe0ee6142687b64a4be5137ce}{}void {\bfseries init\+Decoding} ()\label{classBASE64_a1e10e9cbe0ee6142687b64a4be5137ce}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classBASE64_afd080eb9486df87e89bf0f2e0e2a139c}{}static char {\bfseries encode\+Value} (uint8\+\_\+t value\+\_\+in)\label{classBASE64_afd080eb9486df87e89bf0f2e0e2a139c}
+
+\item 
+\hypertarget{classBASE64_a767032fc1907ee6d155696769ae354d3}{}static int8\+\_\+t {\bfseries decode\+Value} (char value\+\_\+in)\label{classBASE64_a767032fc1907ee6d155696769ae354d3}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classBASE64_ac083a0eed0bf1d6912e0fbc33de91c43}{}\hyperlink{structencode__state__t}{encode\+\_\+state\+\_\+t} {\bfseries encode\+State}\label{classBASE64_ac083a0eed0bf1d6912e0fbc33de91c43}
+
+\item 
+\hypertarget{classBASE64_a6dde03f16d11187ac6cc91f325d99b3d}{}\hyperlink{structdecode__state__t}{decode\+\_\+state\+\_\+t} {\bfseries decode\+State}\label{classBASE64_a6dde03f16d11187ac6cc91f325d99b3d}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 31 of file base64.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classBASE64_a4c67a6107a7cebeaa7f42068b2b9ba07}{}\index{B\+A\+S\+E64@{B\+A\+S\+E64}!decode@{decode}}
+\index{decode@{decode}!B\+A\+S\+E64@{B\+A\+S\+E64}}
+\subsubsection[{decode}]{\setlength{\rightskip}{0pt plus 5cm}void B\+A\+S\+E64\+::decode (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{data\+\_\+in, }
+\item[{size\+\_\+t}]{length\+\_\+in, }
+\item[{uint8\+\_\+t $\ast$}]{data\+\_\+out, }
+\item[{size\+\_\+t $\ast$}]{length\+\_\+out}
+\end{DoxyParamCaption}
+)}\label{classBASE64_a4c67a6107a7cebeaa7f42068b2b9ba07}
+This function process the provided string to output the corresponding value in a byte array. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em data\+\_\+in} & is the string to process. \\
+\hline
+{\em length\+\_\+in} & is the number of characters to consider in the string. \\
+\hline
+{\em data\+\_\+out} & is a byte array that will contain the decoded value. \\
+\hline
+{\em length\+\_\+out} & will be updated to contain the actual byte-\/size of the decoded value.\\
+\hline
+\end{DoxyParams}
+
+
+ 
+
+Definition at line 127 of file base64.\+cpp.
+
+
+
+Referenced by A\+P\+I\+::load\+A\+P\+I(), User\+::set(), Key\+::set(), and test().
+
+\hypertarget{classBASE64_af53fb889508f2903fdb773ef901141bb}{}\index{B\+A\+S\+E64@{B\+A\+S\+E64}!encode@{encode}}
+\index{encode@{encode}!B\+A\+S\+E64@{B\+A\+S\+E64}}
+\subsubsection[{encode}]{\setlength{\rightskip}{0pt plus 5cm}void B\+A\+S\+E64\+::encode (
+\begin{DoxyParamCaption}
+\item[{const uint8\+\_\+t $\ast$}]{data\+\_\+in, }
+\item[{size\+\_\+t}]{length\+\_\+in, }
+\item[{char $\ast$}]{data\+\_\+out, }
+\item[{size\+\_\+t $\ast$}]{length\+\_\+out}
+\end{DoxyParamCaption}
+)}\label{classBASE64_af53fb889508f2903fdb773ef901141bb}
+This function process the provided data to output its base64-\/encoded value. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em data\+\_\+in} & is an array of bytes to process. \\
+\hline
+{\em length\+\_\+in} & is the number of bytes in the array data\+\_\+in. \\
+\hline
+{\em data\+\_\+out} & is a string that will contain the encoded result. \\
+\hline
+{\em length\+\_\+out} & will be updated to contain the actual size of the encoded result.\\
+\hline
+\end{DoxyParams}
+
+
+ 
+
+Definition at line 53 of file base64.\+cpp.
+
+
+
+Referenced by operator$<$$<$(), A\+P\+I\+::save\+A\+P\+I(), and test().
+
+\hypertarget{classBASE64_a1f7d6fc0902417dff2d5cece476a3aba}{}\index{B\+A\+S\+E64@{B\+A\+S\+E64}!test@{test}}
+\index{test@{test}!B\+A\+S\+E64@{B\+A\+S\+E64}}
+\subsubsection[{test}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myerror\+\_\+t} B\+A\+S\+E64\+::test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{classBASE64_a1f7d6fc0902417dff2d5cece476a3aba}
+This function encodes and decodes some random data then checks the original value is recovered. 
+
+ \begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0a72d7027f95e0f2811e3ff04fa7e42392}{E\+R\+R\+O\+R\+\_\+\+U\+N\+E\+X\+P\+E\+C\+T\+E\+D} if a mismatch is found 
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R} if everything matches 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+ 
+
+Definition at line 5 of file base64.\+cpp.
+
+
+
+References decode(), encode(), E\+R\+R\+O\+R\+\_\+\+U\+N\+E\+X\+P\+E\+C\+T\+E\+D, and N\+O\+\_\+\+E\+R\+R\+O\+R.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+includes/\hyperlink{base64_8hpp}{base64.\+hpp}\item 
+src/base64.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,163 @@
+\hypertarget{classSHA256}{}\section{S\+H\+A256 Class Reference}
+\label{classSHA256}\index{S\+H\+A256@{S\+H\+A256}}
+
+
+\hyperlink{classSHA256}{S\+H\+A256} class.  
+
+
+
+
+{\ttfamily \#include $<$sha256.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classSHA256_a9893152e0b8a75ebed254509dfb1eb4a}{init} ()
+\begin{DoxyCompactList}\small\item\em Function used to init the hash module. \end{DoxyCompactList}\item 
+void \hyperlink{classSHA256_ad8fd8e1bb7747817dc3f66207cf93bb1}{update} (const uint8\+\_\+t $\ast$data, size\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Function used to add data-\/block to the processed input. \end{DoxyCompactList}\item 
+void \hyperlink{classSHA256_ae18db29e29d9596d3f88299ddd839efa}{final} (uint8\+\_\+t hash\mbox{[}32\mbox{]})
+\begin{DoxyCompactList}\small\item\em Function used to finalize the hash procedure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0}{myerror\+\_\+t} \hyperlink{classSHA256_a5560241abd7bc47ada8fa6a8749a5de8}{test} ()
+\begin{DoxyCompactList}\small\item\em Auto test function to test S\+H\+A-\/256 implementation w.\+r. to few test vectors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSHA256_a092a610392dab8ef06a4e74a9f60717c}{}static const size\+\_\+t {\bfseries hash\+Size} = 32\label{classSHA256_a092a610392dab8ef06a4e74a9f60717c}
+
+\item 
+\hypertarget{classSHA256_a15b5cd20a4b15510826d9187fb93bc16}{}static const size\+\_\+t {\bfseries block\+Size} = 64\label{classSHA256_a15b5cd20a4b15510826d9187fb93bc16}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSHA256_a18c0dd9fd3be798a4cb98192a8c83c82}{}void \hyperlink{classSHA256_a18c0dd9fd3be798a4cb98192a8c83c82}{compress} (const uint8\+\_\+t data\mbox{[}64\mbox{]})\label{classSHA256_a18c0dd9fd3be798a4cb98192a8c83c82}
+
+\begin{DoxyCompactList}\small\item\em S\+H\+A-\/256 compression function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSHA256_a6fea438dead0fca1139b6a15aa8391f9}{}uint32\+\_\+t \hyperlink{classSHA256_a6fea438dead0fca1139b6a15aa8391f9}{state} \mbox{[}8\mbox{]}\label{classSHA256_a6fea438dead0fca1139b6a15aa8391f9}
+
+\begin{DoxyCompactList}\small\item\em State of the hash process. \end{DoxyCompactList}\item 
+\hypertarget{classSHA256_a55dfb8087735d8434927d0112be11cad}{}uint64\+\_\+t \hyperlink{classSHA256_a55dfb8087735d8434927d0112be11cad}{data\+Bit\+Length}\label{classSHA256_a55dfb8087735d8434927d0112be11cad}
+
+\begin{DoxyCompactList}\small\item\em Number of bits processed by the hash function. \end{DoxyCompactList}\item 
+\hypertarget{classSHA256_a4c3c09c417432358312a535361723cb2}{}uint8\+\_\+t \hyperlink{classSHA256_a4c3c09c417432358312a535361723cb2}{data\+Buffer} \mbox{[}64\mbox{]}\label{classSHA256_a4c3c09c417432358312a535361723cb2}
+
+\begin{DoxyCompactList}\small\item\em Data buffer used before enough bytes (64) are available. \end{DoxyCompactList}\item 
+\hypertarget{classSHA256_ac6a07494572f174c28c3eea4ef8cfd2b}{}size\+\_\+t \hyperlink{classSHA256_ac6a07494572f174c28c3eea4ef8cfd2b}{buffer\+Length}\label{classSHA256_ac6a07494572f174c28c3eea4ef8cfd2b}
+
+\begin{DoxyCompactList}\small\item\em Current number of bytes in the data buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSHA256_a93554eacfa4c6b5f542d1c1e161e13d6}{}static const uint32\+\_\+t \hyperlink{classSHA256_a93554eacfa4c6b5f542d1c1e161e13d6}{k} \mbox{[}64\mbox{]}\label{classSHA256_a93554eacfa4c6b5f542d1c1e161e13d6}
+
+\begin{DoxyCompactList}\small\item\em Constants for the compression function. \end{DoxyCompactList}\item 
+\hypertarget{classSHA256_ad4539b9c01d09226f1f31021c8cce4e1}{}static const size\+\_\+t \hyperlink{classSHA256_ad4539b9c01d09226f1f31021c8cce4e1}{T\+V\+\_\+lengths} \mbox{[}4\mbox{]}\label{classSHA256_ad4539b9c01d09226f1f31021c8cce4e1}
+
+\begin{DoxyCompactList}\small\item\em Lengths of test vectors. \end{DoxyCompactList}\item 
+\hypertarget{classSHA256_a90689626ad27d72f4c52e694ece0f8f6}{}static const char $\ast$ \hyperlink{classSHA256_a90689626ad27d72f4c52e694ece0f8f6}{T\+V\+\_\+messages} \mbox{[}4\mbox{]}\label{classSHA256_a90689626ad27d72f4c52e694ece0f8f6}
+
+\begin{DoxyCompactList}\small\item\em Messages used in test vectors. \end{DoxyCompactList}\item 
+\hypertarget{classSHA256_adf02f91a3a132332268d19cb699cc3b1}{}static const uint8\+\_\+t \hyperlink{classSHA256_adf02f91a3a132332268d19cb699cc3b1}{T\+V\+\_\+hashes} \mbox{[}4\mbox{]}\mbox{[}32\mbox{]}\label{classSHA256_adf02f91a3a132332268d19cb699cc3b1}
+
+\begin{DoxyCompactList}\small\item\em Hashes obtained for test vectors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 16 of file sha256.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classSHA256_ae18db29e29d9596d3f88299ddd839efa}{}\index{S\+H\+A256@{S\+H\+A256}!final@{final}}
+\index{final@{final}!S\+H\+A256@{S\+H\+A256}}
+\subsubsection[{final}]{\setlength{\rightskip}{0pt plus 5cm}void S\+H\+A256\+::final (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{hash\mbox{[}32\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{classSHA256_ae18db29e29d9596d3f88299ddd839efa}
+This function stores in the parameter the output of the hashing process applied to the data blocks provided by the calls to the update function. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em hash} & is a 32-\/byte array that will contain the final hash value.\\
+\hline
+\end{DoxyParams}
+
+
+ 
+
+Referenced by User\+::hash\+Password().
+
+\hypertarget{classSHA256_a9893152e0b8a75ebed254509dfb1eb4a}{}\index{S\+H\+A256@{S\+H\+A256}!init@{init}}
+\index{init@{init}!S\+H\+A256@{S\+H\+A256}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void S\+H\+A256\+::init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classSHA256_a9893152e0b8a75ebed254509dfb1eb4a}
+This function inits the hash module by reseting the state to initial values. 
+
+
+
+
+
+ 
+
+Referenced by User\+::hash\+Password().
+
+\hypertarget{classSHA256_a5560241abd7bc47ada8fa6a8749a5de8}{}\index{S\+H\+A256@{S\+H\+A256}!test@{test}}
+\index{test@{test}!S\+H\+A256@{S\+H\+A256}}
+\subsubsection[{test}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf myerror\+\_\+t} S\+H\+A256\+::test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{classSHA256_a5560241abd7bc47ada8fa6a8749a5de8}
+This function uses test vectors defined in the class and test implementation versus them. 
+
+ \begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0a72d7027f95e0f2811e3ff04fa7e42392}{E\+R\+R\+O\+R\+\_\+\+U\+N\+E\+X\+P\+E\+C\+T\+E\+D} if a mismatch is found 
+\item \hyperlink{error_8hpp_acabd2917084445509becf54ab64a4bd0abf350750d0d4fabd8954c0f1e9bbae94}{N\+O\+\_\+\+E\+R\+R\+O\+R} if everything matches 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+ \hypertarget{classSHA256_ad8fd8e1bb7747817dc3f66207cf93bb1}{}\index{S\+H\+A256@{S\+H\+A256}!update@{update}}
+\index{update@{update}!S\+H\+A256@{S\+H\+A256}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void S\+H\+A256\+::update (
+\begin{DoxyParamCaption}
+\item[{const uint8\+\_\+t $\ast$}]{data, }
+\item[{size\+\_\+t}]{length}
+\end{DoxyParamCaption}
+)}\label{classSHA256_ad8fd8e1bb7747817dc3f66207cf93bb1}
+This function process the provided data but outputs nothing. Multiple call to update may be of interest when data is being received in multiple blocks or if the message is too large or the memory. 
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em data} & is an array of bytes to process. \\
+\hline
+{\em length} & is the number of element in the array data.\\
+\hline
+\end{DoxyParams}
+
+
+ 
+
+Referenced by User\+::hash\+Password().
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/\hyperlink{sha256_8hpp}{sha256.\+hpp}\end{DoxyCompactItemize}

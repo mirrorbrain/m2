@@ -1,0 +1,259 @@
+3/
+root@bro:~/tp# bro -r /root/ssh.pcap local
+WARNING: No Site::local_nets have been defined.  It's usually a good idea to define your local networks.
+1320435513.483217 error in /usr/local/bro/share/bro/policy/protocols/ssh/geo-data.bro, line 30: Bro was not configured for GeoIP support (lookup_location(SSH::lookup_ip))
+1320435513.483217 warning: can't issue DNS request
+1320435517.714734 warning: NB-DNS error in DNS_Mgr::Process (recvfrom(): Connection refused)
+1320435958.102946 warning: NB-DNS error in DNS_Mgr::Process (recvfrom(): Connection refused)
+root@bro:~/tp# ls
+conn.log  loaded_scripts.log  notice.log  packet_filter.log  reporter.log  ssh.log
+
+conn.log : infos sur les connections sur les machines du réseau surveillé
+notice.log : donne une interprétation des logs par Bro (infos intéressantes)
+ssh.log : log les interactions avec ssh
+
+root@bro:~/tp# bro-cut id.orig_h id.orig_p id.resp_h id.resp_p status < ssh.log
+172.16.238.1	58396	172.16.238.129	22	success
+172.16.238.1	58395	172.16.238.168	22	success
+172.16.238.1	58397	172.16.238.136	22	failure
+172.16.238.1	58398	172.16.238.136	22	failure
+172.16.238.1	58399	172.16.238.136	22	failure
+172.16.238.1	58402	172.16.238.136	22	failure
+172.16.238.1	58403	172.16.238.136	22	failure
+172.16.238.1	58404	172.16.238.136	22	failure
+172.16.238.1	58405	172.16.238.136	22	failure
+172.16.238.1	58406	172.16.238.136	22	failure
+172.16.238.1	58407	172.16.238.136	22	failure
+172.16.238.1	58408	172.16.238.136	22	failure
+172.16.238.1	58409	172.16.238.136	22	failure
+172.16.238.1	58410	172.16.238.136	22	failure
+172.16.238.1	58411	172.16.238.136	22	failure
+172.16.238.1	58412	172.16.238.136	22	failure
+172.16.238.1	58413	172.16.238.136	22	failure
+172.16.238.1	58414	172.16.238.136	22	failure
+172.16.238.1	58415	172.16.238.136	22	failure
+172.16.238.1	58416	172.16.238.136	22	failure
+172.16.238.1	58417	172.16.238.136	22	failure
+172.16.238.1	58418	172.16.238.136	22	failure
+172.16.238.1	58419	172.16.238.136	22	failure
+172.16.238.1	58420	172.16.238.136	22	failure
+172.16.238.1	58421	172.16.238.136	22	failure
+172.16.238.1	58422	172.16.238.136	22	failure
+172.16.238.1	58423	172.16.238.136	22	failure
+172.16.238.1	58424	172.16.238.136	22	failure
+172.16.238.1	58425	172.16.238.136	22	failure
+172.16.238.1	58426	172.16.238.136	22	failure
+172.16.238.1	58427	172.16.238.136	22	failure
+172.16.238.1	58428	172.16.238.136	22	failure
+172.16.238.1	58429	172.16.238.136	22	failure
+172.16.238.1	58430	172.16.238.136	22	failure
+172.16.238.1	58431	172.16.238.136	22	failure
+172.16.238.1	58432	172.16.238.136	22	failure
+172.16.238.1	58433	172.16.238.136	22	failure
+172.16.238.1	58434	172.16.238.136	22	failure
+172.16.238.1	58435	172.16.238.136	22	failure
+172.16.238.1	58436	172.16.238.136	22	success
+
+root@bro:~/tp# bro-cut msg src dst p actions < notice.log
+172.16.238.1 appears to be guessing SSH passwords (seen in 30 connections).	172.16.238.1	-	-	Notice::ACTION_ALARM,Notice::ACTION_LOG
+
+alarm.bro : modifie le chemin d'écriture de notice vers notice_alarm et lance une alarme sur le type SSH::Password_Guessing
+
+root@bro:~/tp# cat bruteforce.bro
+@load base/protocols/ssh
+@load base/frameworks/notice
+@load policy/protocols/ssh/detect-bruteforcing
+
+module SSH;
+
+export {
+	redef enum Notice::Type += {
+		Login_After_Password_Guessing,
+	};
+
+	global brute_forcers: set[addr] &write_expire=24hrs;
+
+}
+
+hook Notice::policy(n: Notice::Info)
+{
+	if (n$note == SSH::Password_Guessing)
+		add brute_forcers[n$src];
+	else if (n$note == SSH::Login_After_Password_Guessing)
+	{
+		add n$actions[Notice::ACTION_ALARM];
+		n$sub = "Is a password guesser";
+	}
+}
+
+event SSH::heuristic_successful_login(c: connection)
+{
+	if (c$id$orig_h in brute_forcers)
+		NOTICE([$note=Login_After_Password_Guessing, $msg="Possible SSH login success", $conn=c]);
+}
+
+4/
+1.
+root@loris:~# wget http://192.168.56.1
+--2018-02-02 10:35:54--  http://192.168.56.1/
+Connecting to 192.168.56.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 7669 (7.5K) [text/html]
+Saving to: `index.html'
+
+100%[=============================================================================================================>] 7,669       --.-K/s   in 0s
+
+2018-02-02 10:35:54 (483 MB/s) - `index.html' saved [7669/7669]
+
+2.
+root@loris:~# perl loris/slowloris.pl -dns 192.168.56.1
+CCCCCCCCCCOOCCOOOOO888@8@8888OOOOCCOOO888888888@@@@@@@@@8@8@@@@888OOCooocccc::::
+CCCCCCCCCCCCCCCOO888@888888OOOCCCOOOO888888888888@88888@@@@@@@888@8OOCCoococc:::
+CCCCCCCCCCCCCCOO88@@888888OOOOOOOOOO8888888O88888888O8O8OOO8888@88@@8OOCOOOCoc::
+CCCCooooooCCCO88@@8@88@888OOOOOOO88888888888OOOOOOOOOOCCCCCOOOO888@8888OOOCc::::
+CooCoCoooCCCO8@88@8888888OOO888888888888888888OOOOCCCooooooooCCOOO8888888Cocooc:
+ooooooCoCCC88@88888@888OO8888888888888888O8O8888OOCCCooooccccccCOOOO88@888OCoccc
+ooooCCOO8O888888888@88O8OO88888OO888O8888OOOO88888OCocoococ::ccooCOO8O888888Cooo
+oCCCCCCO8OOOCCCOO88@88OOOOOO8888O888OOOOOCOO88888O8OOOCooCocc:::coCOOO888888OOCC
+oCCCCCOOO88OCooCO88@8OOOOOO88O888888OOCCCCoCOOO8888OOOOOOOCoc::::coCOOOO888O88OC
+oCCCCOO88OOCCCCOO8@@8OOCOOOOO8888888OoocccccoCO8O8OO88OOOOOCc.:ccooCCOOOO88888OO
+CCCOOOO88OOCCOOO8@888OOCCoooCOO8888Ooc::...::coOO88888O888OOo:cocooCCCCOOOOOO88O
+CCCOO88888OOCOO8@@888OCcc:::cCOO888Oc..... ....cCOOOOOOOOOOOc.:cooooCCCOOOOOOOOO
+OOOOOO88888OOOO8@8@8Ooc:.:...cOO8O88c.      .  .coOOO888OOOOCoooooccoCOOOOOCOOOO
+OOOOO888@8@88888888Oo:. .  ...cO888Oc..          :oOOOOOOOOOCCoocooCoCoCOOOOOOOO
+COOO888@88888888888Oo:.       .O8888C:  .oCOo.  ...cCCCOOOoooooocccooooooooCCCOO
+CCCCOO888888O888888Oo. .o8Oo. .cO88Oo:       :. .:..ccoCCCooCooccooccccoooooCCCC
+coooCCO8@88OO8O888Oo:::... ..  :cO8Oc. . .....  :.  .:ccCoooooccoooocccccooooCCC
+:ccooooCO888OOOO8OOc..:...::. .co8@8Coc::..  ....  ..:cooCooooccccc::::ccooCCooC
+.:::coocccoO8OOOOOOC:..::....coCO8@8OOCCOc:...  ....:ccoooocccc:::::::::cooooooC
+....::::ccccoCCOOOOOCc......:oCO8@8@88OCCCoccccc::c::.:oCcc:::cccc:..::::coooooo
+.......::::::::cCCCCCCoocc:cO888@8888OOOOCOOOCoocc::.:cocc::cc:::...:::coocccccc
+...........:::..:coCCCCCCCO88OOOO8OOOCCooCCCooccc::::ccc::::::.......:ccocccc:co
+.............::....:oCCoooooCOOCCOCCCoccococc:::::coc::::....... ...:::cccc:cooo
+ ..... ............. .coocoooCCoco:::ccccccc:::ccc::..........  ....:::cc::::coC
+   .  . ...    .... ..  .:cccoCooc:..  ::cccc:::c:.. ......... ......::::c:cccco
+  .  .. ... ..    .. ..   ..:...:cooc::cccccc:.....  .........  .....:::::ccoocc
+       .   .         .. ..::cccc:.::ccoocc:. ........... ..  . ..:::.:::::::ccco
+ Welcome to Slowloris - the low bandwidth, yet greedy and poisonous HTTP client
+Defaulting to port 80.
+Defaulting to a 5 second tcp connection timeout.
+Defaulting to a 100 second re-try timeout.
+Defaulting to 1000 connections.
+Multithreading enabled.
+Connecting to 192.168.56.1:80 every 100 seconds with 1000 sockets:
+		Building sockets.
+		Building sockets.
+		Building sockets.
+		Sending data.
+Current stats:	Slowloris has now sent 450 packets successfully.
+This thread now sleeping for 100 seconds...
+
+		Building sockets.
+		Building sockets.
+		Sending data.
+Current stats:	Slowloris has now sent 744 packets successfully.
+This thread now sleeping for 100 seconds...
+
+		Building sockets.
+		Building sockets.
+		Building sockets.
+		Building sockets.
+		Building sockets.
+		Building sockets.
+		Building sockets.
+		Building sockets.
+		Building sockets.
+		Building sockets.
+		Building sockets.
+		Building sockets.
+		Building sockets.
+		Building sockets.
+		Building sockets.
+		Sending data.
+Current stats:	Slowloris has now sent 974 packets successfully.
+This thread now sleeping for 100 seconds...
+
+		Sending data.
+Current stats:	Slowloris has now sent 1224 packets successfully.
+This thread now sleeping for 100 seconds...
+
+3.
+root@loris:~# wget http://192.168.56.1
+--2018-02-02 10:38:01--  http://192.168.56.1/
+Connecting to 192.168.56.1:80... connected.
+HTTP request sent, awaiting response... ^C
+
+--------------------------------------------------------------------------------
+root@bro:~/tp# cat slowloris.bro
+global lorises: table[addr] of count &create_expire=10min &default=0;
+
+redef enum Notice::Type += {
+	## Indicates a slowloris attack
+	Slowloris_Conn_Found
+};
+
+event Conn::log_conn(rec: Conn::Info)
+{
+	lorises[rec$id$orig_h] += 1;
+	if (lorises[rec$id$orig_h] >= 100)
+		# Raise a notice of type Slowloris_Conn_Found
+		NOTICE([$note=Slowloris_Conn_Found,
+			$msg=fmt("Slowloris attack from %s", rec$id$orig_h),
+			$id=rec$id]);
+}
+
+root@bro:~/tp# bro-cut msg src dst p actions < notice.log
+Slowloris attack from 192.168.56.2	192.168.56.2	192.168.56.1	80	Notice::ACTION_LOG
+Slowloris attack from 192.168.56.2	192.168.56.2	192.168.56.1	80	Notice::ACTION_LOG
+Slowloris attack from 192.168.56.2	192.168.56.2	192.168.56.1	80	Notice::ACTION_LOG
+Slowloris attack from 192.168.56.2	192.168.56.2	192.168.56.1	80	Notice::ACTION_LOG
+
+Un proxy est un hôte qui pourrait légitimement ouvrir plus de 100 connections au serveur
+
+avec filtre de durée de connections :
+root@bro:~/tp# cat slowloris.bro
+global lorises: table[addr] of count &create_expire=10min &default=0;
+
+redef enum Notice::Type += {
+	## Indicates a slowloris attack
+	Slowloris_Conn_Found
+};
+
+event Conn::log_conn(rec: Conn::Info)
+{
+	if ((network_time() - rec$ts) < 5sec)
+		return;
+	lorises[rec$id$orig_h] += 1;
+	if (lorises[rec$id$orig_h] >= 100)
+		# Raise a notice of type Slowloris_Conn_Found
+		NOTICE([$note=Slowloris_Conn_Found,
+			$msg=fmt("Slowloris attack from %s", rec$id$orig_h),
+			$id=rec$id]);
+}
+
+ça fonctionne toujours !
+
+avec filtre de débit :
+root@bro:~/tp# cat slowloris.bro
+global lorises: table[addr] of count &create_expire=10min &default=0;
+
+redef enum Notice::Type += {
+	## Indicates a slowloris attack
+	Slowloris_Conn_Found
+};
+
+event Conn::log_conn(rec: Conn::Info)
+{
+	if ((network_time() - rec$ts) < 5sec)
+		return;
+	if (rec$orig_bytes > 250)
+		return;
+	lorises[rec$id$orig_h] += 1;
+	if (lorises[rec$id$orig_h] == 100)
+		# Raise a notice of type Slowloris_Conn_Found
+		NOTICE([$note=Slowloris_Conn_Found,
+			$msg=fmt("Slowloris attack from %s", rec$id$orig_h),
+			$id=rec$id]);
+}
+
+ça fonctionne toujours !!!!!
